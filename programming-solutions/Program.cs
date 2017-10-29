@@ -15,10 +15,14 @@ namespace programming_solutions
             //DoubleName();
             //TotalTimeDoubleName();
             //TotalTimeDoubleName1();
+
+            // take least time that took the user to write his name
             shorterTime();
         }
 
-
+        /// <summary>
+        /// Handles user's name and age
+        /// </summary>
         static void NameAgeOfUser()
         {
 
