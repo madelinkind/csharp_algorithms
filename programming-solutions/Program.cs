@@ -12,15 +12,13 @@ namespace programming_solutions
         static void Main(string[] args)
         {
             #region Ejercicios Semana 1
-            Semana1.HelloWorld();
             #endregion
 
             #region Ejercicios Semana 2
-            int k = Convert.ToInt32("4");
+            #endregion
 
-            int z = 234;
-            Semana2.Suma(z + 87123 * 4, int.Parse("4"));
-            Console.ReadLine();
+            #region Ejercicios Semana 3
+            Semana3.NextDay();
             #endregion
 
 
