@@ -11,13 +11,26 @@ namespace programming_solutions
     {
         static void Main(string[] args)
         {
+            #region Ejercicios Semana 1
+            Semana1.HelloWorld();
+            #endregion
+
+            #region Ejercicios Semana 2
+            int k = Convert.ToInt32("4");
+
+            int z = 234;
+            Semana2.Suma(z + 87123 * 4, int.Parse("4"));
+            Console.ReadLine();
+            #endregion
+
+
             //NameAgeOfUser();
             //DoubleName();
             //TotalTimeDoubleName();
             //TotalTimeDoubleName1();
 
             // take least time that took the user to write his name
-            shorterTime();
+            //shorterTime();
         }
 
         /// <summary>
@@ -97,7 +110,7 @@ namespace programming_solutions
             System.Console.Read();
         }
 
-        static void shorterTime()
+        static void ShorterTime()
         {
             Stopwatch crono = new Stopwatch();
             Console.WriteLine("Hola, teclee su nombre dos veces por favor");
@@ -120,6 +133,3 @@ namespace programming_solutions
 
     }
 }
-
-
-
