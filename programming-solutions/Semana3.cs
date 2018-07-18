@@ -7,11 +7,11 @@ namespace programming_solutions
     {
         public static void Mayor()
         {
-            Console.Write("Teclea un primer numero ");
+            Console.WriteLine("Teclea un primer numero ");
             int j = int.Parse(Console.ReadLine());
             Console.Write("Teclea un segundo numero ");
             int k = int.Parse(Console.ReadLine());
-            Console.Write("Teclea un tercer numero ");
+            Console.WriteLine("Teclea un tercer numero ");
             int m = int.Parse(Console.ReadLine());
 
             if ((j >= k) && (j >= m))
@@ -20,7 +20,7 @@ namespace programming_solutions
                 Console.WriteLine("El mayor es {0}", k);
             else
                 Console.WriteLine("El mayor es {0}", m);
-
+            
             Console.Read();
         }
         public static void Speed()
