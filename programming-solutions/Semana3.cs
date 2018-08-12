@@ -26,35 +26,27 @@ namespace ProgrammingSolutions
 
         public static void MayorFunction()
         {
-            int mayor = 0;
-
             Console.WriteLine("Teclea un primer numero ");
-            int j;
-            bool jIsNumber = int.TryParse(Console.ReadLine(), out j);
+            bool jIsNumber = int.TryParse(Console.ReadLine(), out int j);
 
             Console.WriteLine("Teclea un segundo numero ");
-            int k;
-            bool kIsNumber = int.TryParse(Console.ReadLine(), out k);
-
+            bool kIsNumber = int.TryParse(Console.ReadLine(), out int k);
 
             Console.WriteLine("Teclea un tercer numero ");
-            int m;
-            bool mIsNumber = int.TryParse(Console.ReadLine(), out m);
+            bool mIsNumber = int.TryParse(Console.ReadLine(), out int m);
 
-            if (!jIsNumber && !kIsNumber && !mIsNumber)
+            // check that all values are integer
+            if (!jIsNumber || !kIsNumber || !mIsNumber)
             {
                 Console.WriteLine("You must type valid integer numbers");
                 return;
             }
-
             else
             {
-                int numMayor = Math.Max(j, k);
-                mayor = Math.Max(numMayor, m);
-
+                // get maximum of the three numbers
+                int mayor = Math.Max(Math.Max(j, k), m);
+                Console.WriteLine("El mayor es {0}", mayor);
             }
-
-            Console.WriteLine("El mayor es {0}", mayor);
         }
         public static void Speed()
         {
