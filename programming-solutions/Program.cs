@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
 
-namespace programming_solutions
+namespace ProgrammingSolutions
 {
     class Program
     {
@@ -18,11 +14,10 @@ namespace programming_solutions
             #endregion
 
             #region Ejercicios Semana 3
-            Semana3.NextDay();
+            //Semana3.NextDay();
             #endregion
          
             #region Ejercicios Semana 4
-            
             #endregion
 
             //NameAgeOfUser();
