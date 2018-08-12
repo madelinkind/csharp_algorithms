@@ -5,6 +5,9 @@ namespace ProgrammingSolutions
 {
     static class Semana3
     {
+        /// <summary>
+        /// Find the largest of three numbers
+        /// </summary>
         public static void Mayor()
         {
             Console.WriteLine("Teclea un primer numero ");
@@ -24,6 +27,9 @@ namespace ProgrammingSolutions
             Console.Read();
         }
 
+        /// <summary>
+        /// Find the largest of three numbers using Math.Max
+        /// </summary>
         public static void MayorFunction()
         {
             Console.WriteLine("Teclea un primer numero ");
@@ -48,6 +54,10 @@ namespace ProgrammingSolutions
                 Console.WriteLine("El mayor es {0}", mayor);
             }
         }
+
+        /// <summary>
+        /// Determines the writing speed
+        /// </summary>
         public static void Speed()
         {
             Stopwatch crono = new Stopwatch();
@@ -68,9 +78,11 @@ namespace ProgrammingSolutions
             else
                 Console.WriteLine("Usted es lento");
 
-            //            Console.Read();
         }
 
+        /// <summary>
+        /// Determines which of the three names were written faster
+        /// </summary>
         public static void FastName()
         {
             Stopwatch crono = new Stopwatch();
@@ -105,6 +117,9 @@ namespace ProgrammingSolutions
             Console.Read();
         }
 
+        /// <summary>
+        /// Determines the type of triangle
+        /// </summary>
         public static void TypeTriangle()
         {
             Console.WriteLine("Entre 3 valores enteros");
@@ -130,6 +145,9 @@ namespace ProgrammingSolutions
             Console.Read();
         }
 
+        /// <summary>
+        /// Orders from least to greatest and determines the average between the 3 numbers
+        /// </summary>
         public static void OrderAvrg()
         {
             float average = 0;
@@ -166,6 +184,9 @@ namespace ProgrammingSolutions
             Console.Read();
         }
 
+        /// <summary>
+        /// Determines if a number is prime
+        /// </summary>
         public static void PrimeNumber()
         {
 
@@ -184,6 +205,9 @@ namespace ProgrammingSolutions
             Console.Read();
         }
 
+        /// <summary>
+        /// Determines the day following the given date
+        /// </summary>
         public static void NextDay()
         {
             Console.WriteLine("Entre una fecha");
