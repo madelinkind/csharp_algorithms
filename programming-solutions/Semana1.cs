@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace programming_solutions
+namespace ProgrammingSolutions
 {
     static class Semana1
     {
