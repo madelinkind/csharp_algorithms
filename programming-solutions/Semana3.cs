@@ -94,11 +94,13 @@ namespace ProgrammingSolutions
             crono.Stop();
             long timeFirstName = crono.ElapsedMilliseconds;
 
+            crono.Reset();
             crono.Start();
             string secondName = Console.ReadLine();
             crono.Stop();
             long timeSecondName = crono.ElapsedMilliseconds;
 
+            crono.Reset();
             crono.Start();
             string thirdName = Console.ReadLine();
             crono.Stop();

@@ -14,7 +14,7 @@ namespace ProgrammingSolutions
             #endregion
 
             #region Ejercicios Semana 3
-            Semana3.MayorFunction();
+            Semana3.FastName();
             #endregion
          
             #region Ejercicios Semana 4
