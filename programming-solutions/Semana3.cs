@@ -23,8 +23,6 @@ namespace ProgrammingSolutions
                 Console.WriteLine("El mayor es {0}", k);
             else
                 Console.WriteLine("El mayor es {0}", m);
-
-            Console.Read();
         }
 
         /// <summary>
@@ -143,8 +141,6 @@ namespace ProgrammingSolutions
 
             else
                 Console.WriteLine("No es posible formar un triángulo");
-
-            Console.Read();
         }
 
         /// <summary>
@@ -183,7 +179,6 @@ namespace ProgrammingSolutions
 
             average = (value + value1 + value2) / 3;
             Console.WriteLine("{0}", average);
-            Console.Read();
         }
 
         /// <summary>
@@ -204,7 +199,6 @@ namespace ProgrammingSolutions
             }
             else
                 Console.WriteLine("Error, entró un número fuera del rango indicado. Vuelva a ejecutar el programa.");
-            Console.Read();
         }
 
         /// <summary>
