@@ -5,6 +5,9 @@ namespace ProgrammingSolutions
 {
     static class Semana4
     {
+        /// <summary>
+        ///Determines the factorial of a number 
+        /// </summary>
         public static void FactorialNumber()
         {
             Console.WriteLine("Inserte un número para hallar su factorial");
@@ -27,8 +30,11 @@ namespace ProgrammingSolutions
             }
             else
                 Console.WriteLine("Error, debe entrar un numero. Vuelva a ejecutar el programa");
-
         }
+
+        /// <summary>
+        /// Determines if a number is prime
+        /// </summary>
         public static void PrimeNumber()
         {
             Console.WriteLine("Inserte un número");
@@ -49,6 +55,9 @@ namespace ProgrammingSolutions
                 Console.WriteLine("Error, debe entrar un numero. Vuelva a ejecutar el programa");
         }
 
+        /// <summary>
+        /// Determines how many numbers are negative and how many positive 
+        /// </summary>
         public static void PositiveNegativeNumber()
         {
             int postivevalue = 0;
@@ -73,6 +82,10 @@ namespace ProgrammingSolutions
             }
             Console.WriteLine("La cantidad de números positivos entrados: {0}, La cantidad de números negativos entrados: {1}", postivevalue, negativevalue);
         }
+
+        /// <summary>
+        /// Determines the numers primes 
+        /// </summary>
         public static void PrimeNumberSeq()
         {
             Console.WriteLine("Entre una secuencia de números");
@@ -94,8 +107,11 @@ namespace ProgrammingSolutions
                 else
                     Console.WriteLine("Error, debe entrar un número");
             }
-
         }
+
+        /// <summary>
+        /// Determines the number of strings with greater length.
+        /// </summary>
         public static void LongerLength()
         {
             int cont = 0;
@@ -122,7 +138,9 @@ namespace ProgrammingSolutions
             Console.WriteLine("El contador {0}, ultima cadena {1}", contador, cadena);
         }
 
-        // Duda al entrar un numero con punto me lo coge como un numero entero ej: 22.2 = 222
+        /// <summary>
+        /// Determines the average of the positive number
+        /// </summary>
         public static void AveragePositive()
         {
             string line = String.Empty;
@@ -155,6 +173,9 @@ namespace ProgrammingSolutions
             Console.WriteLine("Promedio:\t{0,8:c}", average);
         }
 
+        /// <summary>
+        /// Determines if a date is correct
+        /// </summary>
         public static void CorrectDate()
         {
             Console.WriteLine("Entre una fecha");
@@ -184,8 +205,11 @@ namespace ProgrammingSolutions
             }
             else
                 Console.WriteLine("Error, debe entrar dd/mm/aa. Vuelva a ejecutar el programa");
-
         }
+
+        /// <summary>
+        /// Determines the following date 
+        /// </summary>
         public static void FollowingDate()
         {
             Console.WriteLine("Entre una fecha");
@@ -215,9 +239,11 @@ namespace ProgrammingSolutions
             }
             else
                 Console.WriteLine("Error, debe entrar dd/mm/aa. Vuelva a ejecutar el programa");
-
         }
-
+        
+        /// <summary>
+        /// Determines the previous date
+        /// </summary>
         public static void PreviousDate()
         {
             Console.WriteLine("Entre una fecha");
@@ -247,9 +273,11 @@ namespace ProgrammingSolutions
             }
             else
                 Console.WriteLine("Error, debe entrar dd/mm/aa. Vuelva a ejecutar el programa");
-
         }
 
+        /// <summary>
+        /// Determines the next date 
+        /// </summary>
         public static void IncreaseDate()
         {
             Console.WriteLine("Entre una fecha");
@@ -284,9 +312,11 @@ namespace ProgrammingSolutions
             }
             else
                 Console.WriteLine("Error, debe entrar dd/mm/aa. Vuelva a ejecutar el programa");
-
         }
 
+        /// <summary>
+        /// Determine the difference of days between two dates
+        /// </summary>
         public static void DifferentTwoDays()
         {
             Console.WriteLine("Entre una fecha");
@@ -342,9 +372,11 @@ namespace ProgrammingSolutions
             }
             else
                 Console.WriteLine("Error, debe entrar dd/mm/aa. Vuelva a ejecutar el programa");
-
         }
 
+        /// <summary>
+        /// Determines the number more big
+        /// </summary>
         public static void BiggerNumber()
         {
             Console.WriteLine("Entre una secuencia de números");
