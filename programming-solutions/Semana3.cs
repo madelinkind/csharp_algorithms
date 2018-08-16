@@ -75,7 +75,6 @@ namespace ProgrammingSolutions
                 Console.WriteLine("Usted es regular");
             else
                 Console.WriteLine("Usted es lento");
-
         }
 
         /// <summary>
@@ -138,7 +137,6 @@ namespace ProgrammingSolutions
                 else
                     Console.WriteLine("Es un triángulo Isósceles");
             }
-
             else
                 Console.WriteLine("No es posible formar un triángulo");
         }
@@ -176,7 +174,6 @@ namespace ProgrammingSolutions
                 else
                     Console.WriteLine("{0},{1},{2}", value2, value1, value);
             }
-
             average = (value + value1 + value2) / 3;
             Console.WriteLine("{0}", average);
         }
