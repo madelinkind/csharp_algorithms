@@ -183,9 +183,9 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void PrimeNumber()
         {
-
             Console.WriteLine("Entre un número que se encuentre en el rango del 1 al 100");
             int valor = int.Parse(Console.ReadLine());
+
             if (valor >= 1 && valor <= 100)
             {
                 int rest = valor % 2;
