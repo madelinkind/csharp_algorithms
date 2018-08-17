@@ -12,8 +12,10 @@ namespace ProgrammingSolutions
         {
             Console.WriteLine("Teclea un primer numero ");
             int j = int.Parse(Console.ReadLine());
+
             Console.Write("Teclea un segundo numero ");
             int k = int.Parse(Console.ReadLine());
+
             Console.WriteLine("Teclea un tercer numero ");
             int m = int.Parse(Console.ReadLine());
 
@@ -23,8 +25,6 @@ namespace ProgrammingSolutions
                 Console.WriteLine("El mayor es {0}", k);
             else
                 Console.WriteLine("El mayor es {0}", m);
-
-            Console.Read();
         }
 
         /// <summary>
@@ -77,7 +77,6 @@ namespace ProgrammingSolutions
                 Console.WriteLine("Usted es regular");
             else
                 Console.WriteLine("Usted es lento");
-
         }
 
         /// <summary>
@@ -113,8 +112,6 @@ namespace ProgrammingSolutions
             }
             else
                 Console.WriteLine("Error, has tecleado mal alguno de los nombres. Vuélva a ejecutar el programa");
-
-            Console.Read();
         }
 
         /// <summary>
@@ -130,22 +127,20 @@ namespace ProgrammingSolutions
 
             if (!isNumberA || !isNumberB || !isNumberC)
             {
-                if (a > 0 && b > 0 && c > 0)
-                {
-                    if (a == b && a == c)
-                        Console.WriteLine("The triangle is equilateral");
-                    else if (a != b && b != c && a != c)
-                        Console.WriteLine("The triangle is scalene");
-                    else
-                        Console.WriteLine("The triangle is isosceles");
-                }
-                else
-                    Console.WriteLine("Can't form a triangle");
-            }
-            else
                 Console.WriteLine("Triangle sides should be numbers");
-
-            Console.Read();
+                return;
+            }
+            if (a <= 0 && b <= 0 && c <= 0)
+            {
+                Console.WriteLine("Can't form a triangle");
+                return;
+            }
+            if (a == b && a == c)
+                Console.WriteLine("The triangle is equilateral");
+            else if (a != b && b != c && a != c)
+                Console.WriteLine("The triangle is scalene");
+            else
+                Console.WriteLine("The triangle is isosceles");
         }
 
         /// <summary>
@@ -181,10 +176,8 @@ namespace ProgrammingSolutions
                 else
                     Console.WriteLine("{0},{1},{2}", value2, value1, value);
             }
-
             average = (value + value1 + value2) / 3;
             Console.WriteLine("{0}", average);
-            Console.Read();
         }
 
         /// <summary>
@@ -192,9 +185,9 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void PrimeNumber()
         {
-
             Console.WriteLine("Entre un número que se encuentre en el rango del 1 al 100");
             int valor = int.Parse(Console.ReadLine());
+
             if (valor >= 1 && valor <= 100)
             {
                 int rest = valor % 2;
@@ -205,7 +198,6 @@ namespace ProgrammingSolutions
             }
             else
                 Console.WriteLine("Error, entró un número fuera del rango indicado. Vuelva a ejecutar el programa.");
-            Console.Read();
         }
 
         /// <summary>
@@ -228,3 +220,4 @@ namespace ProgrammingSolutions
         }
     }
 }
+

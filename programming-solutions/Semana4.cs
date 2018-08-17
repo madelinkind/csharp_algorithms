@@ -12,6 +12,7 @@ namespace ProgrammingSolutions
         {
             Console.WriteLine("Inserte un número para hallar su factorial");
             string character = Console.ReadLine();
+
             long number = 0;
             long factorial = 0;
             bool isNumber = long.TryParse(character, out number);
@@ -39,6 +40,7 @@ namespace ProgrammingSolutions
         {
             Console.WriteLine("Inserte un número");
             string character = Console.ReadLine();
+
             long number = 0;
             bool isNumber = long.TryParse(character, out number);
 
@@ -62,6 +64,7 @@ namespace ProgrammingSolutions
         {
             int postivevalue = 0;
             int negativevalue = 0;
+
             Console.WriteLine("Entre una secuencia de números");
             string line = String.Empty;
 
@@ -181,8 +184,10 @@ namespace ProgrammingSolutions
             Console.WriteLine("Entre una fecha");
             Console.WriteLine("Entre dia");
             string day = Console.ReadLine();
+
             Console.WriteLine("Entre mes");
             string month = Console.ReadLine();
+
             Console.WriteLine("Entre año");
             string year = Console.ReadLine();
 
@@ -215,8 +220,10 @@ namespace ProgrammingSolutions
             Console.WriteLine("Entre una fecha");
             Console.WriteLine("Entre dia");
             string day = Console.ReadLine();
+
             Console.WriteLine("Entre mes");
             string month = Console.ReadLine();
+
             Console.WriteLine("Entre año");
             string year = Console.ReadLine();
 
@@ -240,7 +247,7 @@ namespace ProgrammingSolutions
             else
                 Console.WriteLine("Error, debe entrar dd/mm/aa. Vuelva a ejecutar el programa");
         }
-        
+
         /// <summary>
         /// Determines the previous date
         /// </summary>
@@ -249,8 +256,10 @@ namespace ProgrammingSolutions
             Console.WriteLine("Entre una fecha");
             Console.WriteLine("Entre dia");
             string day = Console.ReadLine();
+
             Console.WriteLine("Entre mes");
             string month = Console.ReadLine();
+
             Console.WriteLine("Entre año");
             string year = Console.ReadLine();
 
@@ -264,6 +273,7 @@ namespace ProgrammingSolutions
                 int dayValue = Int32.Parse(day);
                 int monthValue = Int32.Parse(month);
                 int yearValue = Int32.Parse(year);
+
                 if (dayValue >= 1 && dayValue <= 31 && monthValue >= 1 && monthValue <= 12 && yearValue >= 1300)
                 {
                     Console.WriteLine("La fecha del día anterior es: {0}/{1}/{2}", dayValue - 1, monthValue, yearValue);
@@ -283,12 +293,16 @@ namespace ProgrammingSolutions
             Console.WriteLine("Entre una fecha");
             Console.WriteLine("Entre dia");
             string day = Console.ReadLine();
+
             Console.WriteLine("Entre mes");
             string month = Console.ReadLine();
+
             Console.WriteLine("Entre año");
             string year = Console.ReadLine();
+
             Console.WriteLine("Entre una cantidad de días");
             string countDays = Console.ReadLine();
+
             int number = 0;
             bool isNumberDay = Int32.TryParse(day, out number);
             bool isNumberMonth = Int32.TryParse(month, out number);
@@ -322,16 +336,20 @@ namespace ProgrammingSolutions
             Console.WriteLine("Entre una fecha");
             Console.WriteLine("Entre dia");
             string day = Console.ReadLine();
+
             Console.WriteLine("Entre mes");
             string month = Console.ReadLine();
+
             Console.WriteLine("Entre año");
             string year = Console.ReadLine();
 
             Console.WriteLine("Entre otra fecha");
             Console.WriteLine("Entre dia");
             string day1 = Console.ReadLine();
+
             Console.WriteLine("Entre mes");
             string month1 = Console.ReadLine();
+
             Console.WriteLine("Entre año");
             string year1 = Console.ReadLine();
 
