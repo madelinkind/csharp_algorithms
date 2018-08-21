@@ -85,27 +85,31 @@ namespace ProgrammingSolutions
         public static void FastName()
         {
             Stopwatch crono = new Stopwatch();
-            Stopwatch crono1 = new Stopwatch();
-            Stopwatch crono2 = new Stopwatch();
+
             Console.WriteLine("Teclee su nombre tres veces?");
 
             crono.Start();
             string firstName = Console.ReadLine();
             crono.Stop();
+            long timeFirstName = crono.ElapsedMilliseconds;
 
-            crono1.Start();
-            string secondtName = Console.ReadLine();
-            crono1.Stop();
+            crono.Reset();
+            crono.Start();
+            string secondName = Console.ReadLine();
+            crono.Stop();
+            long timeSecondName = crono.ElapsedMilliseconds;
 
-            crono2.Start();
-            string thirdtName = Console.ReadLine();
-            crono2.Stop();
+            crono.Reset();
+            crono.Start();
+            string thirdName = Console.ReadLine();
+            crono.Stop();
+            long timeThirdName = crono.ElapsedMilliseconds;
 
-            if (firstName == secondtName && secondtName == thirdtName)
+            if (firstName == secondName && secondName == thirdName)
             {
-                if (crono.ElapsedMilliseconds <= crono1.ElapsedMilliseconds && crono.ElapsedMilliseconds <= crono2.ElapsedMilliseconds)
+                if (timeFirstName <= timeSecondName && timeFirstName <= timeThirdName)
                     Console.WriteLine("Usted exscribió el primer nombre más rápido");
-                else if (crono1.ElapsedMilliseconds <= crono2.ElapsedMilliseconds)
+                else if (timeSecondName <= timeThirdName)
                     Console.WriteLine("Usted exscribió el segundo nombre más rápido");
                 else
                     Console.WriteLine("Usted exscribió el tercer nombre más rápido");
@@ -130,11 +134,13 @@ namespace ProgrammingSolutions
                 Console.WriteLine("Triangle sides should be numbers");
                 return;
             }
+
             if (a <= 0 && b <= 0 && c <= 0)
             {
                 Console.WriteLine("Can't form a triangle");
                 return;
             }
+
             if (a == b && a == c)
                 Console.WriteLine("The triangle is equilateral");
             else if (a != b && b != c && a != c)

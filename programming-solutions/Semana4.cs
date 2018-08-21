@@ -419,6 +419,5 @@ namespace ProgrammingSolutions
             }
             Console.WriteLine("El mayor numero de la secuencia entrada es: {0}", biggerNumber);
         }
-
     }
 }
