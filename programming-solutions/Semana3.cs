@@ -12,8 +12,10 @@ namespace ProgrammingSolutions
         {
             Console.WriteLine("Teclea un primer numero ");
             int j = int.Parse(Console.ReadLine());
+
             Console.Write("Teclea un segundo numero ");
             int k = int.Parse(Console.ReadLine());
+
             Console.WriteLine("Teclea un tercer numero ");
             int m = int.Parse(Console.ReadLine());
 
@@ -123,22 +125,28 @@ namespace ProgrammingSolutions
         {
             Console.WriteLine("Entre 3 valores enteros");
 
-            int side = int.Parse(Console.ReadLine());
-            int side1 = int.Parse(Console.ReadLine());
-            int side2 = int.Parse(Console.ReadLine());
+            bool isNumberA = int.TryParse(Console.ReadLine(), out int a);
+            bool isNumberB = int.TryParse(Console.ReadLine(), out int b);
+            bool isNumberC = int.TryParse(Console.ReadLine(), out int c);
 
-            if (side > 0 && side1 > 0 && side2 > 0)
+            if (!isNumberA || !isNumberB || !isNumberC)
             {
-
-                if (side == side1 && side == side2)
-                    Console.WriteLine("Es un triangulo Equilátero");
-                else if (side != side1 && side1 != side2 && side != side2)
-                    Console.WriteLine("Es un triángulo Escaleno");
-                else
-                    Console.WriteLine("Es un triángulo Isósceles");
+                Console.WriteLine("Triangle sides should be numbers");
+                return;
             }
+
+            if (a <= 0 && b <= 0 && c <= 0)
+            {
+                Console.WriteLine("Can't form a triangle");
+                return;
+            }
+
+            if (a == b && a == c)
+                Console.WriteLine("The triangle is equilateral");
+            else if (a != b && b != c && a != c)
+                Console.WriteLine("The triangle is scalene");
             else
-                Console.WriteLine("No es posible formar un triángulo");
+                Console.WriteLine("The triangle is isosceles");
         }
 
         /// <summary>
@@ -218,3 +226,4 @@ namespace ProgrammingSolutions
         }
     }
 }
+
