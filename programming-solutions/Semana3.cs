@@ -85,58 +85,63 @@ namespace ProgrammingSolutions
         public static void FastName()
         {
             Stopwatch crono = new Stopwatch();
-            Console.WriteLine("Teclee su nombre tres veces?");
+            Console.WriteLine("Type your name three times");
 
             crono.Start();
             string firstName1 = Console.ReadLine();
-            bool isNumber = IsAllLettersOrDigits(firstName1);
+            bool isNumber = IsAllLetters(firstName1);
             crono.Stop();
             long firstTimeName = crono.ElapsedMilliseconds;
             crono.Restart();
 
             crono.Start();
             string secondName1 = Console.ReadLine();
-            bool isNumber1 = IsAllLettersOrDigits(secondName1);
+            bool isNumber1 = IsAllLetters(secondName1);
             crono.Stop();
             long secondTimeName = crono.ElapsedMilliseconds;
             crono.Restart();
 
             crono.Start();
             string thirdName1 = Console.ReadLine();
-            bool isNumber2 = IsAllLettersOrDigits(thirdName1);
+            bool isNumber2 = IsAllLetters(thirdName1);
             crono.Stop();
             long thirdTimeName = crono.ElapsedMilliseconds;
             crono.Restart();
 
-            if (isNumber || isNumber1 || isNumber2)
+            if (!isNumber || !isNumber1 || !isNumber2)
             {
-                Console.WriteLine("Error, debe entrar letras");
+                Console.WriteLine("Error, you must enter letters");
                 return;
             }
             if (firstName1 != secondName1 || secondName1 != thirdName1)
             {
-                Console.WriteLine("Error, has tecleado mal alguno de los nombres. Vuélva a ejecutar el programa");
+                Console.WriteLine("Error, you have typed some of the names wrong. Run the program again");
                 return;
             }
             if (firstTimeName <= secondTimeName && firstTimeName <= thirdTimeName)
-                Console.WriteLine("Usted exscribió el primer nombre más rápido");
+                Console.WriteLine("You exscribed the first name faster");
             else if (secondTimeName <= thirdTimeName)
-                Console.WriteLine("Usted exscribió el segundo nombre más rápido");
+                Console.WriteLine("You exscribed the second name faster");
             else
-                Console.WriteLine("Usted exscribió el tercer nombre más rápido");
+                Console.WriteLine("You wrote the third fastest name");
         }
 
         /// <summary>
         /// validate that all characters are letters
         /// </summary>
-        public static bool IsAllLettersOrDigits(string name)
+        public static bool IsAllLetters(string name)
         {
-            foreach (char letter in name)
+            if (!(name == string.Empty))
             {
-                if (!Char.IsLetterOrDigit(letter))
-                    return false;
+                foreach (char letter in name)
+                {
+                    if (!Char.IsLetter(letter))
+                        return false;
+                }
+                return true;
             }
-            return true;
+            else
+                return false;
         }
 
         /// <summary>
