@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using ExtensionMethods;
 
 namespace ProgrammingSolutions
 {
@@ -131,11 +132,11 @@ namespace ProgrammingSolutions
         /// </summary>
         public static bool IsAllLetters(string name)
         {
-            if (!(name == string.Empty))
+            if (name != string.Empty)
             {
                 foreach (char letter in name)
                 {
-                    if (!Char.IsLetter(letter))
+                    if (!char.IsLetter(letter))
                         return false;
                 }
                 return true;
