@@ -89,22 +89,22 @@ namespace ProgrammingSolutions
             Console.WriteLine("Type your name three times");
 
             crono.Start();
-            string firstName1 = Console.ReadLine();
-            bool isNumber = IsAllLetters(firstName1);
+            string firstName = Console.ReadLine();
+            bool isNumber = firstName.IsAllLetters();
             crono.Stop();
             long firstTimeName = crono.ElapsedMilliseconds;
             crono.Restart();
 
             crono.Start();
-            string secondName1 = Console.ReadLine();
-            bool isNumber1 = IsAllLetters(secondName1);
+            string secondName = Console.ReadLine();
+            bool isNumber1 = secondName.IsAllLetters();
             crono.Stop();
             long secondTimeName = crono.ElapsedMilliseconds;
             crono.Restart();
 
             crono.Start();
-            string thirdName1 = Console.ReadLine();
-            bool isNumber2 = IsAllLetters(thirdName1);
+            string thirdName = Console.ReadLine();
+            bool isNumber2 = thirdName.IsAllLetters();
             crono.Stop();
             long thirdTimeName = crono.ElapsedMilliseconds;
             crono.Restart();
@@ -114,7 +114,7 @@ namespace ProgrammingSolutions
                 Console.WriteLine("Error, you must enter letters");
                 return;
             }
-            if (firstName1 != secondName1 || secondName1 != thirdName1)
+            if (firstName != secondName || secondName != thirdName)
             {
                 Console.WriteLine("Error, you have typed some of the names wrong. Run the program again");
                 return;
