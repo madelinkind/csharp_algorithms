@@ -126,25 +126,7 @@ namespace ProgrammingSolutions
             else
                 Console.WriteLine("You wrote the third fastest name");
         }
-
-        /// <summary>
-        /// validate that all characters are letters
-        /// </summary>
-        public static bool IsAllLetters(string name)
-        {
-            if (name != string.Empty)
-            {
-                foreach (char letter in name)
-                {
-                    if (!char.IsLetter(letter))
-                        return false;
-                }
-                return true;
-            }
-            else
-                return false;
-        }
-
+              
         /// <summary>
         /// Determines the type of triangle
         /// </summary>
