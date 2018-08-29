@@ -146,36 +146,40 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void OrderAvrg()
         {
-            float average = 0;
             Console.WriteLine("Entre 3 valores enteros a ordenar");
 
-            int value = int.Parse(Console.ReadLine());
-            int value1 = int.Parse(Console.ReadLine());
-            int value2 = int.Parse(Console.ReadLine());
+            bool isNumber1 = int.TryParse(Console.ReadLine(), out int value1);
+            bool isNumber2 = int.TryParse(Console.ReadLine(), out int value2);
+            bool isNumber3 = int.TryParse(Console.ReadLine(), out int value3);
 
-            if (value <= value1 && value <= value2)
+            if(!isNumber1 || !isNumber2 || !isNumber3)
+            {
+                Console.WriteLine("Error, you must enter whole numbers. Run the program again");
+                return;
+            }
+            if (value1 <= value2 && value1 <= value3)
+            {
+                if (value2 <= value3)
+                    Console.WriteLine("{0},{1},{2}", value1, value2, value3);
+                else
+                    Console.WriteLine("{0},{1},{2}", value1, value3, value2);
+            }
+            else if (value2 <= value1 && value2 <= value3)
+            {
+                if (value1 <= value3)
+                    Console.WriteLine("{0},{1},{2}", value2, value1, value3);
+                else
+                    Console.WriteLine("{0},{1},{2}", value2, value3, value1);
+            }
+            else if (value3 <= value1 && value3 <= value2)
             {
                 if (value1 <= value2)
-                    Console.WriteLine("{0},{1},{2}", value, value1, value2);
+                    Console.WriteLine("{0},{1},{2}", value3, value1, value2);
                 else
-                    Console.WriteLine("{0},{1},{2}", value, value2, value1);
+                    Console.WriteLine("{0},{1},{2}", value3, value2, value1);
             }
-            else if (value1 <= value && value1 <= value2)
-            {
-                if (value <= value2)
-                    Console.WriteLine("{0},{1},{2}", value1, value, value2);
-                else
-                    Console.WriteLine("{0},{1},{2}", value1, value2, value);
-            }
-            else if (value2 <= value && value2 <= value1)
-            {
-                if (value <= value1)
-                    Console.WriteLine("{0},{1},{2}", value2, value, value1);
-                else
-                    Console.WriteLine("{0},{1},{2}", value2, value1, value);
-            }
-            average = (value + value1 + value2) / 3;
-            Console.WriteLine("{0}", average);
+            double average = ((double) value1 + (double) value2 + (double) value3) / 3;
+            Console.WriteLine("El promedio es {0}", average);
         }
 
         /// <summary>
