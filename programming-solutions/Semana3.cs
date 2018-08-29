@@ -183,19 +183,31 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void PrimeNumber()
         {
-            Console.WriteLine("Entre un número que se encuentre en el rango del 1 al 100");
-            int valor = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter a number that is in the range of 1 to 100");
+            bool isNumber = int.TryParse(Console.ReadLine(), out int value);
+            int i = 1;
+            int cont = 0;
 
-            if (valor >= 1 && valor <= 100)
+            if (!isNumber)
             {
-                int rest = valor % 2;
-                if (rest != 0)
-                    Console.WriteLine("El número es primo");
-                else
-                    Console.WriteLine("El número no es primo");
+                Console.WriteLine("Error, you must enter whole numbers. Run the program again");
+                return;
             }
+            if (value < 1 || value > 100)
+            {
+                Console.WriteLine("Error, entered a number outside the indicated range. Run the program again.");
+                return;
+            }
+            while (i <= value)
+            {
+                if (value % i == 0)
+                    cont++;
+                i++;
+            }
+            if (cont != 2)
+                Console.WriteLine("The number is not prime");
             else
-                Console.WriteLine("Error, entró un número fuera del rango indicado. Vuelva a ejecutar el programa.");
+                Console.WriteLine("The number is prime");
         }
 
         /// <summary>
