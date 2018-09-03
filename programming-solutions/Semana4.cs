@@ -143,31 +143,29 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void AveragePositive()
         {
-            string line = String.Empty;
+            string line = string.Empty;
             int counter = 0;
-            double average = 0;
-            double sum = 0;
-            double valuePrime = 0;
-            Console.WriteLine("Entre una secuencia de números");
+            double average = 0.0f;
+            double sum = 0.0f;
+
+            Console.WriteLine("Enter a sequence of numbers and if you want to finish dial 0");
 
             while (true)
             {
                 line = Console.ReadLine();
-                double number = 0;
-                bool isNumber = Double.TryParse(line, out number);
+                bool isNumber = double.TryParse(line, out double value);
                 if (isNumber)
                 {
-                    valuePrime = Double.Parse(line);
-                    if (valuePrime != 0 && valuePrime > 0)
+                    if (value != 0.0f && value > 0.0f)
                     {
-                        sum += valuePrime;
+                        sum += value;
                         counter++;
                     }
-                    else if (valuePrime == 0)
+                    else if (value == 0.0f)
                         break;
                 }
                 else
-                    Console.WriteLine("Entre un número");
+                    Console.WriteLine("Error, you must enter numbers, if you want to exit, dial 0");
             }
             average = sum / counter;
             Console.WriteLine("Promedio:\t{0,8:c}", average);
