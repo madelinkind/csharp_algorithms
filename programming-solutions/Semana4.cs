@@ -114,28 +114,28 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void LongerLength()
         {
-            int cont = 0;
-            int contador = 0;
-            string line = String.Empty;
-            string cadena = String.Empty;
-            Console.WriteLine("Entre una secuencia de cadenas");
+            int quantity_charact = 0;
+            int max_length = 0;
+            string line = string.Empty;
+            string characters = string.Empty;
+            Console.WriteLine("Enter a string sequence");
 
-            while ((line = Console.ReadLine()) != String.Empty)
+            while ((line = Console.ReadLine()) != string.Empty)
             {
-                int valueString = line.Length;
-                if (valueString > cont)
+                int num_characters = line.Length;
+                if (num_characters > quantity_charact)
                 {
-                    cadena = line;
-                    cont = valueString;
-                    contador = 1;
+                    characters = line;
+                    quantity_charact = num_characters;
+                    max_length = 1;
                 }
-                else if (valueString == cont)
+                else if (num_characters == quantity_charact)
                 {
-                    cadena = line;
-                    contador++;
+                    characters = line;
+                    max_length++;
                 }
             }
-            Console.WriteLine("El contador {0}, ultima cadena {1}", contador, cadena);
+            Console.WriteLine("Number of chains with the same maximum length: {0}, last chain with the longest: {1}", max_length, characters);
         }
 
         /// <summary>
