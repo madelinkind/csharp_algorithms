@@ -37,22 +37,26 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void PrimeNumber()
         {
-            Console.WriteLine("Inserte un número");
-            string character = Console.ReadLine();
-            long number = 0;
-            bool isNumber = long.TryParse(character, out number);
+            int i = 1;
+            int cont = 0;
+            Console.WriteLine("Enter a number");
+            bool isNumber = int.TryParse(Console.ReadLine(), out int value);
 
-            if (isNumber)
+            if (!isNumber)
             {
-                int entryValue = int.Parse(character);
-                int isPrime = entryValue % 2;
-                if (isPrime != 0)
-                    Console.WriteLine("El número es primo");
-                else
-                    Console.WriteLine("El número no es primo");
+                Console.WriteLine("Error, you must enter whole numbers. Run the program again");
+                return;
             }
+            while (i <= value)
+            {
+                if (value % i == 0)
+                    cont++;
+                i++;
+            }
+            if (cont != 2)
+                Console.WriteLine("The number is not prime");
             else
-                Console.WriteLine("Error, debe entrar un numero. Vuelva a ejecutar el programa");
+                Console.WriteLine("The number is prime");
         }
 
         /// <summary>
@@ -240,7 +244,7 @@ namespace ProgrammingSolutions
             else
                 Console.WriteLine("Error, debe entrar dd/mm/aa. Vuelva a ejecutar el programa");
         }
-        
+
         /// <summary>
         /// Determines the previous date
         /// </summary>
