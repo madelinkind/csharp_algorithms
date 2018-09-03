@@ -60,27 +60,25 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void PositiveNegativeNumber()
         {
-            int postivevalue = 0;
-            int negativevalue = 0;
-            Console.WriteLine("Entre una secuencia de números");
-            string line = String.Empty;
+            int positive_values = 0;
+            int negative_values = 0;
+            Console.WriteLine("Enter a sequence of numbers");
+            string line = string.Empty;
 
-            while ((line = Console.ReadLine()) != String.Empty)
+            while ((line = Console.ReadLine()) != string.Empty)
             {
-                int number = 0;
-                bool isNumber = int.TryParse(line, out number);
+                bool isNumber = int.TryParse(line, out int valuePn);
                 if (isNumber)
                 {
-                    int valuePN = Int32.Parse(line);
-                    if (valuePN < 0)
-                        negativevalue++;
+                    if (valuePn < 0)
+                        negative_values++;
                     else
-                        postivevalue++;
+                        positive_values++;
                 }
                 else
-                    Console.WriteLine("Error, debe entrar un número");
+                    Console.WriteLine("Error, you must enter a number ");
             }
-            Console.WriteLine("La cantidad de números positivos entrados: {0}, La cantidad de números negativos entrados: {1}", postivevalue, negativevalue);
+            Console.WriteLine("The number of positive numbers entered: {0}. The number of negative numbers entered: {1}", positive_values, negative_values);
         }
 
         /// <summary>
