@@ -203,18 +203,54 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void NextDay()
         {
-            Console.WriteLine("Entre una fecha");
+            int month_next = 0;
+            int day_next = 0;
+            int year_next = 0;
 
-            int day = int.Parse(Console.ReadLine());
-            int month = int.Parse(Console.ReadLine());
-            int year = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter a date");
+            Console.WriteLine("Insert the day");
+            bool isNumber1 = int.TryParse(Console.ReadLine(), out int day);
 
-            if ((day >= 1 && day <= 31) && (month >= 1 && month <= 12) && (year >= 1880 && year <= 2045))
+            Console.WriteLine("Insert the month");
+            bool isNumber2 = int.TryParse(Console.ReadLine(), out int month);
+
+            Console.WriteLine("Insert the year");
+            bool isNumber3 = int.TryParse(Console.ReadLine(), out int year);
+
+            if (!isNumber1 || !isNumber2 || !isNumber3)
             {
-                Console.WriteLine("El día siguiente es: {0}-{1}-{2}", day + 1, month, year);
+                Console.WriteLine("Error, enter the date correctly");
+                return;
+            }
+            if (!isNumber1 || !isNumber2 || !isNumber3 || year < 4 || month > 12 || month < 1 || day > 31 || day < 1)
+            {
+                Console.WriteLine("Error, enter the date correctly");
+                return;
+            }
+            if ((day > 30 && (month == 4 || month == 6 || month == 9 || month == 11)) || (day > 29 && month == 2) || (day > 28 && month == 2 && year % 4 != 0) || (day == 29 && month == 2 && ((year % 4 != 0 || year % 100 == 0) && (year % 400 != 0))))
+            {
+                Console.WriteLine("Error, enter the date correctly");
+                return;
+            }
+            if ((day == 30 && (month == 4 || month == 6 || month == 9 || month == 11)) || (day == 29 && month == 2) || (day == 28 && month == 2 && (year % 4 != 0 || (year % 100 == 0) && (year % 400 != 0)) || day == 31))
+            {
+                month_next = month + 1;
+                day_next = 1;
             }
             else
-                Console.WriteLine("Error, entre correctamente una fecha");
+            {
+                day_next = day + 1;
+                month_next = month;
+            }
+            if (day_next == 1 && month_next == 13)
+            {
+                month_next = 1;
+                year_next = year + 1;
+            }
+            else
+                year_next = year;
+
+            Console.WriteLine("The next day's date is {0}-{1}-{2}", day_next, month_next, year_next);
         }
     }
 }
