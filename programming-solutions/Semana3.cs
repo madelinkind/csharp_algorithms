@@ -217,11 +217,6 @@ namespace ProgrammingSolutions
             Console.WriteLine("Insert the year");
             bool isNumber3 = int.TryParse(Console.ReadLine(), out int year);
 
-            if (!isNumber1 || !isNumber2 || !isNumber3)
-            {
-                Console.WriteLine("Error, enter the date correctly");
-                return;
-            }
             if (!isNumber1 || !isNumber2 || !isNumber3 || year < 4 || month > 12 || month < 1 || day > 31 || day < 1)
             {
                 Console.WriteLine("Error, enter the date correctly");
