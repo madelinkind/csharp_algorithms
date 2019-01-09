@@ -410,27 +410,24 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void BiggerNumber()
         {
-            Console.WriteLine("Entre una secuencia de números");
-            string line = String.Empty;
+            Console.WriteLine("Enter a sequence of numbers");
+            string line = string.Empty;
             int biggerNumber = 0;
 
-            while ((line = Console.ReadLine()) != String.Empty)
+            while ((line = Console.ReadLine()) != string.Empty)
             {
-                int number = 0;
-                bool isNumber = int.TryParse(line, out number);
+                bool isNumber = int.TryParse(line, out int valueBigger);
 
-                if (isNumber)
+                if (!isNumber)
                 {
-                    int valueBigger = Int32.Parse(line);
-                    if (valueBigger >= biggerNumber)
-                        biggerNumber = valueBigger;
-                    else
-                        valueBigger = biggerNumber; ;
+                    Console.WriteLine("Error, you must enter a number");
                 }
-                else
-                    Console.WriteLine("Error, debe entrar un número");
+                else if (valueBigger > biggerNumber)
+                {
+                    biggerNumber = valueBigger;
+                }
             }
-            Console.WriteLine("El mayor numero de la secuencia entrada es: {0}", biggerNumber);
+            Console.WriteLine("The largest number of the input sequence is: {0}", biggerNumber);
         }
     }
 }
