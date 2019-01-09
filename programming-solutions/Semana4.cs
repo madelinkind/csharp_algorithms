@@ -9,26 +9,21 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void FactorialNumber()
         {
-            Console.WriteLine("Inserte un número para hallar su factorial");
-            string character = Console.ReadLine();
-            long number = 0;
-            long factorial = 0;
-            bool isNumber = long.TryParse(character, out number);
+            long factorial = 1;
+            Console.WriteLine("Insert a number to find its factorial");
+            bool isNumber = long.TryParse(Console.ReadLine(), out long number);
 
-            if (isNumber)
+            if (!isNumber || number <= 0)
             {
-                long entryValue = long.Parse(character);
-                factorial = entryValue;
-
-                while (entryValue != 1)
-                {
-                    factorial = factorial * (entryValue - 1);
-                    entryValue--;
-                }
-                Console.WriteLine("El factorial es {0}", factorial);
+                Console.WriteLine("Error, you must enter a number greater than zero. Run the program again");
+                return;
             }
-            else
-                Console.WriteLine("Error, debe entrar un numero. Vuelva a ejecutar el programa");
+            while (number != 1)
+            {
+                factorial = factorial * number;
+                number--;
+            }
+            Console.WriteLine("The factorial is {0}", factorial);
         }
 
         /// <summary>
