@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using ExtensionMethods;
 
 namespace ProgrammingSolutions
 {
@@ -12,8 +13,10 @@ namespace ProgrammingSolutions
         {
             Console.WriteLine("Teclea un primer numero ");
             int j = int.Parse(Console.ReadLine());
+
             Console.Write("Teclea un segundo numero ");
             int k = int.Parse(Console.ReadLine());
+
             Console.WriteLine("Teclea un tercer numero ");
             int m = int.Parse(Console.ReadLine());
 
@@ -83,39 +86,47 @@ namespace ProgrammingSolutions
         public static void FastName()
         {
             Stopwatch crono = new Stopwatch();
-
-            Console.WriteLine("Teclee su nombre tres veces?");
+            Console.WriteLine("Type your name three times");
 
             crono.Start();
             string firstName = Console.ReadLine();
+            bool isNumber = firstName.IsAllLetters();
             crono.Stop();
-            long timeFirstName = crono.ElapsedMilliseconds;
+            long firstTimeName = crono.ElapsedMilliseconds;
+            crono.Restart();
 
-            crono.Reset();
             crono.Start();
             string secondName = Console.ReadLine();
+            bool isNumber1 = secondName.IsAllLetters();
             crono.Stop();
-            long timeSecondName = crono.ElapsedMilliseconds;
+            long secondTimeName = crono.ElapsedMilliseconds;
+            crono.Restart();
 
-            crono.Reset();
             crono.Start();
             string thirdName = Console.ReadLine();
+            bool isNumber2 = thirdName.IsAllLetters();
             crono.Stop();
-            long timeThirdName = crono.ElapsedMilliseconds;
+            long thirdTimeName = crono.ElapsedMilliseconds;
+            crono.Restart();
 
-            if (firstName == secondName && secondName == thirdName)
+            if (!isNumber || !isNumber1 || !isNumber2)
             {
-                if (timeFirstName <= timeSecondName && timeFirstName <= timeThirdName)
-                    Console.WriteLine("Usted exscribió el primer nombre más rápido");
-                else if (timeSecondName <= timeThirdName)
-                    Console.WriteLine("Usted exscribió el segundo nombre más rápido");
-                else
-                    Console.WriteLine("Usted exscribió el tercer nombre más rápido");
+                Console.WriteLine("Error, you must enter letters");
+                return;
             }
+            if (firstName != secondName || secondName != thirdName)
+            {
+                Console.WriteLine("Error, you have typed some of the names wrong. Run the program again");
+                return;
+            }
+            if (firstTimeName <= secondTimeName && firstTimeName <= thirdTimeName)
+                Console.WriteLine("You exscribed the first name faster");
+            else if (secondTimeName <= thirdTimeName)
+                Console.WriteLine("You exscribed the second name faster");
             else
-                Console.WriteLine("Error, has tecleado mal alguno de los nombres. Vuélva a ejecutar el programa");
+                Console.WriteLine("You wrote the third fastest name");
         }
-
+              
         /// <summary>
         /// Determines the type of triangle
         /// </summary>
@@ -123,22 +134,26 @@ namespace ProgrammingSolutions
         {
             Console.WriteLine("Entre 3 valores enteros");
 
-            int side = int.Parse(Console.ReadLine());
-            int side1 = int.Parse(Console.ReadLine());
-            int side2 = int.Parse(Console.ReadLine());
+            bool isNumberA = int.TryParse(Console.ReadLine(), out int a);
+            bool isNumberB = int.TryParse(Console.ReadLine(), out int b);
+            bool isNumberC = int.TryParse(Console.ReadLine(), out int c);
 
-            if (side > 0 && side1 > 0 && side2 > 0)
+            if (!isNumberA || !isNumberB || !isNumberC)
             {
-
-                if (side == side1 && side == side2)
-                    Console.WriteLine("Es un triangulo Equilátero");
-                else if (side != side1 && side1 != side2 && side != side2)
-                    Console.WriteLine("Es un triángulo Escaleno");
-                else
-                    Console.WriteLine("Es un triángulo Isósceles");
+                Console.WriteLine("Triangle sides should be numbers");
+                return;
             }
+            if (a <= 0 && b <= 0 && c <= 0)
+            {
+                Console.WriteLine("Can't form a triangle");
+                return;
+            }
+            if (a == b && a == c)
+                Console.WriteLine("The triangle is equilateral");
+            else if (a != b && b != c && a != c)
+                Console.WriteLine("The triangle is scalene");
             else
-                Console.WriteLine("No es posible formar un triángulo");
+                Console.WriteLine("The triangle is isosceles");
         }
 
         /// <summary>
@@ -222,3 +237,4 @@ namespace ProgrammingSolutions
         }
     }
 }
+
