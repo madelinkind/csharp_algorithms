@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ProgrammingSolutions
 {
@@ -10,27 +9,21 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void FactorialNumber()
         {
-            Console.WriteLine("Inserte un número para hallar su factorial");
-            string character = Console.ReadLine();
+            long factorial = 1;
+            Console.WriteLine("Insert a number to find its factorial");
+            bool isNumber = long.TryParse(Console.ReadLine(), out long number);
 
-            long number = 0;
-            long factorial = 0;
-            bool isNumber = long.TryParse(character, out number);
-
-            if (isNumber)
+            if (!isNumber || number <= 0)
             {
-                long entryValue = long.Parse(character);
-                factorial = entryValue;
-
-                while (entryValue != 1)
-                {
-                    factorial = factorial * (entryValue - 1);
-                    entryValue--;
-                }
-                Console.WriteLine("El factorial es {0}", factorial);
+                Console.WriteLine("Error, you must enter a number greater than zero. Run the program again");
+                return;
             }
-            else
-                Console.WriteLine("Error, debe entrar un numero. Vuelva a ejecutar el programa");
+            while (number != 1)
+            {
+                factorial = factorial * number;
+                number--;
+            }
+            Console.WriteLine("The factorial is {0}", factorial);
         }
 
         /// <summary>
@@ -38,23 +31,26 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void PrimeNumber()
         {
-            Console.WriteLine("Inserte un número");
-            string character = Console.ReadLine();
+            int i = 1;
+            int cont = 0;
+            Console.WriteLine("Enter a number");
+            bool isNumber = int.TryParse(Console.ReadLine(), out int value);
 
-            long number = 0;
-            bool isNumber = long.TryParse(character, out number);
-
-            if (isNumber)
+            if (!isNumber)
             {
-                int entryValue = int.Parse(character);
-                int isPrime = entryValue % 2;
-                if (isPrime != 0)
-                    Console.WriteLine("El número es primo");
-                else
-                    Console.WriteLine("El número no es primo");
+                Console.WriteLine("Error, you must enter whole numbers. Run the program again");
+                return;
             }
+            while (i <= value)
+            {
+                if (value % i == 0)
+                    cont++;
+                i++;
+            }
+            if (cont != 2)
+                Console.WriteLine("The number is not prime");
             else
-                Console.WriteLine("Error, debe entrar un numero. Vuelva a ejecutar el programa");
+                Console.WriteLine("The number is prime");
         }
 
         /// <summary>
@@ -62,28 +58,25 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void PositiveNegativeNumber()
         {
-            int postivevalue = 0;
-            int negativevalue = 0;
+            int positive_values = 0;
+            int negative_values = 0;
+            Console.WriteLine("Enter a sequence of numbers");
+            string line = string.Empty;
 
-            Console.WriteLine("Entre una secuencia de números");
-            string line = String.Empty;
-
-            while ((line = Console.ReadLine()) != String.Empty)
+            while ((line = Console.ReadLine()) != string.Empty)
             {
-                int number = 0;
-                bool isNumber = int.TryParse(line, out number);
+                bool isNumber = int.TryParse(line, out int valuePn);
                 if (isNumber)
                 {
-                    int valuePN = Int32.Parse(line);
-                    if (valuePN < 0)
-                        negativevalue++;
+                    if (valuePn < 0)
+                        negative_values++;
                     else
-                        postivevalue++;
+                        positive_values++;
                 }
                 else
-                    Console.WriteLine("Error, debe entrar un número");
+                    Console.WriteLine("Error, you must enter a number ");
             }
-            Console.WriteLine("La cantidad de números positivos entrados: {0}, La cantidad de números negativos entrados: {1}", postivevalue, negativevalue);
+            Console.WriteLine("The number of positive numbers entered: {0}. The number of negative numbers entered: {1}", positive_values, negative_values);
         }
 
         /// <summary>
@@ -91,24 +84,32 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void PrimeNumberSeq()
         {
-            Console.WriteLine("Entre una secuencia de números");
-            string line = String.Empty;
+            Console.WriteLine("Enter a sequence of numbers");
+            string line = string.Empty;
 
-            while ((line = Console.ReadLine()) != String.Empty)
+            while ((line = Console.ReadLine()) != string.Empty)
             {
-                int number = 0;
-                bool isNumber = int.TryParse(line, out number);
+                int i = 1;
+                int cont = 0;
+                bool isNumber = int.TryParse(line, out int value_prime);
 
-                if (isNumber)
+                if (!isNumber || value_prime < 0)
                 {
-                    int valuePrime = Int32.Parse(line);
-                    if (valuePrime % 2 != 0)
-                        Console.WriteLine("El número {0}, es primo", valuePrime);
-                    else
-                        Console.WriteLine("El número {0}, no es primo", valuePrime);
+                    Console.WriteLine("Error, you must enter a number");
                 }
                 else
-                    Console.WriteLine("Error, debe entrar un número");
+                {
+                    while (value_prime >= i)
+                    {
+                        if (value_prime % i == 0)
+                            cont++;
+                        i++;
+                    }
+                    if (cont != 2)
+                        Console.WriteLine("The number {0}, is not prime", value_prime);
+                    else
+                        Console.WriteLine("The number {0}, is prime", value_prime);
+                }
             }
         }
 
@@ -117,28 +118,28 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void LongerLength()
         {
-            int cont = 0;
-            int contador = 0;
-            string line = String.Empty;
-            string cadena = String.Empty;
-            Console.WriteLine("Entre una secuencia de cadenas");
+            int quantity_charact = 0;
+            int max_length = 0;
+            string line = string.Empty;
+            string characters = string.Empty;
+            Console.WriteLine("Enter a string sequence");
 
-            while ((line = Console.ReadLine()) != String.Empty)
+            while ((line = Console.ReadLine()) != string.Empty)
             {
-                int valueString = line.Length;
-                if (valueString > cont)
+                int num_characters = line.Length;
+                if (num_characters > quantity_charact)
                 {
-                    cadena = line;
-                    cont = valueString;
-                    contador = 1;
+                    characters = line;
+                    quantity_charact = num_characters;
+                    max_length = 1;
                 }
-                else if (valueString == cont)
+                else if (num_characters == quantity_charact)
                 {
-                    cadena = line;
-                    contador++;
+                    characters = line;
+                    max_length++;
                 }
             }
-            Console.WriteLine("El contador {0}, ultima cadena {1}", contador, cadena);
+            Console.WriteLine("Number of chains with the same maximum length: {0}, last chain with the longest: {1}", max_length, characters);
         }
 
         /// <summary>
@@ -146,31 +147,29 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void AveragePositive()
         {
-            string line = String.Empty;
+            string line = string.Empty;
             int counter = 0;
-            double average = 0;
-            double sum = 0;
-            double valuePrime = 0;
-            Console.WriteLine("Entre una secuencia de números");
+            double average = 0.0f;
+            double sum = 0.0f;
+
+            Console.WriteLine("Enter a sequence of numbers and if you want to finish dial 0");
 
             while (true)
             {
                 line = Console.ReadLine();
-                double number = 0;
-                bool isNumber = Double.TryParse(line, out number);
+                bool isNumber = double.TryParse(line, out double value);
                 if (isNumber)
                 {
-                    valuePrime = Double.Parse(line);
-                    if (valuePrime != 0 && valuePrime > 0)
+                    if (value != 0.0f && value > 0.0f)
                     {
-                        sum += valuePrime;
+                        sum += value;
                         counter++;
                     }
-                    else if (valuePrime == 0)
+                    else if (value == 0.0f)
                         break;
                 }
                 else
-                    Console.WriteLine("Entre un número");
+                    Console.WriteLine("Error, you must enter numbers, if you want to exit, dial 0");
             }
             average = sum / counter;
             Console.WriteLine("Promedio:\t{0,8:c}", average);
@@ -181,35 +180,30 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void CorrectDate()
         {
-            Console.WriteLine("Entre una fecha");
-            Console.WriteLine("Entre dia");
-            string day = Console.ReadLine();
+            Console.WriteLine("Enter a date");
+            Console.WriteLine("Enter a day");
+            bool isNumberDay = Int32.TryParse(Console.ReadLine(), out int day);
 
-            Console.WriteLine("Entre mes");
-            string month = Console.ReadLine();
+            Console.WriteLine("Enter a month");
+            bool isNumberMonth = int.TryParse(Console.ReadLine(), out int month);
 
-            Console.WriteLine("Entre año");
-            string year = Console.ReadLine();
+            Console.WriteLine("Enter a year");
+            bool isNumberYear = int.TryParse(Console.ReadLine(), out int year);
 
-            int number = 0;
-            bool isNumberDay = Int32.TryParse(day, out number);
-            bool isNumberMonth = Int32.TryParse(month, out number);
-            bool isNumberYear = Int32.TryParse(year, out number);
-
-            if (isNumberDay && isNumberMonth && isNumberYear)
+            if (!isNumberDay || !isNumberMonth || !isNumberYear || year < 4 || month > 12 || month < 1 || day > 31 || day < 1)
             {
-                int dayValue = Int32.Parse(day);
-                int monthValue = Int32.Parse(month);
-                int yearValue = Int32.Parse(year);
-                if (dayValue >= 1 && dayValue <= 31 && monthValue >= 1 && monthValue <= 12 && yearValue >= 1300)
-                {
-                    Console.WriteLine("La fecha es correcta");
-                }
-                else
-                    Console.WriteLine("La fecha no es correcta");
+                Console.WriteLine("Error, incorrect date");
+                return;
+            }
+            if ((day > 30 && (month == 4 || month == 6 || month == 9 || month == 11)) || (day > 29 && month == 2) || (day > 28 && month == 2 && year % 4 != 0) || (day == 29 && month == 2 && ((year % 4 != 0 || year % 100 == 0) && (year % 400 != 0))))
+            {
+                Console.WriteLine("Error, incorrect date");
+                return;
             }
             else
-                Console.WriteLine("Error, debe entrar dd/mm/aa. Vuelva a ejecutar el programa");
+            {
+                Console.WriteLine("Date correct ");
+            }
         }
 
         /// <summary>
@@ -217,35 +211,65 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void FollowingDate()
         {
-            Console.WriteLine("Entre una fecha");
-            Console.WriteLine("Entre dia");
-            string day = Console.ReadLine();
+            int month_next = 0;
+            int day_next = 0;
+            int year_next = 0;
 
-            Console.WriteLine("Entre mes");
-            string month = Console.ReadLine();
-
-            Console.WriteLine("Entre año");
-            string year = Console.ReadLine();
-
-            int number = 0;
-            bool isNumberDay = Int32.TryParse(day, out number);
-            bool isNumberMonth = Int32.TryParse(month, out number);
-            bool isNumberYear = Int32.TryParse(year, out number);
-
-            if (isNumberDay && isNumberMonth && isNumberYear)
+            while (true)
             {
-                int dayValue = Int32.Parse(day);
-                int monthValue = Int32.Parse(month);
-                int yearValue = Int32.Parse(year);
-                if (dayValue >= 1 && dayValue <= 31 && monthValue >= 1 && monthValue <= 12 && yearValue >= 1300)
+                Console.WriteLine("");
+                Console.WriteLine("Enter a date");
+                Console.WriteLine("Enter a day");
+                bool isNumberDay = int.TryParse(Console.ReadLine(), out int day);
+                Console.WriteLine("Enter a month");
+                bool isNumberMonth = int.TryParse(Console.ReadLine(), out int month);
+                Console.WriteLine("Enter a year");
+                bool isNumberYear = int.TryParse(Console.ReadLine(), out int year);
+
+                bool isDate = IsCorrectDate(isNumberDay, isNumberMonth, isNumberYear, day, month, year);
+
+                if (!isDate)
                 {
-                    Console.WriteLine("La fecha del día siguiente es: {0}/{1}/{2}", dayValue + 1, monthValue, yearValue);
+                    Console.WriteLine("");
+                    Console.WriteLine("Error, enter the date correctly");
                 }
                 else
-                    Console.WriteLine("La fecha no es correcta");
+                {
+                    if ((day == 30 && (month == 4 || month == 6 || month == 9 || month == 11)) || (day == 29 && month == 2) || (day == 28 && month == 2 && (year % 4 != 0 || (year % 100 == 0) && (year % 400 != 0)) || day == 31))
+                    {
+                        month_next = month + 1;
+                        day_next = 1;
+                    }
+                    else
+                    {
+                        day_next = day + 1;
+                        month_next = month;
+                    }
+                    if (day_next == 1 && month_next == 13)
+                    {
+                        month_next = 1;
+                        year_next = year + 1;
+                    }
+                    else
+                        year_next = year;
+                    Console.WriteLine("");
+                    Console.WriteLine("The next day's date is {0}-{1}-{2}", day_next, month_next, year_next);
+                    return;
+                }
             }
+        }
+
+        /// <summary>
+        /// Validate date
+        /// </summary>
+        public static bool IsCorrectDate(bool isNumberDay, bool isNumberMonth, bool isNumberYear, int day, int month, int year)
+        {
+            if (!isNumberDay || !isNumberMonth || !isNumberYear || year < 4 || month > 12 || month < 1 || day > 31 || day < 1)
+                return false;
+            if ((day > 30 && (month == 4 || month == 6 || month == 9 || month == 11)) || (day > 29 && month == 2) || (day > 28 && month == 2 && year % 4 != 0) || (day == 29 && month == 2 && ((year % 4 != 0 || year % 100 == 0) && (year % 400 != 0))))
+                return false;
             else
-                Console.WriteLine("Error, debe entrar dd/mm/aa. Vuelva a ejecutar el programa");
+                return true;
         }
 
         /// <summary>
@@ -397,27 +421,24 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void BiggerNumber()
         {
-            Console.WriteLine("Entre una secuencia de números");
-            string line = String.Empty;
+            Console.WriteLine("Enter a sequence of numbers");
+            string line = string.Empty;
             int biggerNumber = 0;
 
-            while ((line = Console.ReadLine()) != String.Empty)
+            while ((line = Console.ReadLine()) != string.Empty)
             {
-                int number = 0;
-                bool isNumber = int.TryParse(line, out number);
+                bool isNumber = int.TryParse(line, out int valueBigger);
 
-                if (isNumber)
+                if (!isNumber)
                 {
-                    int valueBigger = Int32.Parse(line);
-                    if (valueBigger >= biggerNumber)
-                        biggerNumber = valueBigger;
-                    else
-                        valueBigger = biggerNumber; ;
+                    Console.WriteLine("Error, you must enter a number");
                 }
-                else
-                    Console.WriteLine("Error, debe entrar un número");
+                else if (valueBigger > biggerNumber)
+                {
+                    biggerNumber = valueBigger;
+                }
             }
-            Console.WriteLine("El mayor numero de la secuencia entrada es: {0}", biggerNumber);
+            Console.WriteLine("The largest number of the input sequence is: {0}", biggerNumber);
         }
     }
 }

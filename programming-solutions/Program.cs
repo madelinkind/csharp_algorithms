@@ -15,6 +15,7 @@ namespace ProgrammingSolutions
 
             #region Ejercicios Semana 3
             Semana3.FastName();
+            //Semana3.TypeTriangle();
             #endregion
 
             #region Ejercicios Semana 4
