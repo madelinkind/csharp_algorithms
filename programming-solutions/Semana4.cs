@@ -180,33 +180,30 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void CorrectDate()
         {
-            Console.WriteLine("Entre una fecha");
-            Console.WriteLine("Entre dia");
-            string day = Console.ReadLine();
-            Console.WriteLine("Entre mes");
-            string month = Console.ReadLine();
-            Console.WriteLine("Entre año");
-            string year = Console.ReadLine();
+            Console.WriteLine("Enter a date");
+            Console.WriteLine("Enter a day");
+            bool isNumberDay = Int32.TryParse(Console.ReadLine(), out int day);
 
-            int number = 0;
-            bool isNumberDay = Int32.TryParse(day, out number);
-            bool isNumberMonth = Int32.TryParse(month, out number);
-            bool isNumberYear = Int32.TryParse(year, out number);
+            Console.WriteLine("Enter a month");
+            bool isNumberMonth = int.TryParse(Console.ReadLine(), out int month);
 
-            if (isNumberDay && isNumberMonth && isNumberYear)
+            Console.WriteLine("Enter a year");
+            bool isNumberYear = int.TryParse(Console.ReadLine(), out int year);
+
+            if (!isNumberDay || !isNumberMonth || !isNumberYear || year < 4 || month > 12 || month < 1 || day > 31 || day < 1)
             {
-                int dayValue = Int32.Parse(day);
-                int monthValue = Int32.Parse(month);
-                int yearValue = Int32.Parse(year);
-                if (dayValue >= 1 && dayValue <= 31 && monthValue >= 1 && monthValue <= 12 && yearValue >= 1300)
-                {
-                    Console.WriteLine("La fecha es correcta");
-                }
-                else
-                    Console.WriteLine("La fecha no es correcta");
+                Console.WriteLine("Error, incorrect date");
+                return;
+            }
+            if ((day > 30 && (month == 4 || month == 6 || month == 9 || month == 11)) || (day > 29 && month == 2) || (day > 28 && month == 2 && year % 4 != 0) || (day == 29 && month == 2 && ((year % 4 != 0 || year % 100 == 0) && (year % 400 != 0))))
+            {
+                Console.WriteLine("Error, incorrect date");
+                return;
             }
             else
-                Console.WriteLine("Error, debe entrar dd/mm/aa. Vuelva a ejecutar el programa");
+            {
+                Console.WriteLine("Date correct ");
+            }
         }
 
         /// <summary>
