@@ -211,33 +211,65 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void FollowingDate()
         {
-            Console.WriteLine("Entre una fecha");
-            Console.WriteLine("Entre dia");
-            string day = Console.ReadLine();
-            Console.WriteLine("Entre mes");
-            string month = Console.ReadLine();
-            Console.WriteLine("Entre año");
-            string year = Console.ReadLine();
+            int month_next = 0;
+            int day_next = 0;
+            int year_next = 0;
 
-            int number = 0;
-            bool isNumberDay = Int32.TryParse(day, out number);
-            bool isNumberMonth = Int32.TryParse(month, out number);
-            bool isNumberYear = Int32.TryParse(year, out number);
-
-            if (isNumberDay && isNumberMonth && isNumberYear)
+            while (true)
             {
-                int dayValue = Int32.Parse(day);
-                int monthValue = Int32.Parse(month);
-                int yearValue = Int32.Parse(year);
-                if (dayValue >= 1 && dayValue <= 31 && monthValue >= 1 && monthValue <= 12 && yearValue >= 1300)
+                Console.WriteLine("");
+                Console.WriteLine("Enter a date");
+                Console.WriteLine("Enter a day");
+                bool isNumberDay = int.TryParse(Console.ReadLine(), out int day);
+                Console.WriteLine("Enter a month");
+                bool isNumberMonth = int.TryParse(Console.ReadLine(), out int month);
+                Console.WriteLine("Enter a year");
+                bool isNumberYear = int.TryParse(Console.ReadLine(), out int year);
+
+                bool isDate = IsCorrectDate(isNumberDay, isNumberMonth, isNumberYear, day, month, year);
+
+                if (!isDate)
                 {
-                    Console.WriteLine("La fecha del día siguiente es: {0}/{1}/{2}", dayValue + 1, monthValue, yearValue);
+                    Console.WriteLine("");
+                    Console.WriteLine("Error, enter the date correctly");
                 }
                 else
-                    Console.WriteLine("La fecha no es correcta");
+                {
+                    if ((day == 30 && (month == 4 || month == 6 || month == 9 || month == 11)) || (day == 29 && month == 2) || (day == 28 && month == 2 && (year % 4 != 0 || (year % 100 == 0) && (year % 400 != 0)) || day == 31))
+                    {
+                        month_next = month + 1;
+                        day_next = 1;
+                    }
+                    else
+                    {
+                        day_next = day + 1;
+                        month_next = month;
+                    }
+                    if (day_next == 1 && month_next == 13)
+                    {
+                        month_next = 1;
+                        year_next = year + 1;
+                    }
+                    else
+                        year_next = year;
+                    Console.WriteLine("");
+                    Console.WriteLine("The next day's date is {0}-{1}-{2}", day_next, month_next, year_next);
+                    return;
+                }
             }
+        }
+
+        /// <summary>
+        /// Validate date
+        /// </summary>
+        public static bool IsCorrectDate(bool isNumberDay, bool isNumberMonth, bool isNumberYear, int day, int month, int year)
+        {
+            if (!isNumberDay || !isNumberMonth || !isNumberYear || year < 4 || month > 12 || month < 1 || day > 31 || day < 1)
+                return false;
+            if ((day > 30 && (month == 4 || month == 6 || month == 9 || month == 11)) || (day > 29 && month == 2) || (day > 28 && month == 2 && year % 4 != 0) || (day == 29 && month == 2 && ((year % 4 != 0 || year % 100 == 0) && (year % 400 != 0))))
+                return false;
             else
-                Console.WriteLine("Error, debe entrar dd/mm/aa. Vuelva a ejecutar el programa");
+                return true;
         }
 
         /// <summary>
