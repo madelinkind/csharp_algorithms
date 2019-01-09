@@ -84,24 +84,32 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void PrimeNumberSeq()
         {
-            Console.WriteLine("Entre una secuencia de números");
-            string line = String.Empty;
+            Console.WriteLine("Enter a sequence of numbers");
+            string line = string.Empty;
 
-            while ((line = Console.ReadLine()) != String.Empty)
+            while ((line = Console.ReadLine()) != string.Empty)
             {
-                int number = 0;
-                bool isNumber = int.TryParse(line, out number);
+                int i = 1;
+                int cont = 0;
+                bool isNumber = int.TryParse(line, out int value_prime);
 
-                if (isNumber)
+                if (!isNumber || value_prime < 0)
                 {
-                    int valuePrime = Int32.Parse(line);
-                    if (valuePrime % 2 != 0)
-                        Console.WriteLine("El número {0}, es primo", valuePrime);
-                    else
-                        Console.WriteLine("El número {0}, no es primo", valuePrime);
+                    Console.WriteLine("Error, you must enter a number");
                 }
                 else
-                    Console.WriteLine("Error, debe entrar un número");
+                {
+                    while (value_prime >= i)
+                    {
+                        if (value_prime % i == 0)
+                            cont++;
+                        i++;
+                    }
+                    if (cont != 2)
+                        Console.WriteLine("The number {0}, is not prime", value_prime);
+                    else
+                        Console.WriteLine("The number {0}, is prime", value_prime);
+                }
             }
         }
 
