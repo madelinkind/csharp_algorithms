@@ -143,11 +143,13 @@ namespace ProgrammingSolutions
                 Console.WriteLine("Triangle sides should be numbers");
                 return;
             }
+
             if (a <= 0 && b <= 0 && c <= 0)
             {
                 Console.WriteLine("Can't form a triangle");
                 return;
             }
+
             if (a == b && a == c)
                 Console.WriteLine("The triangle is equilateral");
             else if (a != b && b != c && a != c)

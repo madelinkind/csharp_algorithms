@@ -280,8 +280,10 @@ namespace ProgrammingSolutions
             Console.WriteLine("Entre una fecha");
             Console.WriteLine("Entre dia");
             string day = Console.ReadLine();
+
             Console.WriteLine("Entre mes");
             string month = Console.ReadLine();
+
             Console.WriteLine("Entre año");
             string year = Console.ReadLine();
 
@@ -295,6 +297,7 @@ namespace ProgrammingSolutions
                 int dayValue = Int32.Parse(day);
                 int monthValue = Int32.Parse(month);
                 int yearValue = Int32.Parse(year);
+
                 if (dayValue >= 1 && dayValue <= 31 && monthValue >= 1 && monthValue <= 12 && yearValue >= 1300)
                 {
                     Console.WriteLine("La fecha del día anterior es: {0}/{1}/{2}", dayValue - 1, monthValue, yearValue);
@@ -314,12 +317,16 @@ namespace ProgrammingSolutions
             Console.WriteLine("Entre una fecha");
             Console.WriteLine("Entre dia");
             string day = Console.ReadLine();
+
             Console.WriteLine("Entre mes");
             string month = Console.ReadLine();
+
             Console.WriteLine("Entre año");
             string year = Console.ReadLine();
+
             Console.WriteLine("Entre una cantidad de días");
             string countDays = Console.ReadLine();
+
             int number = 0;
             bool isNumberDay = Int32.TryParse(day, out number);
             bool isNumberMonth = Int32.TryParse(month, out number);
@@ -353,16 +360,20 @@ namespace ProgrammingSolutions
             Console.WriteLine("Entre una fecha");
             Console.WriteLine("Entre dia");
             string day = Console.ReadLine();
+
             Console.WriteLine("Entre mes");
             string month = Console.ReadLine();
+
             Console.WriteLine("Entre año");
             string year = Console.ReadLine();
 
             Console.WriteLine("Entre otra fecha");
             Console.WriteLine("Entre dia");
             string day1 = Console.ReadLine();
+
             Console.WriteLine("Entre mes");
             string month1 = Console.ReadLine();
+
             Console.WriteLine("Entre año");
             string year1 = Console.ReadLine();
 
