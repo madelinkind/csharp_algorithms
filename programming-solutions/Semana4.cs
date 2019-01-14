@@ -1,4 +1,5 @@
 ﻿using System;
+using ExtensionMethods;
 
 namespace ProgrammingSolutions
 {
@@ -277,36 +278,87 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void PreviousDate()
         {
-            Console.WriteLine("Entre una fecha");
-            Console.WriteLine("Entre dia");
-            string day = Console.ReadLine();
-
-            Console.WriteLine("Entre mes");
-            string month = Console.ReadLine();
-
-            Console.WriteLine("Entre año");
-            string year = Console.ReadLine();
-
-            int number = 0;
-            bool isNumberDay = Int32.TryParse(day, out number);
-            bool isNumberMonth = Int32.TryParse(month, out number);
-            bool isNumberYear = Int32.TryParse(year, out number);
-
-            if (isNumberDay && isNumberMonth && isNumberYear)
+            while (true)
             {
-                int dayValue = Int32.Parse(day);
-                int monthValue = Int32.Parse(month);
-                int yearValue = Int32.Parse(year);
+                Console.WriteLine("");
+                Console.WriteLine("Enter a date");
+                Console.WriteLine("Enter a day");
+                bool isNumberDay = int.TryParse(Console.ReadLine(), out int day);
+                Console.WriteLine("Enter a month");
+                bool isNumberMonth = int.TryParse(Console.ReadLine(), out int month);
+                Console.WriteLine("Enter a year");
+                bool isNumberYear = int.TryParse(Console.ReadLine(), out int year);
 
-                if (dayValue >= 1 && dayValue <= 31 && monthValue >= 1 && monthValue <= 12 && yearValue >= 1300)
+                bool isDate = IsCorrectDate(isNumberDay, isNumberMonth, isNumberYear, day, month, year);
+
+                if (!isDate)
                 {
-                    Console.WriteLine("La fecha del día anterior es: {0}/{1}/{2}", dayValue - 1, monthValue, yearValue);
+                    Console.WriteLine("");
+                    Console.WriteLine("Error, enter the date correctly");
                 }
                 else
-                    Console.WriteLine("La fecha no es correcta");
+                {
+                    if (day == 1)
+                    {
+                        if (month == 1)
+                        {
+                            day = 31;
+                            month = 12;
+                            year = year - 1;
+                        }
+                        if (month == 4 || month == 6 || month == 9 || month == 11 || month == 2 || month == 8)
+                        {
+                            month = month - 1;
+                            day = 31;
+                        }
+                        else if (month == 3)
+                        {
+                            if ((year % 4 != 0 || (year % 100 == 0)) && (year % 400 != 0))
+                            {
+                                month = 2;
+                                day = 28;
+                            }
+                            else
+                            {
+                                month = 2;
+                                day = 29;
+                            }
+                        }
+                        else if (month != 12 || day != 31)
+                        {
+                            month = month - 1;
+                            day = 30;
+                        }
+                    }
+                    else
+                    {
+                        day = day - 1;
+                    }
+                    Console.WriteLine("");
+                    Console.WriteLine("The after day's date is {0}-{1}-{2}", day, month, year);
+                    return;
+                }
             }
+        }
+
+        //Method that returns the last day of next month
+        public static int LastDayMonthNext(int month, int year)
+        {
+            int temp_day_next = 0;
+
+            if (month == 1)
+            {
+                if ((year % 4 != 0 || (year % 100 == 0)) && (year % 400 != 0))
+                    temp_day_next = 28;
+                else
+                    temp_day_next = 29;
+            }
+            else if (month == 3 || month == 5 || month == 8 || month == 10)
+                temp_day_next = 30;
             else
-                Console.WriteLine("Error, debe entrar dd/mm/aa. Vuelva a ejecutar el programa");
+                temp_day_next = 31;
+
+            return temp_day_next;
         }
 
         /// <summary>
@@ -314,42 +366,77 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void IncreaseDate()
         {
-            Console.WriteLine("Entre una fecha");
-            Console.WriteLine("Entre dia");
-            string day = Console.ReadLine();
+            int real_day_month_next = 0;
+            int leftover_days = 0;
+            int last_day_month = 0;
 
-            Console.WriteLine("Entre mes");
-            string month = Console.ReadLine();
-
-            Console.WriteLine("Entre año");
-            string year = Console.ReadLine();
-
-            Console.WriteLine("Entre una cantidad de días");
-            string countDays = Console.ReadLine();
-
-            int number = 0;
-            bool isNumberDay = Int32.TryParse(day, out number);
-            bool isNumberMonth = Int32.TryParse(month, out number);
-            bool isNumberYear = Int32.TryParse(year, out number);
-            bool isNumberCountDays = Int32.TryParse(countDays, out number);
-
-            if (isNumberDay && isNumberMonth && isNumberYear && isNumberCountDays)
+            while (true)
             {
-                int dayValue = Int32.Parse(day);
-                int monthValue = Int32.Parse(month);
-                int yearValue = Int32.Parse(year);
-                int countDaysValue = Int32.Parse(countDays);
-                int dayRealValue = dayValue + countDaysValue;
+                Console.WriteLine("");
+                Console.WriteLine("Enter a date");
+                Console.WriteLine("Enter a day");
+                bool isNumberDay = int.TryParse(Console.ReadLine(), out int day);
+                Console.WriteLine("Enter a month");
+                bool isNumberMonth = int.TryParse(Console.ReadLine(), out int month);
+                Console.WriteLine("Enter a year");
+                bool isNumberYear = int.TryParse(Console.ReadLine(), out int year);
+                Console.WriteLine("Between the number of days you want to increase to date");
+                bool isNumberCountDays = int.TryParse(Console.ReadLine(), out int amount_days);
 
-                if (dayRealValue >= 1 && dayRealValue <= 31 && monthValue >= 1 && monthValue <= 12 && yearValue >= 1300)
+                bool isDate = IsCorrectDate(isNumberDay, isNumberMonth, isNumberYear, day, month, year);
+
+                //Validating date
+                if (!isDate || !isNumberCountDays)
                 {
-                    Console.WriteLine("La fecha luego de pasar {0} días es: {1}/{2}/{3}", countDaysValue, dayRealValue, monthValue, yearValue);
+                    Console.WriteLine("");
+                    Console.WriteLine("Error, enter the date correctly");
                 }
                 else
-                    Console.WriteLine("La fecha no es correcta");
+                {
+                    last_day_month = LastDayMonthNext(month - 1, year);
+                    leftover_days = last_day_month - day;
+
+                    if (leftover_days >= amount_days)
+                    {
+                        day = day + amount_days;
+                        Console.WriteLine("The after day's date is {0}/{1}/{2}", day, month, year);
+                        return;
+                    }
+                    real_day_month_next = amount_days - leftover_days;
+                    last_day_month = LastDayMonthNext(month, year);
+
+                    while (true)
+                    {
+                        if (real_day_month_next > last_day_month)
+                        {
+                            if (month == 12)
+                            {
+                                month = 0;
+                                year++;
+                            }
+                            month++;
+                            real_day_month_next = real_day_month_next - last_day_month;
+                            last_day_month = LastDayMonthNext(month, year);
+                        }
+                        else
+                        {
+                            if (month == 12)
+                            {
+                                month = 1;
+                                year++;
+                                Console.WriteLine("The after day's date is {0}/{1}/{2}", real_day_month_next, month, year);
+                                return;
+                            }
+                            else
+                            {
+                                month++;
+                                Console.WriteLine("The after day's date is {0}/{1}/{2}", real_day_month_next, month, year);
+                                return;
+                            }
+                        }
+                    }
+                }
             }
-            else
-                Console.WriteLine("Error, debe entrar dd/mm/aa. Vuelva a ejecutar el programa");
         }
 
         /// <summary>
@@ -357,63 +444,95 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void DifferentTwoDays()
         {
-            Console.WriteLine("Entre una fecha");
-            Console.WriteLine("Entre dia");
-            string day = Console.ReadLine();
+            int last_day_month = 0;
+            int real_day_year = 0;
+            int cont_year_leap = 0;
+            int cont_year_no_leap = 0;
 
-            Console.WriteLine("Entre mes");
-            string month = Console.ReadLine();
-
-            Console.WriteLine("Entre año");
-            string year = Console.ReadLine();
-
-            Console.WriteLine("Entre otra fecha");
-            Console.WriteLine("Entre dia");
-            string day1 = Console.ReadLine();
-
-            Console.WriteLine("Entre mes");
-            string month1 = Console.ReadLine();
-
-            Console.WriteLine("Entre año");
-            string year1 = Console.ReadLine();
-
-            int number = 0;
-            bool isNumberDay = Int32.TryParse(day, out number);
-            bool isNumberMonth = Int32.TryParse(month, out number);
-            bool isNumberYear = Int32.TryParse(year, out number);
-
-            bool isNumberDay1 = Int32.TryParse(day1, out number);
-            bool isNumberMonth1 = Int32.TryParse(month1, out number);
-            bool isNumberYear1 = Int32.TryParse(year1, out number);
-
-            if (isNumberDay && isNumberMonth && isNumberYear && isNumberDay1 && isNumberMonth1 && isNumberYear1)
+            while (true)
             {
-                int dayValue = Int32.Parse(day);
-                int monthValue = Int32.Parse(month);
-                int yearValue = Int32.Parse(year);
+                Console.WriteLine("");
+                Console.WriteLine("Enter a date");
+                Console.WriteLine("Enter a day");
+                bool isNumberDay = int.TryParse(Console.ReadLine(), out int day);
+                Console.WriteLine("Enter a month");
+                bool isNumberMonth = int.TryParse(Console.ReadLine(), out int month);
+                Console.WriteLine("Enter a year");
+                bool isNumberYear = int.TryParse(Console.ReadLine(), out int year);
 
-                int dayValue1 = Int32.Parse(day1);
-                int monthValue1 = Int32.Parse(month1);
-                int yearValue1 = Int32.Parse(year1);
+                Console.WriteLine("");
+                Console.WriteLine("Enter a date mayor que la primera fecha entrada");
+                Console.WriteLine("Enter a day");
+                bool isNumberDay2 = int.TryParse(Console.ReadLine(), out int second_day);
+                Console.WriteLine("Enter a month");
+                bool isNumberMonth2 = int.TryParse(Console.ReadLine(), out int second_month);
+                Console.WriteLine("Enter a year");
+                bool isNumberYear2 = int.TryParse(Console.ReadLine(), out int second_year);
 
-                int differenceDays = 0;
+                bool isDate = IsCorrectDate(isNumberDay, isNumberMonth, isNumberYear, day, month, year);
+                bool isDate2 = IsCorrectDate(isNumberDay2, isNumberMonth2, isNumberYear2, second_day, second_month, second_year);
 
-                if (dayValue >= 1 && dayValue <= 31 && monthValue >= 1 && monthValue <= 12 && yearValue >= 1300 && dayValue1 >= 1 && dayValue1 <= 31 && monthValue1 >= 1 && monthValue1 <= 12 && yearValue1 >= 1300)
+                int temp_year = year + 1;
+                int first_latest_year = year;
+
+                //Validating date
+                if (!isDate || !isDate2)
                 {
-                    if (dayValue < dayValue1)
-                    {
-                        differenceDays = dayValue1 - dayValue;
-                        Console.WriteLine("Entre las dos fechas hay una diferencia de días de {0}", differenceDays);
-                    }
-                    else
-                        differenceDays = dayValue - dayValue1;
-                    Console.WriteLine("Entre las dos fechas hay una diferencia de días de {0}", differenceDays);
+                    Console.WriteLine("");
+                    Console.WriteLine("Error, enter the date correctly");
                 }
+                if ((second_day <= day && second_month == month && second_year == year) || (second_year < year) || second_month < month && second_year == year)
+                {
+                    Console.WriteLine("Error, the first date must be less than the second date");
+                }
+
                 else
-                    Console.WriteLine("La fecha no es correcta");
+                {
+                    if (year == second_year && month == second_month)
+                    {
+                        real_day_year = second_day - day;
+                        Console.WriteLine("The difference of days between both dates is: {0}", real_day_year);
+                        return;
+                    }
+
+                    last_day_month = LastDayMonthNext(month - 1, year);
+                    real_day_year = last_day_month - day;
+
+                    while (temp_year < second_year)
+                    {
+                        if ((temp_year % 4 != 0 || (temp_year % 100 == 0)) && (temp_year % 400 != 0))
+                        {
+                            temp_year++;
+                            cont_year_no_leap++;
+                        }
+                        else
+                        {
+                            temp_year++;
+                            cont_year_leap++;
+                        }
+                    }
+
+                    real_day_year = real_day_year + (cont_year_no_leap * 365 + cont_year_leap * 366);
+
+                    while (true)
+                    {
+                        last_day_month = LastDayMonthNext(month, year);
+                        real_day_year = real_day_year + last_day_month;
+                        month++;
+                        if (month == 13 && first_latest_year == year)
+                        {
+                            month = 1;
+                            first_latest_year = second_year;
+                        }
+                        else if (month + 1 == second_month && first_latest_year == second_year)
+                        {
+                            real_day_year = real_day_year + second_day;
+                            Console.WriteLine("The difference of days between both dates is: {0}", real_day_year);
+                            return;
+                        }
+                    }
+                }
             }
-            else
-                Console.WriteLine("Error, debe entrar dd/mm/aa. Vuelva a ejecutar el programa");
         }
 
         /// <summary>

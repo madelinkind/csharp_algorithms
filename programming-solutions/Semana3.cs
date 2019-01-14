@@ -11,21 +11,21 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void Mayor()
         {
-            Console.WriteLine("Teclea un primer numero ");
+            Console.WriteLine("Type a first number");
             int j = int.Parse(Console.ReadLine());
 
-            Console.Write("Teclea un segundo numero ");
+            Console.Write("Type a second number");
             int k = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Teclea un tercer numero ");
+            Console.WriteLine("Type a third number");
             int m = int.Parse(Console.ReadLine());
 
             if ((j >= k) && (j >= m))
-                Console.WriteLine("El mayor es {0}", j);
+                Console.WriteLine("The largest is {0}", j);
             else if ((k >= j) && (k >= m))
-                Console.WriteLine("El mayor es {0}", k);
+                Console.WriteLine("The largest is {0}", k);
             else
-                Console.WriteLine("El mayor es {0}", m);
+                Console.WriteLine("The largest is {0}", m);
         }
 
         /// <summary>
@@ -33,13 +33,13 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void MayorFunction()
         {
-            Console.WriteLine("Teclea un primer numero ");
+            Console.WriteLine("Type a first number");
             bool jIsNumber = int.TryParse(Console.ReadLine(), out int j);
 
-            Console.WriteLine("Teclea un segundo numero ");
+            Console.WriteLine("Type a second number");
             bool kIsNumber = int.TryParse(Console.ReadLine(), out int k);
 
-            Console.WriteLine("Teclea un tercer numero ");
+            Console.WriteLine("Type a third number");
             bool mIsNumber = int.TryParse(Console.ReadLine(), out int m);
 
             // check that all values are integer
@@ -52,7 +52,7 @@ namespace ProgrammingSolutions
             {
                 // get maximum of the three numbers
                 int mayor = Math.Max(Math.Max(j, k), m);
-                Console.WriteLine("El mayor es {0}", mayor);
+                Console.WriteLine("The largest is {0}", mayor);
             }
         }
 
@@ -62,7 +62,7 @@ namespace ProgrammingSolutions
         public static void Speed()
         {
             Stopwatch crono = new Stopwatch();
-            Console.WriteLine("Teclee su nombre?");
+            Console.WriteLine("Type your name?");
 
             crono.Start();
             string name = Console.ReadLine();
@@ -73,11 +73,11 @@ namespace ProgrammingSolutions
             double charactersPerSecond = charactersCount / elapsedSeconds;
 
             if (charactersPerSecond > 2)
-                Console.WriteLine("Usted es rápido");
+                Console.WriteLine("You are fast");
             else if (charactersPerSecond >= 1 && charactersPerSecond <= 2)
-                Console.WriteLine("Usted es regular");
+                Console.WriteLine("You are fast");
             else
-                Console.WriteLine("Usted es lento");
+                Console.WriteLine("You are slow");
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void TypeTriangle()
         {
-            Console.WriteLine("Entre 3 valores enteros");
+            Console.WriteLine("Entry three integer values");
 
             bool isNumberA = int.TryParse(Console.ReadLine(), out int a);
             bool isNumberB = int.TryParse(Console.ReadLine(), out int b);
@@ -163,7 +163,7 @@ namespace ProgrammingSolutions
         /// </summary>
         public static void OrderAvrg()
         {
-            Console.WriteLine("Entre 3 valores enteros a ordenar");
+            Console.WriteLine("Enter three integer values to sort");
 
             bool isNumber1 = int.TryParse(Console.ReadLine(), out int value1);
             bool isNumber2 = int.TryParse(Console.ReadLine(), out int value2);
@@ -219,7 +219,7 @@ namespace ProgrammingSolutions
                 Console.WriteLine("Error, entered a number outside the indicated range. Run the program again.");
                 return;
             }
-            while (i <= value)
+            while (i <= value && cont != 3)
             {
                 if (value % i == 0)
                     cont++;
