@@ -9,7 +9,7 @@ namespace ProgrammingSolutions
         /// <summary>
         /// Find the largest of three numbers
         /// </summary>
-        public static void Mayor()
+        public static void Bigger()
         {
             Console.WriteLine("Type a first number");
             int j = int.Parse(Console.ReadLine());
@@ -31,7 +31,7 @@ namespace ProgrammingSolutions
         /// <summary>
         /// Find the largest of three numbers using Math.Max
         /// </summary>
-        public static void MayorFunction()
+        public static void BiggerFunction()
         {
             Console.WriteLine("Type a first number");
             bool jIsNumber = int.TryParse(Console.ReadLine(), out int j);
@@ -51,8 +51,8 @@ namespace ProgrammingSolutions
             else
             {
                 // get maximum of the three numbers
-                int mayor = Math.Max(Math.Max(j, k), m);
-                Console.WriteLine("The largest is {0}", mayor);
+                int bigger = Math.Max(Math.Max(j, k), m);
+                Console.WriteLine("The largest is {0}", bigger);
             }
         }
 
@@ -124,7 +124,7 @@ namespace ProgrammingSolutions
             else if (secondTimeName <= thirdTimeName)
                 Console.WriteLine("You exscribed the second name faster");
             else
-                Console.WriteLine("You wrote the third fastest name");
+                Console.WriteLine("You exscribed the third name faster");
         }
               
         /// <summary>
