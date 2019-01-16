@@ -2,58 +2,29 @@
 using System.Diagnostics;
 using ExtensionMethods;
 
-namespace ProgrammingSolutions
+namespace CsharpAlgorithms
 {
-    static class Semana3
+    public static class Semana3
     {
-        /// <summary>
-        /// Find the largest of three numbers
-        /// </summary>
-        public static void Bigger()
-        {
-            Console.WriteLine("Type a first number");
-            int j = int.Parse(Console.ReadLine());
-
-            Console.Write("Type a second number");
-            int k = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Type a third number");
-            int m = int.Parse(Console.ReadLine());
-
-            if ((j >= k) && (j >= m))
-                Console.WriteLine("The largest is {0}", j);
-            else if ((k >= j) && (k >= m))
-                Console.WriteLine("The largest is {0}", k);
-            else
-                Console.WriteLine("The largest is {0}", m);
-        }
-
+        
         /// <summary>
         /// Find the largest of three numbers using Math.Max
         /// </summary>
-        public static void BiggerFunction()
+        public static int MaximumNumber(string value1, string value2, string value3)
         {
-            Console.WriteLine("Type a first number");
-            bool jIsNumber = int.TryParse(Console.ReadLine(), out int j);
-
-            Console.WriteLine("Type a second number");
-            bool kIsNumber = int.TryParse(Console.ReadLine(), out int k);
-
-            Console.WriteLine("Type a third number");
-            bool mIsNumber = int.TryParse(Console.ReadLine(), out int m);
+            bool jIsNumber = int.TryParse(value1, out int j);
+            bool kIsNumber = int.TryParse(value2, out int k);
+            bool mIsNumber = int.TryParse(value3, out int m);
 
             // check that all values are integer
-            if (!jIsNumber || !kIsNumber || !mIsNumber)
-            {
-                Console.WriteLine("You must type valid integer numbers");
-                return;
-            }
-            else
-            {
+            //if (!jIsNumber || !kIsNumber || !mIsNumber)
+            //{
+            //    Console.WriteLine("You must type valid integer numbers");
+            //    return;
+            //}
                 // get maximum of the three numbers
                 int bigger = Math.Max(Math.Max(j, k), m);
-                Console.WriteLine("The largest is {0}", bigger);
-            }
+                return bigger;
         }
 
         /// <summary>
@@ -75,7 +46,7 @@ namespace ProgrammingSolutions
             if (charactersPerSecond > 2)
                 Console.WriteLine("You are fast");
             else if (charactersPerSecond >= 1 && charactersPerSecond <= 2)
-                Console.WriteLine("You are fast");
+                Console.WriteLine("You are regular");
             else
                 Console.WriteLine("You are slow");
         }

@@ -1,7 +1,7 @@
 ﻿using System;
 using ExtensionMethods;
 
-namespace ProgrammingSolutions
+namespace CsharpAlgorithms
 {
     static class Semana4
     {
