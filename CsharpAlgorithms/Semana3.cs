@@ -17,14 +17,16 @@ namespace CsharpAlgorithms
             bool mIsNumber = int.TryParse(value3, out int m);
 
             // check that all values are integer
-            //if (!jIsNumber || !kIsNumber || !mIsNumber)
-            //{
-            //    Console.WriteLine("You must type valid integer numbers");
-            //    return;
-            //}
-                // get maximum of the three numbers
-                int bigger = Math.Max(Math.Max(j, k), m);
-                return bigger;
+            if (!jIsNumber || !kIsNumber || !mIsNumber)
+               throw new ArgumentException("All numbers must be integers");
+
+            return MaxAmongThreeNumbers(j, k, m);
+        }
+
+        private static int MaxAmongThreeNumbers(int a, int b, int c)
+        {
+            int bigger = Math.Max(Math.Max(a, b), c);
+            return bigger;
         }
 
         /// <summary>
