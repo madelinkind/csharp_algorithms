@@ -39,4 +39,16 @@ namespace TestCsharpAlgorithms
             Assert.AreEqual(result, 9);
         }
     }
+
+    [TestClass]
+    public class TestClassifyTriangle
+    {
+        [TestMethod]
+        public void ClassifyTriangleWorksForInvalidTriangle()
+        {
+            TriangleType t = Semana3.ClassifyTriangle(0, 10, 16);
+
+            Assert.AreEqual(t, TriangleType.NONE);
+        }
+    }
 }

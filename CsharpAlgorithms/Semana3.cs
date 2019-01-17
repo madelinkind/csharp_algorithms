@@ -4,6 +4,14 @@ using ExtensionMethods;
 
 namespace CsharpAlgorithms
 {
+    public enum TriangleType
+    {
+        NONE,
+        SCALENE,
+        ISOSCELES,
+        EQUILATERAL,
+    }
+
     public static class Semana3
     {
         
@@ -112,23 +120,29 @@ namespace CsharpAlgorithms
             bool isNumberC = int.TryParse(Console.ReadLine(), out int c);
 
             if (!isNumberA || !isNumberB || !isNumberC)
-            {
-                Console.WriteLine("Triangle sides should be numbers");
-                return;
-            }
+                throw new ArgumentException("Triangle sides should be numbers");
 
-            if (a <= 0 && b <= 0 && c <= 0)
-            {
-                Console.WriteLine("Can't form a triangle");
-                return;
-            }
+            TriangleType t = ClassifyTriangle(a, b, c);
 
-            if (a == b && a == c)
+            if (t == TriangleType.EQUILATERAL)
                 Console.WriteLine("The triangle is equilateral");
-            else if (a != b && b != c && a != c)
+            else if (t == TriangleType.SCALENE)
                 Console.WriteLine("The triangle is scalene");
             else
                 Console.WriteLine("The triangle is isosceles");
+        }
+
+        public static TriangleType ClassifyTriangle(int a, int b, int c)
+        {
+            if (a <= 0 || b <= 0 || c <= 0)
+                return TriangleType.NONE;
+
+            if (a == b && a == c)
+                return TriangleType.EQUILATERAL;
+            else if (a != b && b != c && a != c)
+                return TriangleType.SCALENE;
+            else
+                return TriangleType.ISOSCELES;
         }
 
         /// <summary>
