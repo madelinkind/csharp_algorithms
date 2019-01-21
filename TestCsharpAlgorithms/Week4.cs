@@ -11,13 +11,13 @@ namespace TestCsharpAlgorithms
         [ExpectedException(typeof(ArgumentException), "Error, you must enter a number greater than zero")]
         public void FailsWhithTextValueOrValueLessOrEqualsZero()
         {
-            long result = Semana4.FactorialNumber("-6");
+            long result = Week4.FactorialNumber("-6");
         }
 
         [TestMethod]
         public void WorksForPositiveNumbers()
         {
-            long result = Semana4.FactorialNumber("4");
+            long result = Week4.FactorialNumber("4");
 
             Assert.AreEqual(24, result);
         }
@@ -30,13 +30,13 @@ namespace TestCsharpAlgorithms
         [ExpectedException(typeof(ArgumentException), "Error, you must enter whole numbers")]
         public void FailsWithTextValue()
         {
-            bool result = Semana4.PrimeNumber("pepe");
+            bool result = Week4.PrimeNumber("pepe");
         }
 
         [TestMethod]
         public void WorksForPrimeNummber()
         {
-            bool result = Semana4.PrimeNumber("5");
+            bool result = Week4.PrimeNumber("5");
 
             Assert.AreEqual(true, result);
         }
@@ -44,7 +44,7 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void WorksForNotPrimeNummber()
         {
-            bool result = Semana4.PrimeNumber("10");
+            bool result = Week4.PrimeNumber("10");
 
             Assert.AreEqual(false, result);
         }

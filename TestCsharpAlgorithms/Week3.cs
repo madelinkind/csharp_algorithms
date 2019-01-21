@@ -107,7 +107,7 @@ namespace TestCsharpAlgorithms
         }
 
         [TestMethod]
-        public void WorksForPrimeNummber()
+        public void WorksForPrimeNumber()
         {
             bool result = Semana3.PrimeNumber("5");
 
@@ -115,11 +115,58 @@ namespace TestCsharpAlgorithms
         }
 
         [TestMethod]
-        public void WorksForNotPrimeNummber()
+        public void WorksForNotPrimeNumber()
         {
             bool result = Semana3.PrimeNumber("10");
 
             Assert.AreEqual(false, result);
+        }
+    }
+
+    [TestClass]
+    public class TestOrderAvrgSort
+        {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Error, you must enter whole numbers")]
+        public void FailsWithTextValue()
+        {
+            var result = Semana3.OrderAvrgSort("5","4.52","lol");
+        }
+
+        [TestMethod]
+        public void WorksForIntegerNumber()
+        {
+            var result = Semana3.OrderAvrgSort("5", "25", "10");
+
+            Assert.AreEqual((5, 10, 25, 13.333333333333334), result);
+        }
+    }
+
+    [TestClass]
+    public class TestNextDay
+    {
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Error, incorrect date")]
+        public void FailsWithIncorrectDateValues()
+        {
+            var result = Semana3.NextDay("28", "13", "2018");
+        }
+
+        [TestMethod]
+        public void WorksForCorrectDate()
+        {
+            var result = Semana3.NextDay("5", "4", "2018");
+
+            Assert.AreEqual((6, 4, 2018), result);
+        }
+
+        [TestMethod]
+        public void WorksForIncorrectDate()
+        {
+            var result = Semana3.NextDay("25", "3", "2018");
+
+            Assert.AreNotEqual((27, 3, 2018), result);
         }
     }
 }

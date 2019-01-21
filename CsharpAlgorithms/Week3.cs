@@ -145,9 +145,10 @@ namespace CsharpAlgorithms
             bool isNumber2 = int.TryParse(number2, out int value2);
             bool isNumber3 = int.TryParse(number3, out int value3);
 
-           double average = 0;
+            if (!isNumber1 || !isNumber2 || !isNumber3)
+                throw new ArgumentException("All numbers must be integers");
 
-            average = ((double)value1 + (double)value2 + (double)value3) / 3;
+           double average = ((double)value1 + (double)value2 + (double)value3) / 3;
 
             if (value1 <= value2 && value1 <= value3)
             {
@@ -163,15 +164,36 @@ namespace CsharpAlgorithms
                 else
                     return (value2, value3, value1, average);
             }
-            else if (value3 <= value1 && value3 <= value2)
+            else 
             {
                 if (value1 <= value2)
                     return (value3, value1, value2, average);
                 else
                     return (value3, value2, value1, average);
             }
+        }
 
-            return (value1, value2, value3, average);
+        /// <summary>
+        /// Orders with Sort() from least to greatest and determines the average between the 3 numbers
+        /// </summary>
+        public static (int, int, int, double) OrderAvrgSort(string number1, string number2, string number3)
+        {
+            bool isNumber1 = int.TryParse(number1, out int value1);
+            bool isNumber2 = int.TryParse(number2, out int value2);
+            bool isNumber3 = int.TryParse(number3, out int value3);
+
+            if (!isNumber1 || !isNumber2 || !isNumber3)
+                throw new ArgumentException("All numbers must be integers");
+
+            int[] order = new int[3] {value1, value2, value3};
+
+            Array.Sort(order);
+
+            double average = ((double)value1 + (double)value2 + (double)value3) / 3;
+
+            var list = (order[0], order[1], order[2], average);
+
+            return list;
         }
 
         /// <summary>
@@ -206,31 +228,23 @@ namespace CsharpAlgorithms
         /// <summary>
         /// Determines the day following the given date
         /// </summary>
-        public static void NextDay()
+       public static (int, int, int) NextDay(string value1, string value2, string value3)
         {
             int month_next = 0;
             int day_next = 0;
             int year_next = 0;
 
-            Console.WriteLine("Enter a date");
-            Console.WriteLine("Insert the day");
-            bool isNumber1 = int.TryParse(Console.ReadLine(), out int day);
-
-            Console.WriteLine("Insert the month");
-            bool isNumber2 = int.TryParse(Console.ReadLine(), out int month);
-
-            Console.WriteLine("Insert the year");
-            bool isNumber3 = int.TryParse(Console.ReadLine(), out int year);
+            bool isNumber1 = int.TryParse(value1, out int day);
+            bool isNumber2 = int.TryParse(value2, out int month);
+            bool isNumber3 = int.TryParse(value3, out int year);
 
             if (!isNumber1 || !isNumber2 || !isNumber3 || year < 4 || month > 12 || month < 1 || day > 31 || day < 1)
             {
-                Console.WriteLine("Error, enter the date correctly");
-                return;
+                throw new ArgumentException("Error, incorrect date");
             }
             if ((day > 30 && (month == 4 || month == 6 || month == 9 || month == 11)) || (day > 29 && month == 2) || (day > 28 && month == 2 && year % 4 != 0) || (day == 29 && month == 2 && ((year % 4 != 0 || year % 100 == 0) && (year % 400 != 0))))
             {
-                Console.WriteLine("Error, enter the date correctly");
-                return;
+                throw new ArgumentException("Error, incorrect date");
             }
             if ((day == 30 && (month == 4 || month == 6 || month == 9 || month == 11)) || (day == 29 && month == 2) || (day == 28 && month == 2 && (year % 4 != 0 || (year % 100 == 0) && (year % 400 != 0)) || day == 31))
             {
@@ -249,9 +263,9 @@ namespace CsharpAlgorithms
             }
             else
                 year_next = year;
-
-            Console.WriteLine("The next day's date is {0}-{1}-{2}", day_next, month_next, year_next);
+            return (day_next, month_next, year_next);
         }
     }
+
 }
 

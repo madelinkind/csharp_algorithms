@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace CsharpAlgorithms
 {
-    public static class Semana4
+    public static class Week4
     {
         /// <summary>
         ///Determines the factorial of a number 
