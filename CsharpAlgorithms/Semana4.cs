@@ -1,47 +1,43 @@
 ﻿using System;
 using ExtensionMethods;
+using System.Diagnostics;
+
 
 namespace CsharpAlgorithms
 {
-    static class Semana4
+    public static class Semana4
     {
         /// <summary>
         ///Determines the factorial of a number 
         /// </summary>
-        public static void FactorialNumber()
+        public static long FactorialNumber(string value)
         {
             long factorial = 1;
-            Console.WriteLine("Insert a number to find its factorial");
-            bool isNumber = long.TryParse(Console.ReadLine(), out long number);
+            bool isNumber = long.TryParse(value, out long number);
 
             if (!isNumber || number <= 0)
-            {
-                Console.WriteLine("Error, you must enter a number greater than zero. Run the program again");
-                return;
-            }
+                throw new ArgumentException("Error, you must enter a number greater than zero");
+
             while (number != 1)
             {
                 factorial = factorial * number;
                 number--;
             }
-            Console.WriteLine("The factorial is {0}", factorial);
+            return factorial;
         }
 
         /// <summary>
         /// Determines if a number is prime
         /// </summary>
-        public static void PrimeNumber()
+        public static bool PrimeNumber(string number)
         {
             int i = 1;
             int cont = 0;
-            Console.WriteLine("Enter a number");
-            bool isNumber = int.TryParse(Console.ReadLine(), out int value);
+            bool isNumber = int.TryParse(number, out int value);
 
             if (!isNumber)
-            {
-                Console.WriteLine("Error, you must enter whole numbers. Run the program again");
-                return;
-            }
+                throw new ArgumentException("Error, you must enter whole numbers");
+
             while (i <= value)
             {
                 if (value % i == 0)
@@ -49,9 +45,9 @@ namespace CsharpAlgorithms
                 i++;
             }
             if (cont != 2)
-                Console.WriteLine("The number is not prime");
+                return false;
             else
-                Console.WriteLine("The number is prime");
+                return true;
         }
 
         /// <summary>

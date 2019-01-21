@@ -7,6 +7,7 @@ namespace CsharpAlgorithms
     public enum TriangleType
     {
         NONE,
+        TRIANGLE_INEQUALITY,
         SCALENE,
         ISOSCELES,
         EQUILATERAL,
@@ -40,7 +41,7 @@ namespace CsharpAlgorithms
         /// <summary>
         /// Determines the writing speed
         /// </summary>
-        public static void Speed()
+        public static void WriteSpeed()
         {
             Stopwatch crono = new Stopwatch();
             Console.WriteLine("Type your name?");
@@ -111,32 +112,22 @@ namespace CsharpAlgorithms
         /// <summary>
         /// Determines the type of triangle
         /// </summary>
-        public static void TypeTriangle()
+        public static TriangleType TypeTriangle(string value1, string value2, string value3)
         {
             Console.WriteLine("Entry three integer values");
 
-            bool isNumberA = int.TryParse(Console.ReadLine(), out int a);
-            bool isNumberB = int.TryParse(Console.ReadLine(), out int b);
-            bool isNumberC = int.TryParse(Console.ReadLine(), out int c);
+            bool isNumberA = float.TryParse(value1, out float a);
+            bool isNumberB = float.TryParse(value2, out float b);
+            bool isNumberC = float.TryParse(value3, out float c);
 
             if (!isNumberA || !isNumberB || !isNumberC)
                 throw new ArgumentException("Triangle sides should be numbers");
 
-            TriangleType t = ClassifyTriangle(a, b, c);
-
-            if (t == TriangleType.EQUILATERAL)
-                Console.WriteLine("The triangle is equilateral");
-            else if (t == TriangleType.SCALENE)
-                Console.WriteLine("The triangle is scalene");
-            else
-                Console.WriteLine("The triangle is isosceles");
-        }
-
-        public static TriangleType ClassifyTriangle(int a, int b, int c)
-        {
             if (a <= 0 || b <= 0 || c <= 0)
                 return TriangleType.NONE;
 
+            if (a + b <= c || b + c <= a || c + a <= b)
+                return TriangleType.TRIANGLE_INEQUALITY;
             if (a == b && a == c)
                 return TriangleType.EQUILATERAL;
             else if (a != b && b != c && a != c)
@@ -148,64 +139,60 @@ namespace CsharpAlgorithms
         /// <summary>
         /// Orders from least to greatest and determines the average between the 3 numbers
         /// </summary>
-        public static void OrderAvrg()
+        public static (int, int, int, double) OrderAvrg(string number1, string number2, string number3)
         {
-            Console.WriteLine("Enter three integer values to sort");
+            
+            bool isNumber1 = int.TryParse(number1, out int value1);
+            bool isNumber2 = int.TryParse(number2, out int value2);
+            bool isNumber3 = int.TryParse(number3, out int value3);
 
-            bool isNumber1 = int.TryParse(Console.ReadLine(), out int value1);
-            bool isNumber2 = int.TryParse(Console.ReadLine(), out int value2);
-            bool isNumber3 = int.TryParse(Console.ReadLine(), out int value3);
+           double average = 0;
 
-            if(!isNumber1 || !isNumber2 || !isNumber3)
-            {
-                Console.WriteLine("Error, you must enter whole numbers. Run the program again");
-                return;
-            }
+            //if (!isNumber1 || !isNumber2 || !isNumber3)
+               // throw new ArgumentException("Error, you must enter whole numbers");
+
+            average = ((double)value1 + (double)value2 + (double)value3) / 3;
+
             if (value1 <= value2 && value1 <= value3)
             {
                 if (value2 <= value3)
-                    Console.WriteLine("{0},{1},{2}", value1, value2, value3);
+                    return (value1, value2, value3, average);
                 else
-                    Console.WriteLine("{0},{1},{2}", value1, value3, value2);
+                    return (value1, value3, value2, average);
             }
             else if (value2 <= value1 && value2 <= value3)
             {
                 if (value1 <= value3)
-                    Console.WriteLine("{0},{1},{2}", value2, value1, value3);
+                    return (value2, value1, value3, average);
                 else
-                    Console.WriteLine("{0},{1},{2}", value2, value3, value1);
+                    return (value2, value3, value1, average);
             }
             else if (value3 <= value1 && value3 <= value2)
             {
                 if (value1 <= value2)
-                    Console.WriteLine("{0},{1},{2}", value3, value1, value2);
+                    return (value3, value1, value2, average);
                 else
-                    Console.WriteLine("{0},{1},{2}", value3, value2, value1);
+                    return (value3, value2, value1, average);
+
             }
-            double average = ((double) value1 + (double) value2 + (double) value3) / 3;
-            Console.WriteLine("El promedio es {0}", average);
         }
 
         /// <summary>
         /// Determines if a number is prime
         /// </summary>
-        public static void PrimeNumber()
+        public static bool PrimeNumber(string number)
         {
-            Console.WriteLine("Enter a number that is in the range of 1 to 100");
-            bool isNumber = int.TryParse(Console.ReadLine(), out int value);
+            bool isNumber = int.TryParse(number, out int value);
+
+            if (!isNumber)
+                throw new ArgumentException("Error, you must enter whole numbers");
+
+            if (value < 1 || value > 100)
+                throw new ArgumentException("Error, entered a number outside the indicated range");
+
             int i = 1;
             int cont = 0;
 
-            if (!isNumber)
-            {
-                Console.WriteLine("Error, you must enter whole numbers. Run the program again");
-                return;
-            }
-            if (value < 1 || value > 100)
-            {
-                Console.WriteLine("Error, entered a number outside the indicated range. Run the program again.");
-                return;
-            }
             while (i <= value && cont != 3)
             {
                 if (value % i == 0)
@@ -213,9 +200,10 @@ namespace CsharpAlgorithms
                 i++;
             }
             if (cont != 2)
-                Console.WriteLine("The number is not prime");
+                return false;
+
             else
-                Console.WriteLine("The number is prime");
+                return true;
         }
 
         /// <summary>
