@@ -141,15 +141,11 @@ namespace CsharpAlgorithms
         /// </summary>
         public static (int, int, int, double) OrderAvrg(string number1, string number2, string number3)
         {
-            
             bool isNumber1 = int.TryParse(number1, out int value1);
             bool isNumber2 = int.TryParse(number2, out int value2);
             bool isNumber3 = int.TryParse(number3, out int value3);
 
            double average = 0;
-
-            //if (!isNumber1 || !isNumber2 || !isNumber3)
-               // throw new ArgumentException("Error, you must enter whole numbers");
 
             average = ((double)value1 + (double)value2 + (double)value3) / 3;
 
@@ -173,8 +169,9 @@ namespace CsharpAlgorithms
                     return (value3, value1, value2, average);
                 else
                     return (value3, value2, value1, average);
-
             }
+
+            return (value1, value2, value3, average);
         }
 
         /// <summary>
