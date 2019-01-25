@@ -13,6 +13,20 @@ namespace CsharpAlgorithms
         EQUILATERAL,
     }
 
+    public enum WriteSpeedType
+    {
+        FAST,
+        REGULAR,
+        SLOW,
+    }
+
+    public enum FastNameType
+    {
+        FIRST_NAME_FAST,
+        SECOND_NAME_FAST,
+        THIRD_NAME_FAST,
+    }
+
     public static class Semana3
     {
         
@@ -41,7 +55,7 @@ namespace CsharpAlgorithms
         /// <summary>
         /// Determines the writing speed
         /// </summary>
-        public static void WriteSpeed()
+        public static WriteSpeedType WriteSpeed()
         {
             Stopwatch crono = new Stopwatch();
             Console.WriteLine("Type your name?");
@@ -55,17 +69,18 @@ namespace CsharpAlgorithms
             double charactersPerSecond = charactersCount / elapsedSeconds;
 
             if (charactersPerSecond > 2)
-                Console.WriteLine("You are fast");
+                return WriteSpeedType.FAST;
             else if (charactersPerSecond >= 1 && charactersPerSecond <= 2)
-                Console.WriteLine("You are regular");
+                return WriteSpeedType.REGULAR;
             else
-                Console.WriteLine("You are slow");
+                return WriteSpeedType.SLOW;
         }
-
-        /// <summary>
-        /// Determines which of the three names were written faster
-        /// </summary>
-        public static void FastName()
+        
+            /// <summary>
+            /// Determines which of the three names were written faster
+            /// </summary>
+            /// 
+            public static FastNameType FastName()
         {
             Stopwatch crono = new Stopwatch();
             Console.WriteLine("Type your name three times");
@@ -93,20 +108,18 @@ namespace CsharpAlgorithms
 
             if (!isNumber || !isNumber1 || !isNumber2)
             {
-                Console.WriteLine("Error, you must enter letters");
-                return;
+                throw new ArgumentException("Error, you must enter letters");
             }
             if (firstName != secondName || secondName != thirdName)
             {
-                Console.WriteLine("Error, you have typed some of the names wrong. Run the program again");
-                return;
+                throw new ArgumentException("Error, you have typed some of the names wrong. Run the program again");
             }
             if (firstTimeName <= secondTimeName && firstTimeName <= thirdTimeName)
-                Console.WriteLine("You exscribed the first name faster");
+                return FastNameType.FIRST_NAME_FAST;
             else if (secondTimeName <= thirdTimeName)
-                Console.WriteLine("You exscribed the second name faster");
+                return FastNameType.FIRST_NAME_FAST;
             else
-                Console.WriteLine("You exscribed the third name faster");
+                return FastNameType.THIRD_NAME_FAST;
         }
               
         /// <summary>
