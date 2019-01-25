@@ -80,7 +80,7 @@ namespace CsharpAlgorithms
             /// Determines which of the three names were written faster
             /// </summary>
             /// 
-            public static FastNameType FastName()
+            public static void SpeedValue()
         {
             Stopwatch crono = new Stopwatch();
             Console.WriteLine("Type your name three times");
@@ -106,7 +106,12 @@ namespace CsharpAlgorithms
             long thirdTimeName = crono.ElapsedMilliseconds;
             crono.Restart();
 
-            if (!isNumber || !isNumber1 || !isNumber2)
+            
+        }
+
+        public static FastNameType FastName()
+        {
+            if(!isNumber || !isNumber1 || !isNumber2)
             {
                 throw new ArgumentException("Error, you must enter letters");
             }
@@ -121,7 +126,8 @@ namespace CsharpAlgorithms
             else
                 return FastNameType.THIRD_NAME_FAST;
         }
-              
+
+
         /// <summary>
         /// Determines the type of triangle
         /// </summary>
