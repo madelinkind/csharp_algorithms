@@ -27,9 +27,9 @@ namespace CsharpAlgorithms
         THIRD_NAME_FAST,
     }
 
-    public static class Semana3
+    public static class Week3
     {
-        
+
         /// <summary>
         /// Find the largest of three numbers using Math.Max
         /// </summary>
@@ -41,7 +41,7 @@ namespace CsharpAlgorithms
 
             // check that all values are integer
             if (!jIsNumber || !kIsNumber || !mIsNumber)
-               throw new ArgumentException("All numbers must be integers");
+                throw new ArgumentException("All numbers must be integers");
 
             return MaxAmongThreeNumbers(j, k, m);
         }
@@ -75,65 +75,64 @@ namespace CsharpAlgorithms
             else
                 return WriteSpeedType.SLOW;
         }
-        
-            /// <summary>
-            /// Determines which of the three names were written faster
-            /// </summary>
-            /// 
-            public static void SpeedValue()
+
+        /// <summary>
+        /// Determines which of the three names were written faster
+        /// </summary>
+        /// 
+        public static (string, string, string, double, double, double) Values()
         {
             Stopwatch crono = new Stopwatch();
             Console.WriteLine("Type your name three times");
 
             crono.Start();
             string firstName = Console.ReadLine();
-            bool isNumber = firstName.IsAllLetters();
             crono.Stop();
             long firstTimeName = crono.ElapsedMilliseconds;
             crono.Restart();
 
             crono.Start();
             string secondName = Console.ReadLine();
-            bool isNumber1 = secondName.IsAllLetters();
             crono.Stop();
             long secondTimeName = crono.ElapsedMilliseconds;
             crono.Restart();
 
             crono.Start();
             string thirdName = Console.ReadLine();
-            bool isNumber2 = thirdName.IsAllLetters();
             crono.Stop();
             long thirdTimeName = crono.ElapsedMilliseconds;
             crono.Restart();
 
-            
+            return (firstName, secondName, thirdName, firstTimeName, secondTimeName, thirdTimeName);
         }
 
         public static FastNameType FastName()
         {
-            if(!isNumber || !isNumber1 || !isNumber2)
-            {
+            (string firstName, string secondName, string thirdName, double firstTimeName, double secondTimeName, double thirdTimeName) = Values();
+
+            bool isNumber = firstName.IsAllLetters();
+            bool isNumber1 = secondName.IsAllLetters();
+            bool isNumber2 = thirdName.IsAllLetters();
+
+            if (!isNumber || !isNumber1 || !isNumber2)
                 throw new ArgumentException("Error, you must enter letters");
-            }
+
             if (firstName != secondName || secondName != thirdName)
-            {
                 throw new ArgumentException("Error, you have typed some of the names wrong. Run the program again");
-            }
+
             if (firstTimeName <= secondTimeName && firstTimeName <= thirdTimeName)
                 return FastNameType.FIRST_NAME_FAST;
             else if (secondTimeName <= thirdTimeName)
-                return FastNameType.FIRST_NAME_FAST;
+                return FastNameType.SECOND_NAME_FAST;
             else
                 return FastNameType.THIRD_NAME_FAST;
         }
-
 
         /// <summary>
         /// Determines the type of triangle
         /// </summary>
         public static TriangleType TypeTriangle(string value1, string value2, string value3)
         {
-            Console.WriteLine("Entry three integer values");
 
             bool isNumberA = float.TryParse(value1, out float a);
             bool isNumberB = float.TryParse(value2, out float b);
@@ -147,6 +146,7 @@ namespace CsharpAlgorithms
 
             if (a + b <= c || b + c <= a || c + a <= b)
                 return TriangleType.TRIANGLE_INEQUALITY;
+
             if (a == b && a == c)
                 return TriangleType.EQUILATERAL;
             else if (a != b && b != c && a != c)
@@ -167,7 +167,7 @@ namespace CsharpAlgorithms
             if (!isNumber1 || !isNumber2 || !isNumber3)
                 throw new ArgumentException("All numbers must be integers");
 
-           double average = ((double)value1 + (double)value2 + (double)value3) / 3;
+            double average = ((double)value1 + (double)value2 + (double)value3) / 3;
 
             if (value1 <= value2 && value1 <= value3)
             {
@@ -183,7 +183,7 @@ namespace CsharpAlgorithms
                 else
                     return (value2, value3, value1, average);
             }
-            else 
+            else
             {
                 if (value1 <= value2)
                     return (value3, value1, value2, average);
@@ -204,7 +204,7 @@ namespace CsharpAlgorithms
             if (!isNumber1 || !isNumber2 || !isNumber3)
                 throw new ArgumentException("All numbers must be integers");
 
-            int[] order = new int[3] {value1, value2, value3};
+            int[] order = new int[3] { value1, value2, value3 };
 
             Array.Sort(order);
 
@@ -247,7 +247,7 @@ namespace CsharpAlgorithms
         /// <summary>
         /// Determines the day following the given date
         /// </summary>
-       public static (int, int, int) NextDay(string value1, string value2, string value3)
+        public static (int, int, int) NextDay(string value1, string value2, string value3)
         {
             int month_next = 0;
             int day_next = 0;
