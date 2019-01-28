@@ -76,6 +76,7 @@ namespace CsharpAlgorithms
             Console.WriteLine("The number of positive numbers entered: {0}. The number of negative numbers entered: {1}", positive_values, negative_values);
         }
 
+        public static 
         /// <summary>
         /// Determines the numers primes 
         /// </summary>

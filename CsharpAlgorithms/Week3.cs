@@ -55,7 +55,7 @@ namespace CsharpAlgorithms
         /// <summary>
         /// Determines the writing speed
         /// </summary>
-        public static WriteSpeedType WriteSpeed()
+        public static void WriteSpeedName()
         {
             Stopwatch crono = new Stopwatch();
             Console.WriteLine("Type your name?");
@@ -68,6 +68,16 @@ namespace CsharpAlgorithms
             double elapsedSeconds = crono.ElapsedMilliseconds / 1000.0;
             double charactersPerSecond = charactersCount / elapsedSeconds;
 
+            WriteSpeedType writeSpeed = WriteSpeed(name, charactersPerSecond);
+        }
+
+        public static WriteSpeedType WriteSpeed(string name, double charactersPerSecond)
+        {
+            bool isNumber = name.IsAllLetters();
+
+            if (!isNumber)
+                throw new ArgumentException("Error, you must enter letters");
+
             if (charactersPerSecond > 2)
                 return WriteSpeedType.FAST;
             else if (charactersPerSecond >= 1 && charactersPerSecond <= 2)
@@ -75,12 +85,11 @@ namespace CsharpAlgorithms
             else
                 return WriteSpeedType.SLOW;
         }
-
         /// <summary>
         /// Determines which of the three names were written faster
         /// </summary>
         /// 
-        public static (string, string, string, double, double, double) Values()
+        public static void FasterOfThreeName()
         {
             Stopwatch crono = new Stopwatch();
             Console.WriteLine("Type your name three times");
@@ -103,12 +112,11 @@ namespace CsharpAlgorithms
             long thirdTimeName = crono.ElapsedMilliseconds;
             crono.Restart();
 
-            return (firstName, secondName, thirdName, firstTimeName, secondTimeName, thirdTimeName);
+            FastNameType fast = FastName(firstName, secondName, thirdName, firstTimeName, secondTimeName, thirdTimeName);
         }
 
-        public static FastNameType FastName()
+        public static FastNameType FastName(string firstName, string secondName, string thirdName, long firstTimeName, long secondTimeName, long thirdTimeName)
         {
-            (string firstName, string secondName, string thirdName, double firstTimeName, double secondTimeName, double thirdTimeName) = Values();
 
             bool isNumber = firstName.IsAllLetters();
             bool isNumber1 = secondName.IsAllLetters();
@@ -118,7 +126,7 @@ namespace CsharpAlgorithms
                 throw new ArgumentException("Error, you must enter letters");
 
             if (firstName != secondName || secondName != thirdName)
-                throw new ArgumentException("Error, you have typed some of the names wrong. Run the program again");
+                throw new ArgumentException("Error, you have typed some of the names wrong");
 
             if (firstTimeName <= secondTimeName && firstTimeName <= thirdTimeName)
                 return FastNameType.FIRST_NAME_FAST;
@@ -259,7 +267,7 @@ namespace CsharpAlgorithms
 
             if (!isNumber1 || !isNumber2 || !isNumber3 || year < 4 || month > 12 || month < 1 || day > 31 || day < 1)
             {
-                throw new ArgumentException("Error, incorrect date");
+                throw new ArgumentException("Error, invalid date");
             }
             if ((day > 30 && (month == 4 || month == 6 || month == 9 || month == 11)) || (day > 29 && month == 2) || (day > 28 && month == 2 && year % 4 != 0) || (day == 29 && month == 2 && ((year % 4 != 0 || year % 100 == 0) && (year % 400 != 0))))
             {
@@ -285,6 +293,5 @@ namespace CsharpAlgorithms
             return (day_next, month_next, year_next);
         }
     }
-
 }
 
