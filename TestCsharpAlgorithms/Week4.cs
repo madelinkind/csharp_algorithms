@@ -81,4 +81,55 @@ namespace TestCsharpAlgorithms
             Assert.AreEqual((4, "mariantonieta132*"), result);
         }
     }
+
+    [TestClass]
+    public class TestCountPositiveNegativeNumbers
+    {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Expected int value")]
+        public void FailWhithTextValue()
+        {
+            NumberSign result = Week4.CountPositiveNegativeNumbers("nombre");
+        }
+
+        [TestMethod]
+        public void WorkForPositiveNumber()
+        {
+            NumberSign result = Week4.CountPositiveNegativeNumbers("20");
+
+            Assert.AreEqual(result, NumberSign.POSITIVE);
+        }
+
+        [TestMethod]
+        public void WorkForNegativeNumber()
+        {
+            NumberSign result = Week4.CountPositiveNegativeNumbers("-9");
+
+            Assert.AreEqual(result, NumberSign.NEGATIVE);
+        }
+
+        [TestMethod]
+        public void WorkForZeroNumber()
+        {
+            NumberSign result = Week4.CountPositiveNegativeNumbers("0");
+
+            Assert.AreEqual(result, NumberSign.ZERO);
+        }
+
+        [TestMethod]
+        public void WorkForBlankSpace()
+        {
+            NumberSign result = Week4.CountPositiveNegativeNumbers("");
+
+            Assert.AreEqual(result, NumberSign.BLANK_SPACE);
+        }
+
+        [TestMethod]
+        public void WorkForNegativePositiveNumber()
+        {
+            var result = Week4.CountPosNeg(4, 4);
+
+            Assert.AreEqual(result, Week4.CountPosNeg(4,4));
+        }
+    }
 }

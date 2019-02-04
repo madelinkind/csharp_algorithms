@@ -5,7 +5,8 @@ using System.Diagnostics;
 
 namespace CsharpAlgorithms
 {
-    public enum NumberSign {POSITIVE, NEGATIVE, ZERO}
+    public enum NumberSign { POSITIVE, NEGATIVE, ZERO, BLANK_SPACE }
+    public enum IsPrime { Prime, NO_PRIME, BLANK_SPACE }
 
     public static class Week4
     {
@@ -53,31 +54,22 @@ namespace CsharpAlgorithms
         }
 
         /// <summary>
-        /// Returns an entire number if it is 
-        /// </summary>
-
-        public static int IsInteger(string value)
-        {
-            bool isNumber = int.TryParse(value, out int number);
-
-            if (!isNumber)
-                throw new ArgumentException("you must enter a number");
-            else
-                return number;
-
-        }
-        /// <summary>
         /// Determines how many numbers are negative and how many positive 
         /// </summary>
         public static void PositiveNegativeNumber()
         {
             int positivesCount = 0;
             int negativesCount = 0;
+
             while (true)
             {
                 // determine number sign
                 string s = Console.ReadLine();
-                NumberSign ns = Week4.CountPositiveNegativeNumbers(s);
+                NumberSign ns = CountPositiveNegativeNumbers(s);
+
+                //break if blank space
+                if (ns == NumberSign.BLANK_SPACE)
+                    break;
 
                 // break if number was 0
                 if (ns == NumberSign.ZERO)
@@ -88,22 +80,26 @@ namespace CsharpAlgorithms
                 else if (ns == NumberSign.NEGATIVE)
                     negativesCount++;
             }
+            ValueTuple<int, int> countPN = new ValueTuple<int, int>(positivesCount, negativesCount);
         }
 
-        public static NumberSign CountPositiveNegativeNumbers(string s)
+        public static (int, int) CountPosNeg(int positivesCount, int negativesCount) => (positivesCount, negativesCount);
+
+        public static NumberSign CountPositiveNegativeNumbers(string value)
         {
             // get integer value from string
-            int n = 0;
-            bool isNumber = int.TryParse(s, out n);
+            bool isNumber = int.TryParse(value, out int number);
 
+            if (value == string.Empty)
+                return NumberSign.BLANK_SPACE;
             // validate that number is integer
             if (!isNumber)
                 throw new ArgumentException("Expected int value");
 
-            if (n > 0)
+            if (number > 0)
                 return NumberSign.POSITIVE;
-            
-            if (n < 0)
+
+            if (number < 0)
                 return NumberSign.NEGATIVE;
 
             return NumberSign.ZERO;
@@ -112,35 +108,55 @@ namespace CsharpAlgorithms
         /// <summary>
         /// Determines the numers primes 
         /// </summary>
-        public static void PrimeNumberSeq()
+        //public static void PrimeNumberSeq()
+        //{
+        //    Console.WriteLine("Enter a sequence of numbers");
+
+
+        //    while (true)
+        //    {
+        //        // determine number sign
+        //        string value = Console.ReadLine();
+        //        NumberSign number = CountPositiveNegativeNumbers(value);
+
+        //        //break if blank space
+        //        if (number == NumberSign.BLANK_SPACE)
+        //            break;
+
+        //        if (number == IsPrime.NumberSign.POSITIVE)
+        //            positivesCount++;
+        //        else if (number == NumberSign.NEGATIVE)
+        //            negativesCount++;
+        //    }
+        //    ValueTuple<int, int> countPN = new ValueTuple<int, int>(positivesCount, negativesCount);
+        //}
+
+
+        public static IsPrime IsPrimeNumber(string value)
         {
-            Console.WriteLine("Enter a sequence of numbers");
-            string line = string.Empty;
+            int cont = 0;
+            int i = 1;
+            // get integer value from string
+            bool isNumber = int.TryParse(value, out int number);
 
-            while ((line = Console.ReadLine()) != string.Empty)
+            if (value == string.Empty)
+                return IsPrime.BLANK_SPACE;
+            // validate that number is integer
+            if (!isNumber && number < 0)
+                throw new ArgumentException("Expected int value");
+
+            while (number >= i)
             {
-                int i = 1;
-                int cont = 0;
-                bool isNumber = int.TryParse(line, out int value_prime);
-
-                if (!isNumber || value_prime < 0)
-                {
-                    Console.WriteLine("Error, you must enter a number");
-                }
-                else
-                {
-                    while (value_prime >= i)
-                    {
-                        if (value_prime % i == 0)
-                            cont++;
-                        i++;
-                    }
-                    if (cont != 2)
-                        Console.WriteLine("The number {0}, is not prime", value_prime);
-                    else
-                        Console.WriteLine("The number {0}, is prime", value_prime);
-                }
+                if (number % i == 0)
+                    cont++;
+                i++;
             }
+
+            if (cont != 2)
+                return IsPrime.NO_PRIME;
+            else
+                return IsPrime.Prime;
+
         }
 
         /// <summary>
