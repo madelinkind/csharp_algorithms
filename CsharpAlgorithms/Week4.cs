@@ -51,9 +51,23 @@ namespace CsharpAlgorithms
         }
 
         /// <summary>
+        /// Returns an entire number if it is 
+        /// </summary>
+
+        public static int IsInteger(string value)
+        {
+            bool isNumber = int.TryParse(value, out int number);
+
+            if (!isNumber)
+                throw new ArgumentException("you must enter a number");
+            else
+                return number;
+
+        }
+        /// <summary>
         /// Determines how many numbers are negative and how many positive 
         /// </summary>
-        public static (int, int) PositiveNegativeNumber(string [] list_number)
+        public static (int, int) PositiveNegativeNumber(string[] list_number)
         {
             int positive_values = 0;
             int negative_values = 0;
@@ -68,6 +82,8 @@ namespace CsharpAlgorithms
                     else
                         positive_values++;
                 }
+                else
+                    throw new ArgumentException("you must enter a number");
                 i++;
             }
             return (negative_values, positive_values);
@@ -419,7 +435,7 @@ namespace CsharpAlgorithms
                 {
                     real_day_year = second_day - day;
                     return real_day_year;
-                    
+
                 }
 
                 last_day_month = LastDayMonthNext(month - 1, year);

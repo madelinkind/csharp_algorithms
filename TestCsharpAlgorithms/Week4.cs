@@ -51,16 +51,34 @@ namespace TestCsharpAlgorithms
     }
 
     [TestClass]
-    public class TestLongerLength
+    public class TestStringLongerLength
     {
 
         [TestMethod]
         public void WorkForLongerString()
         {
-            string[] list_number = {"made", "rosario", "carmenates123", "pipo", "" };
+            string[] list_number = { "made", "rosario", "carmenates123", "pipo", "" };
             var result = Week4.LongerLength(list_number);
 
             Assert.AreEqual((1, "carmenates123"), result);
+        }
+
+        [TestMethod]
+        public void WorkForLongerRepeatedStrings()
+        {
+            string[] list_number = { "made", "rosario", "rosario", "pipo", "" };
+            var result = Week4.LongerLength(list_number);
+
+            Assert.AreEqual((2, "rosario"), result);
+        }
+
+        [TestMethod]
+        public void WorkForDifferentStringSameLengthLonger()
+        {
+            string[] list_number = { "made", "mariantonieta132*", "rosario", "rosario", "pipo", "mariantonieta132*", "fidelia", "mariantoniete132/", "mariantonieta132*", "" };
+            var result = Week4.LongerLength(list_number);
+
+            Assert.AreEqual((4, "mariantonieta132*"), result);
         }
     }
 }
