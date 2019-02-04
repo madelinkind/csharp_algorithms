@@ -15,10 +15,11 @@ namespace ProgrammingSolutions
 
             #region Ejercicios Semana 3
             //Semana3.FastName();
-            CsharpAlgorithms.Week3.WriteSpeedName();
+            //CsharpAlgorithms.Week3.WriteSpeedName();
             #endregion
 
             #region Ejercicios Semana 4
+            //CsharpAlgorithms.Week4.LongerLength("","","");
             #endregion
         }
     }

@@ -53,16 +53,14 @@ namespace CsharpAlgorithms
         /// <summary>
         /// Determines how many numbers are negative and how many positive 
         /// </summary>
-        public static void PositiveNegativeNumber()
+        public static (int, int) PositiveNegativeNumber(string [] list_number)
         {
             int positive_values = 0;
             int negative_values = 0;
-            Console.WriteLine("Enter a sequence of numbers");
-            string line = string.Empty;
-            //int[] pp = new int[20]; 
-            while ((line = Console.ReadLine()) != string.Empty)
+            int i = 0;
+            while (list_number[i] != string.Empty)
             {
-                bool isNumber = int.TryParse(line, out int valuePn);
+                bool isNumber = int.TryParse(list_number[i], out int valuePn);
                 if (isNumber)
                 {
                     if (valuePn < 0)
@@ -70,11 +68,10 @@ namespace CsharpAlgorithms
                     else
                         positive_values++;
                 }
+                i++;
             }
-            var positiveNegativeCount = PositiNegatisCount(negative_values, positive_values);
+            return (negative_values, positive_values);
         }
-
-        public static (int, int) PositiNegatisCount(int negative_values, int positive_values)=> (negative_values, positive_values);
 
         /// <summary>
         /// Determines the numers primes 
@@ -113,33 +110,31 @@ namespace CsharpAlgorithms
         /// <summary>
         /// Determines the number of strings with greater length.
         /// </summary>
-        public static void LongerLength()
+        public static (int, string) LongerLength(string[] list_number)
         {
             int quantity_charact = 0;
             int max_length = 0;
-            string line = string.Empty;
             string characters = string.Empty;
-            Console.WriteLine("Enter a string sequence");
+            int count = 0;
 
-            while ((line = Console.ReadLine()) != string.Empty)
+            while (list_number[count] != string.Empty)
             {
-                int num_characters = line.Length;
+                int num_characters = list_number[count].Length;
                 if (num_characters > quantity_charact)
                 {
-                    characters = line;
+                    characters = list_number[count];
                     quantity_charact = num_characters;
                     max_length = 1;
                 }
                 else if (num_characters == quantity_charact)
                 {
-                    characters = line;
+                    characters = list_number[count];
                     max_length++;
                 }
+                count++;
             }
-            var longer = LongerMore(max_length, characters);
+            return (max_length, characters);
         }
-
-        public static (int, string) LongerMore(int max_length, string characters) => (max_length, characters);
 
         /// <summary>
         /// Determines the average of the positive number

@@ -49,4 +49,18 @@ namespace TestCsharpAlgorithms
             Assert.AreEqual(false, result);
         }
     }
+
+    [TestClass]
+    public class TestLongerLength
+    {
+
+        [TestMethod]
+        public void WorkForLongerString()
+        {
+            string[] list_number = {"made", "rosario", "carmenates123", "pipo", "" };
+            var result = Week4.LongerLength(list_number);
+
+            Assert.AreEqual((1, "carmenates123"), result);
+        }
+    }
 }
