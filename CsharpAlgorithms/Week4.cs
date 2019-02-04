@@ -5,6 +5,8 @@ using System.Diagnostics;
 
 namespace CsharpAlgorithms
 {
+    public enum NumberSign {POSITIVE, NEGATIVE, ZERO}
+
     public static class Week4
     {
         /// <summary>
@@ -67,26 +69,44 @@ namespace CsharpAlgorithms
         /// <summary>
         /// Determines how many numbers are negative and how many positive 
         /// </summary>
-        public static (int, int) PositiveNegativeNumber(string[] list_number)
+        public static void PositiveNegativeNumber()
         {
-            int positive_values = 0;
-            int negative_values = 0;
-            int i = 0;
-            while (list_number[i] != string.Empty)
+            int positivesCount = 0;
+            int negativesCount = 0;
+            while (true)
             {
-                bool isNumber = int.TryParse(list_number[i], out int valuePn);
-                if (isNumber)
-                {
-                    if (valuePn < 0)
-                        negative_values++;
-                    else
-                        positive_values++;
-                }
-                else
-                    throw new ArgumentException("you must enter a number");
-                i++;
+                // determine number sign
+                string s = Console.ReadLine();
+                NumberSign ns = Week4.CountPositiveNegativeNumbers(s);
+
+                // break if number was 0
+                if (ns == NumberSign.ZERO)
+                    break;
+
+                if (ns == NumberSign.POSITIVE)
+                    positivesCount++;
+                else if (ns == NumberSign.NEGATIVE)
+                    negativesCount++;
             }
-            return (negative_values, positive_values);
+        }
+
+        public static NumberSign CountPositiveNegativeNumbers(string s)
+        {
+            // get integer value from string
+            int n = 0;
+            bool isNumber = int.TryParse(s, out n);
+
+            // validate that number is integer
+            if (!isNumber)
+                throw new ArgumentException("Expected int value");
+
+            if (n > 0)
+                return NumberSign.POSITIVE;
+            
+            if (n < 0)
+                return NumberSign.NEGATIVE;
+
+            return NumberSign.ZERO;
         }
 
         /// <summary>
