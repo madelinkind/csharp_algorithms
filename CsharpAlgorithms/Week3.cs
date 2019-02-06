@@ -266,13 +266,11 @@ namespace CsharpAlgorithms
             bool isNumber3 = int.TryParse(value3, out int year);
 
             if (!isNumber1 || !isNumber2 || !isNumber3 || year < 4 || month > 12 || month < 1 || day > 31 || day < 1)
-            {
                 throw new ArgumentException("Error, invalid date");
-            }
+
             if ((day > 30 && (month == 4 || month == 6 || month == 9 || month == 11)) || (day > 29 && month == 2) || (day > 28 && month == 2 && year % 4 != 0) || (day == 29 && month == 2 && ((year % 4 != 0 || year % 100 == 0) && (year % 400 != 0))))
-            {
                 throw new ArgumentException("Error, incorrect date");
-            }
+
             if ((day == 30 && (month == 4 || month == 6 || month == 9 || month == 11)) || (day == 29 && month == 2) || (day == 28 && month == 2 && (year % 4 != 0 || (year % 100 == 0) && (year % 400 != 0)) || day == 31))
             {
                 month_next = month + 1;

@@ -7,7 +7,6 @@ namespace CsharpAlgorithms
 {
     public enum NumberSign { POSITIVE, NEGATIVE, ZERO, BLANK_SPACE }
     public enum IsPrime { Prime, NO_PRIME, BLANK_SPACE }
-
     public static class Week4
     {
         /// <summary>
@@ -92,6 +91,7 @@ namespace CsharpAlgorithms
 
             if (value == string.Empty)
                 return NumberSign.BLANK_SPACE;
+
             // validate that number is integer
             if (!isNumber)
                 throw new ArgumentException("Expected int value");
@@ -106,31 +106,25 @@ namespace CsharpAlgorithms
         }
 
         /// <summary>
-        /// Determines the numers primes 
+        /// Determines the numbers primes 
         /// </summary>
-        //public static void PrimeNumberSeq()
-        //{
-        //    Console.WriteLine("Enter a sequence of numbers");
+        public static void PrimeNumberSeq()
+        {
+            while (true)
+            {
+                string value = Console.ReadLine();
+                IsPrime number = IsPrimeNumber(value);
 
+                //break if blank space
+                if (number == IsPrime.BLANK_SPACE)
+                    break;
 
-        //    while (true)
-        //    {
-        //        // determine number sign
-        //        string value = Console.ReadLine();
-        //        NumberSign number = CountPositiveNegativeNumbers(value);
-
-        //        //break if blank space
-        //        if (number == NumberSign.BLANK_SPACE)
-        //            break;
-
-        //        if (number == IsPrime.NumberSign.POSITIVE)
-        //            positivesCount++;
-        //        else if (number == NumberSign.NEGATIVE)
-        //            negativesCount++;
-        //    }
-        //    ValueTuple<int, int> countPN = new ValueTuple<int, int>(positivesCount, negativesCount);
-        //}
-
+                if (number == IsPrime.Prime)
+                    Console.WriteLine("The number {0} is prime", value);
+                else if (number == IsPrime.NO_PRIME)
+                    Console.WriteLine("The number {0} is not prime", value);
+            }
+        }
 
         public static IsPrime IsPrimeNumber(string value)
         {
@@ -141,8 +135,9 @@ namespace CsharpAlgorithms
 
             if (value == string.Empty)
                 return IsPrime.BLANK_SPACE;
-            // validate that number is integer
-            if (!isNumber && number < 0)
+
+            // validate that number is integer or less than zero
+            if (!isNumber || number < 0)
                 throw new ArgumentException("Expected int value");
 
             while (number >= i)
@@ -156,7 +151,6 @@ namespace CsharpAlgorithms
                 return IsPrime.NO_PRIME;
             else
                 return IsPrime.Prime;
-
         }
 
         /// <summary>
@@ -191,35 +185,33 @@ namespace CsharpAlgorithms
         /// <summary>
         /// Determines the average of the positive number
         /// </summary>
-        public static void AveragePositive()
+        public static double AveragePositive(string[] line)
         {
-            string line = string.Empty;
+            int i = 0;
             int counter = 0;
             double average = 0.0f;
             double sum = 0.0f;
 
-            Console.WriteLine("Enter a sequence of numbers and if you want to finish dial 0");
-
-            while (true)
+            while (i < line.Length)
             {
-                line = Console.ReadLine();
-                bool isNumber = double.TryParse(line, out double value);
-                if (isNumber)
+                bool isNumber = double.TryParse(line[i], out double value);
+
+                if (!isNumber)
+                    throw new ArgumentException("Expected int value");
+
+                if (value != 0.0f && value > 0.0f)
                 {
-                    if (value != 0.0f && value > 0.0f)
-                    {
-                        sum += value;
-                        counter++;
-                    }
-                    else if (value == 0.0f)
-                        break;
+                    sum += value;
+                    counter++;
                 }
-                else
-                    Console.WriteLine("Error, you must enter numbers, if you want to exit, dial 0");
+                else if (value == 0.0f)
+                    break;
+                i++;
             }
             average = sum / counter;
-            Console.WriteLine("Promedio:\t{0,8:c}", average);
+            return average;
         }
+
 
         /// <summary>
         /// Determines if a date is correct
@@ -373,7 +365,7 @@ namespace CsharpAlgorithms
         /// <summary>
         /// Determines the next date 
         /// </summary>
-        public static (int, int, int) IncreaseDate(string value_day, string value_month, string value_year)
+        public static (int, int, int) IncreaseDate(string value_day, string value_month, string value_year, string count_day)
         {
             int real_day_month_next = 0;
             int leftover_days = 0;
@@ -382,7 +374,7 @@ namespace CsharpAlgorithms
             bool isNumberDay = int.TryParse(value_day, out int day);
             bool isNumberMonth = int.TryParse(value_month, out int month);
             bool isNumberYear = int.TryParse(value_year, out int year);
-            bool isNumberCountDays = int.TryParse(Console.ReadLine(), out int amount_days);
+            bool isNumberCountDays = int.TryParse(count_day, out int amount_days);
 
             bool isDate = IsCorrectDate(isNumberDay, isNumberMonth, isNumberYear, day, month, year);
 
@@ -393,6 +385,7 @@ namespace CsharpAlgorithms
             else
             {
                 last_day_month = LastDayMonthNext(month - 1, year);
+                //Difference between the total days of the month and the number of days
                 leftover_days = last_day_month - day;
 
                 if (leftover_days >= amount_days)
@@ -515,23 +508,24 @@ namespace CsharpAlgorithms
         /// <summary>
         /// Determines the number more big
         /// </summary>
-        public static void BiggerNumber()
+        public static int BiggerNumber(string[] line)
         {
             Console.WriteLine("Enter a sequence of numbers");
-            string line = string.Empty;
+            int i = 0;
             int biggerNumber = 0;
 
-            while ((line = Console.ReadLine()) != string.Empty)
+            while (i < line.Length)
             {
-                bool isNumber = int.TryParse(line, out int valueBigger);
+                bool isNumber = int.TryParse(line[i], out int valueBigger);
 
                 if (!isNumber)
-                    Console.WriteLine("Error, you must enter a number");
+                    throw new ArgumentException("Expected int value");
 
                 else if (valueBigger > biggerNumber)
                     biggerNumber = valueBigger;
+                i++;
             }
-            Console.WriteLine("The largest number of the input sequence is: {0}", biggerNumber);
+            return biggerNumber;
         }
     }
 }

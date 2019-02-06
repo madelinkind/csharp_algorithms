@@ -15,6 +15,13 @@ namespace TestCsharpAlgorithms
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Error, you must enter a number greater than zero")]
+        public void FailsWhithTextValue()
+        {
+            long result = Week4.FactorialNumber("pepe");
+        }
+
+        [TestMethod]
         public void WorksForPositiveNumbers()
         {
             long result = Week4.FactorialNumber("4");
@@ -129,7 +136,380 @@ namespace TestCsharpAlgorithms
         {
             var result = Week4.CountPosNeg(4, 4);
 
-            Assert.AreEqual(result, Week4.CountPosNeg(4,4));
+            Assert.AreEqual(result, Week4.CountPosNeg(4, 4));
+        }
+    }
+
+    [TestClass]
+    public class TestIsPrimeNumber
+    {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Expected int value")]
+        public void FailWithNumberTextValue()
+        {
+            IsPrime result = Week4.IsPrimeNumber("pepe");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Expected int value")]
+        public void FailWithNumberLessThanZero()
+        {
+            IsPrime result = Week4.IsPrimeNumber("-1");
+        }
+
+        [TestMethod]
+        public void WorkForBlankSpace()
+        {
+            IsPrime result = Week4.IsPrimeNumber("");
+
+            Assert.AreEqual(result, IsPrime.BLANK_SPACE);
+        }
+
+        [TestMethod]
+        public void WorkForNonPrimeNumbers()
+        {
+            IsPrime result = Week4.IsPrimeNumber("10");
+
+            Assert.AreEqual(result, IsPrime.NO_PRIME);
+        }
+
+        [TestMethod]
+        public void WorkForPrimeNumbers()
+        {
+            IsPrime result = Week4.IsPrimeNumber("2");
+
+            Assert.AreEqual(result, IsPrime.Prime);
+        }
+    }
+
+    [TestClass]
+    public class TestAveragePositive
+    {
+        [ExpectedException(typeof(ArgumentException), "Expected int value")]
+        [TestMethod]
+        public void FailTextValue()
+        {
+            string[] list_number = { "pepe", "4", "-2", "4", "4" };
+            double result = Week4.AveragePositive(list_number);
+        }
+
+        [TestMethod]
+        public void WorkForPositiveNumber()
+        {
+            string[] list_number = { "4", "4", "4", "4" };
+            double result = Week4.AveragePositive(list_number);
+
+            Assert.AreEqual(4, result);
+        }
+
+        [TestMethod]
+        public void WorkForZeroNumber()
+        {
+            string[] list_number = { "0", "4", "4", "4" };
+            double result = Week4.AveragePositive(list_number);
+
+            Assert.AreEqual(double.NaN, result);
+        }
+
+        [TestMethod]
+        public void WorkForIntermediateZeroNumber()
+        {
+            string[] list_number = { "4", "4", "0", "4" };
+            double result = Week4.AveragePositive(list_number);
+
+            Assert.AreEqual(4, result);
+        }
+
+        [TestMethod]
+        public void WorkForNegativeNumber()
+        {
+            string[] list_number = { "-5", "-9", "-2", "-1" };
+            double result = Week4.AveragePositive(list_number);
+
+            Assert.AreEqual(double.NaN, result);
+        }
+    }
+
+    [TestClass]
+    public class TestIsCorrectDate1
+    {
+        [TestMethod]
+        public void WorkForCorrectDate()
+        {
+            bool result = Week4.IsCorrectDate1("1", "2", "2018");
+
+            Assert.AreEqual(result, true);
+        }
+
+        [TestMethod]
+        public void WorkForIncorrectDate()
+        {
+            bool result = Week4.IsCorrectDate1("31", "2", "2018");
+
+            Assert.AreEqual(result, false);
+        }
+
+        [TestMethod]
+        public void WorkForIncorrectDateTextValue()
+        {
+            bool result = Week4.IsCorrectDate1("pp", "2", "2018");
+
+            Assert.AreEqual(result, false);
+        }
+    }
+
+    [TestClass]
+    public class TestFollowingDate
+    {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Error, invalid date")]
+        public void FailsWithTextValues()
+        {
+            var result = Week4.FollowingDate("pepe", "12", "2018");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Error, incorrect date")]
+        public void FailsWithInvalidDate()
+        {
+            var result = Week4.FollowingDate("32", "12", "2018");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Error, incorrect date")]
+        public void FailsWithInvalidDayAccordinMonth()
+        {
+            var result = Week4.FollowingDate("31", "2", "2018");
+        }
+
+        [TestMethod]
+        public void WorksForTheLastDayMonthExceptDecember()
+        {
+            var result = Week4.FollowingDate("28", "2", "2018");
+
+            Assert.AreEqual((1, 3, 2018), result);
+        }
+
+        [TestMethod]
+        public void WorksForLastDayMonthDecember()
+        {
+            var result = Week4.FollowingDate("31", "12", "2018");
+
+            Assert.AreEqual((1, 1, 2019), result);
+        }
+
+        [TestMethod]
+        public void WorksForTheDayMonthExceptLast()
+        {
+            var result = Week4.FollowingDate("13", "2", "2018");
+
+            Assert.AreEqual((14, 2, 2018), result);
+        }
+    }
+    [TestClass]
+    public class TestPreviousDate
+    {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Error, invalid date")]
+        public void FailsWithTextValues()
+        {
+            var result = Week4.PreviousDate("pepe", "12", "2018");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Error, incorrect date")]
+        public void FailsWithInvalidDate()
+        {
+            var result = Week4.PreviousDate("32", "12", "2018");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Error, incorrect date")]
+        public void FailsWithInvalidDayAccordinMonth()
+        {
+            var result = Week4.PreviousDate("31", "2", "2018");
+        }
+
+        [TestMethod]
+        public void WorksForFirstDayMonthJanuary()
+        {
+            var result = Week4.PreviousDate("1", "1", "2018");
+
+            Assert.AreEqual((31, 12, 2017), result);
+        }
+
+        [TestMethod]
+        public void WorksForTheFirstDayMonthWithQuantityDaysDifferent31()
+        {
+            var result = Week4.PreviousDate("1", "2", "2018");
+
+            Assert.AreEqual((31, 1, 2018), result);
+        }
+
+
+        [TestMethod]
+        public void WorksForTheFirstDayMonthMarchYearNoBear()
+        {
+            var result = Week4.PreviousDate("1", "3", "2018");
+
+            Assert.AreEqual((28, 2, 2018), result);
+        }
+
+        [TestMethod]
+        public void WorksForTheFirstDayMonthMarchYearBear()
+        {
+            var result = Week4.PreviousDate("1", "3", "2016");
+
+            Assert.AreEqual((29, 2, 2016), result);
+        }
+
+        [TestMethod]
+        public void WorksForTheFirstDayMonthWithQuantityDaysDifferent30ExceptDecemberMarch()
+        {
+            var result = Week4.PreviousDate("1", "5", "2018");
+
+            Assert.AreEqual((30, 4, 2018), result);
+        }
+
+        [TestMethod]
+        public void WorksForDayMonthExceptFirstday()
+        {
+            var result = Week4.PreviousDate("5", "5", "2018");
+
+            Assert.AreEqual((4, 5, 2018), result);
+        }
+    }
+
+    [TestClass]
+    public class TestIncreaseDate
+    {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Error, invalid date")]
+        public void FailsWithTextValues()
+        {
+            var result = Week4.IncreaseDate("pepe", "12", "2018", "2");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Error, incorrect date")]
+        public void FailsWithIncorrectNumberOfDaysAdd()
+        {
+            var result = Week4.IncreaseDate("32", "12", "2018", "pp");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Error, incorrect date")]
+        public void FailsWithInvalidDayAccordinMonth()
+        {
+            var result = Week4.IncreaseDate("31", "2", "2018", "2");
+        }
+
+        [TestMethod]
+        public void WorksWhenIncreaseDaysMonth()
+        {
+            var result = Week4.IncreaseDate("2", "2", "2018", "5");
+
+            Assert.AreEqual((7, 2, 2018), result);
+        }
+
+        [TestMethod]
+        public void WorksWhenIncreasesOneYear()
+        {
+            var result = Week4.IncreaseDate("1", "1", "2018", "365");
+
+            Assert.AreEqual((1, 1, 2019), result);
+        }
+
+        [TestMethod]
+        public void WorksWhenIncreasesOneMonth()
+        {
+            var result = Week4.IncreaseDate("1", "3", "2018", "31");
+
+            Assert.AreEqual((1, 4, 2018), result);
+        }
+    }
+
+    [TestClass]
+    public class TestDifferentTwoDay
+    {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Error, invalid date")]
+        public void FailsWithTextValuesFirstDay()
+        {
+            int result = Week4.DifferentTwoDays("pepe", "12", "2018", "5", "4", "2015");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Error, invalid date")]
+        public void FailsWithTextValuesSecondDay()
+        {
+            int result = Week4.DifferentTwoDays("1", "12", "2018", "pp", "4", "2015");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Error, incorrect date")]
+        public void FailsWithMonthFirstDateGreaterThanMonthSecondDate()
+        {
+            int result = Week4.DifferentTwoDays("31", "12", "2018", "25", "4", "2018");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Error, incorrect date")]
+        public void FailsWithDayFirstDateGreaterThanDaySecondDateEqualsMonthYear()
+        {
+            int result = Week4.DifferentTwoDays("31", "4", "2018", "25", "4", "2018");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Error, incorrect date")]
+        public void FailsWithYearFirstDateGreaterThanYearSecondDateEquals()
+        {
+            int result = Week4.DifferentTwoDays("31", "4", "2019", "25", "4", "2018");
+        }
+
+        [TestMethod]
+        public void WorksForMonthYearEquals()
+        {
+            int result = Week4.DifferentTwoDays("23", "12", "2018", "25", "12", "2018");
+
+            Assert.AreEqual(2, result);
+        }
+
+        [TestMethod]
+        public void WorksDifferenceOneYear()
+        {
+            int result = Week4.DifferentTwoDays("31", "12", "2018", "31", "12", "2019");
+
+            Assert.AreEqual((365), result);
+        }
+
+        [TestMethod]
+        public void WorksDifferenceTwoYear()
+        {
+            int result = Week4.DifferentTwoDays("31", "12", "2018", "31", "12", "2020");
+
+            Assert.AreEqual((730), result);
+        }
+    }
+
+    [TestClass]
+    public class TestBiggerNumber
+    {
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException), "Expected int value")]
+        public void FailWithTextValue()
+        {
+            string[] line = {"pp", "3", "2"};
+            int result = Week4.BiggerNumber(line);
+        }
+
+        [TestMethod]
+        public void WorksForIntegerNumber()
+        {
+            string[] line = { "5", "3", "2" };
+            int result = Week4.BiggerNumber(line);
+
+            Assert.AreEqual(5, result);
         }
     }
 }
