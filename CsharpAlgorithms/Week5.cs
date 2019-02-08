@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace CsharpAlgorithms
 {
     public static class Week5
@@ -69,20 +70,24 @@ namespace CsharpAlgorithms
         /// <summary>
         /// Convert an integer to binary
         /// </summary>
-        public static string ConvertBinary(int value)
-        {
-            string number_binary;
+        //public static string ConvertBinary(double value)
+        //{
+        //    string number_binary;
+        //    if (value == 0)
+        //        return number_binary = "0";
+        //    if (value == 1)
+        //        return number_binary = "1";
+        //        string binary = "";
 
-            if (value == 0)
-                return number_binary = "0";
-            if (value == 1)
-                return number_binary = "1";
-            else
-                while (value > 1)
-                {
-                    value = Math.Round((value/7));
-                }
-        }
+        //        while (1 < value)
+        //        {
+        //            value = Math.Floor(value/2);
+        //            if (value % 2 == 0)
+        //                binary += "0";
+        //            else
+        //                binary += "1";
+        //        }
+        //}
 
     }
 }
