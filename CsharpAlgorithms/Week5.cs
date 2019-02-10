@@ -68,26 +68,26 @@ namespace CsharpAlgorithms
         }
 
         /// <summary>
-        /// Convert an integer to binary
+        /// convert an integer to binary
         /// </summary>
-        //public static string ConvertBinary(double value)
-        //{
-        //    string number_binary;
-        //    if (value == 0)
-        //        return number_binary = "0";
-        //    if (value == 1)
-        //        return number_binary = "1";
-        //        string binary = "";
+        public static string ConvertBinary(int value)
+        {   
+            string binary = "";
 
-        //        while (1 < value)
-        //        {
-        //            value = Math.Floor(value/2);
-        //            if (value % 2 == 0)
-        //                binary += "0";
-        //            else
-        //                binary += "1";
-        //        }
-        //}
+            if (value < 0)
+                throw new ArgumentException("You must enter a positive number");
+
+            if (value == 0)
+                return binary = "0";
+
+            while (value != 0)
+            {
+                binary += value % 2 + binary;
+                value = value / 2;
+            }
+
+            return binary;
+        }
 
     }
 }
