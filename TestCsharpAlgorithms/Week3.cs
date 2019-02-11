@@ -249,20 +249,32 @@ namespace TestCsharpAlgorithms
         [ExpectedException(typeof(ArgumentException), "Error, you must enter whole numbers")]
         public void FailsWithTextValue()
         {
-            bool result = Week3.PrimeNumber("pepe");
+            bool result = Week3.IsPrimeNumber("pepe");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException), "Error, entered a number outside the indicated range")]
         public void FailsOutOfRage1To100()
         {
-            bool result = Week3.PrimeNumber("101");
+            bool result = Week3.IsPrimeNumber("101");
+        }
+
+        [TestMethod]
+        public void TwoIsPrime()
+        {
+            Assert.AreEqual(true, Week3.IsPrimeNumber("2"));
+        }
+
+        [TestMethod]
+        public void ThreeIsPrime()
+        {
+            Assert.AreEqual(true, Week3.IsPrimeNumber("3"));
         }
 
         [TestMethod]
         public void WorksForPrimeNumber()
         {
-            bool result = Week3.PrimeNumber("5");
+            bool result = Week3.IsPrimeNumber("5");
 
             Assert.AreEqual(true, result);
         }
@@ -270,7 +282,7 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void WorksForNotPrimeNumber()
         {
-            bool result = Week3.PrimeNumber("10");
+            bool result = Week3.IsPrimeNumber("10");
 
             Assert.AreEqual(false, result);
         }

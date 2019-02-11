@@ -258,10 +258,24 @@ namespace CsharpAlgorithms
             return list;
         }
 
+        public static void PrimeNumber()
+        {
+            // read number from console
+            string number = Console.ReadLine();
+
+            // check if number is prime
+            bool isPrime = IsPrimeNumber(number);
+
+            if (isPrime)
+                Console.WriteLine("Number {0} is prime", number);
+            else
+                Console.WriteLine("Number {0} is not prime", number);
+        }
+
         /// <summary>
         /// Determines if a number is prime
         /// </summary>
-        public static bool PrimeNumber(string number)
+        public static bool IsPrimeNumber(string number)
         {
             bool isNumber = int.TryParse(number, out int value);
 
