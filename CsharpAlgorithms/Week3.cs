@@ -29,29 +29,6 @@ namespace CsharpAlgorithms
 
     public static class Week3
     {
-
-        /// <summary>
-        /// Find the largest of three numbers using Math.Max
-        /// </summary>
-        public static int MaximumNumber(string value1, string value2, string value3)
-        {
-            bool jIsNumber = int.TryParse(value1, out int j);
-            bool kIsNumber = int.TryParse(value2, out int k);
-            bool mIsNumber = int.TryParse(value3, out int m);
-
-            // check that all values are integer
-            if (!jIsNumber || !kIsNumber || !mIsNumber)
-                throw new ArgumentException("All numbers must be integers");
-
-            return MaxAmongThreeNumbers(j, k, m);
-        }
-
-        private static int MaxAmongThreeNumbers(int a, int b, int c)
-        {
-            int bigger = Math.Max(Math.Max(a, b), c);
-            return bigger;
-        }
-
         /// <summary>
         /// Determines the writing speed
         /// </summary>
