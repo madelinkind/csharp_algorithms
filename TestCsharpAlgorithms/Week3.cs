@@ -17,9 +17,9 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void WorksForFastName()
         {
-            WriteSpeedType fastSpeed = Week3.WriteSpeed("pepe", 3);
+            WriteSpeedType fastSpeed = Week3.WriteSpeed("pepe", 1);
 
-            Assert.AreEqual(fastSpeed, WriteSpeedType.FAST);
+            Assert.AreEqual(WriteSpeedType.FAST, fastSpeed);
         }
 
         [TestMethod]
@@ -33,7 +33,7 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void WorksForLowName()
         {
-            WriteSpeedType lowSpeed = Week3.WriteSpeed("tuti", 0.1);
+            WriteSpeedType lowSpeed = Week3.WriteSpeed("tuti", 10);
 
             Assert.AreEqual(lowSpeed, WriteSpeedType.SLOW);
         }

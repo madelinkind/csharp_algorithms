@@ -40,20 +40,28 @@ namespace CsharpAlgorithms
             crono.Start();
             string name = Console.ReadLine();
             crono.Stop();
+            double time = crono.ElapsedMilliseconds / 1000.0;
 
-            int charactersCount = name.Length;
-            double elapsedSeconds = crono.ElapsedMilliseconds / 1000.0;
-            double charactersPerSecond = charactersCount / elapsedSeconds;
+            // define actual write speed
+            WriteSpeedType writeSpeed = WriteSpeed(name, time);
 
-            WriteSpeedType writeSpeed = WriteSpeed(name, charactersPerSecond);
+            if (writeSpeed == WriteSpeedType.SLOW)
+                Console.WriteLine("You are slow");
+            else if (writeSpeed == WriteSpeedType.REGULAR)
+                Console.WriteLine("You are regular");
+            else if (writeSpeed == WriteSpeedType.FAST)
+                Console.WriteLine("You are fast");
+            else
+                throw new ArgumentException("Unknown writing speed");
         }
 
-        public static WriteSpeedType WriteSpeed(string name, double charactersPerSecond)
+        public static WriteSpeedType WriteSpeed(string name, double time)
         {
-            bool isNumber = name.IsAllLetters();
-
-            if (!isNumber)
+            if (!name.IsAllLetters())
                 throw new ArgumentException("Error, you must enter letters");
+
+            int charactersCount = name.Length;
+            double charactersPerSecond = charactersCount / time;
 
             if (charactersPerSecond > 2)
                 return WriteSpeedType.FAST;
@@ -62,6 +70,7 @@ namespace CsharpAlgorithms
             else
                 return WriteSpeedType.SLOW;
         }
+
         /// <summary>
         /// Determines which of the three names were written faster
         /// </summary>
