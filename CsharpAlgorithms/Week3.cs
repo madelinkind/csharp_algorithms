@@ -128,22 +128,49 @@ namespace CsharpAlgorithms
                 return FastNameType.THIRD_NAME_FAST;
         }
 
+        public static void TriangleClassifier()
+        {
+            // read triangles sides
+            string side1 = Console.ReadLine();
+            string side2 = Console.ReadLine();
+            string side3 = Console.ReadLine();
+
+            // classify triangle
+            TriangleType type = TypeTriangle(side1, side2, side3);
+
+            if (type == TriangleType.EQUILATERAL)
+                Console.WriteLine("Triangle is equilateral");
+            else if (type == TriangleType.ISOSCELES)
+                Console.WriteLine("Triangle is isosceles");
+            else if (type == TriangleType.SCALENE)
+                Console.WriteLine("Triangle is scalene");
+            else if (type == TriangleType.TRIANGLE_INEQUALITY)
+                Console.WriteLine("Triangle inequality did not hold");
+            else if (type == TriangleType.NONE)
+                Console.WriteLine("Triangle sides were not valid");
+            else
+                throw new ArgumentException("Unknown triangle type");
+        }
+
         /// <summary>
         /// Determines the type of triangle
         /// </summary>
-        public static TriangleType TypeTriangle(string value1, string value2, string value3)
+        public static TriangleType TypeTriangle(string side1, string side2, string side3)
         {
+            // try to parse triangle sides
+            bool side1Number = float.TryParse(side1, out float a);
+            bool side2Number = float.TryParse(side2, out float b);
+            bool side3Number = float.TryParse(side3, out float c);
 
-            bool isNumberA = float.TryParse(value1, out float a);
-            bool isNumberB = float.TryParse(value2, out float b);
-            bool isNumberC = float.TryParse(value3, out float c);
-
-            if (!isNumberA || !isNumberB || !isNumberC)
+            // all triangle sides are numbers
+            if (!side1Number || !side2Number || !side3Number)
                 throw new ArgumentException("Triangle sides should be numbers");
 
+            // all triangle sizes must be positive
             if (a <= 0 || b <= 0 || c <= 0)
                 return TriangleType.NONE;
 
+            // verify triangle inequality
             if (a + b <= c || b + c <= a || c + a <= b)
                 return TriangleType.TRIANGLE_INEQUALITY;
 
