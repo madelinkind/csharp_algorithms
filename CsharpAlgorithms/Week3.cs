@@ -182,10 +182,26 @@ namespace CsharpAlgorithms
                 return TriangleType.ISOSCELES;
         }
 
+        public static void ThreeNumbersStats()
+        {
+            // read numbers from console
+            string number1 = Console.ReadLine();
+            string number2 = Console.ReadLine();
+            string number3 = Console.ReadLine();
+
+            var result = OrderAvrg(number1, number2, number3);
+
+            // output useful info
+            Console.WriteLine("The smallest number is {0}", result.first);
+            Console.WriteLine("The medium number is {0}", result.second);
+            Console.WriteLine("The largest number is {0}", result.third);
+            Console.WriteLine("The average is {0}", result.avg);
+        }
+
         /// <summary>
         /// Orders from least to greatest and determines the average between the 3 numbers
         /// </summary>
-        public static (int, int, int, double) OrderAvrg(string number1, string number2, string number3)
+        public static (int first, int second, int third, double avg) OrderAvrg(string number1, string number2, string number3)
         {
             bool isNumber1 = int.TryParse(number1, out int value1);
             bool isNumber2 = int.TryParse(number2, out int value2);
@@ -222,7 +238,7 @@ namespace CsharpAlgorithms
         /// <summary>
         /// Orders with Sort() from least to greatest and determines the average between the 3 numbers
         /// </summary>
-        public static (int, int, int, double) OrderAvrgSort(string number1, string number2, string number3)
+        public static (int first, int second, int third, double avg) OrderAvrgSort(string number1, string number2, string number3)
         {
             bool isNumber1 = int.TryParse(number1, out int value1);
             bool isNumber2 = int.TryParse(number2, out int value2);
