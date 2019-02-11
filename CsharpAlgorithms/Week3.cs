@@ -301,10 +301,28 @@ namespace CsharpAlgorithms
                 return true;
         }
 
+        public static void GetNextDay()
+        {
+            Console.WriteLine("Write day:");
+            string day = Console.ReadLine();
+
+            Console.WriteLine("Write month:");
+            string month = Console.ReadLine();
+
+            Console.WriteLine("Write year:");
+            string year = Console.ReadLine();
+
+            // determine next day
+            var result = NextDay(day, month, year);
+
+            // output relevant information
+            Console.WriteLine("Next day date is: {0}/{1}/{2}", result.day, result.month, result.year);
+        }
+
         /// <summary>
         /// Determines the day following the given date
         /// </summary>
-        public static (int, int, int) NextDay(string value1, string value2, string value3)
+        public static (int day, int month, int year) NextDay(string value1, string value2, string value3)
         {
             int month_next = 0;
             int day_next = 0;
