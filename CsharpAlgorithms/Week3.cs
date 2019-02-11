@@ -75,7 +75,7 @@ namespace CsharpAlgorithms
         /// Determines which of the three names were written faster
         /// </summary>
         /// 
-        public static void FasterOfThreeName()
+        public static void FastestOfThreeName()
         {
             Stopwatch crono = new Stopwatch();
             Console.WriteLine("Type your name three times");
@@ -98,19 +98,25 @@ namespace CsharpAlgorithms
             long thirdTimeName = crono.ElapsedMilliseconds;
             crono.Restart();
 
-            FastNameType fast = FastName(firstName, secondName, thirdName, firstTimeName, secondTimeName, thirdTimeName);
+            FastNameType fastestName = FastName(firstName, secondName, thirdName, firstTimeName, secondTimeName, thirdTimeName);
+
+            if (fastestName == FastNameType.FIRST_NAME_FAST)
+                Console.WriteLine("You wrote the first name fastest");
+            else if (fastestName == FastNameType.SECOND_NAME_FAST)
+                Console.WriteLine("You wrote the second name fastest");
+            else if (fastestName == FastNameType.THIRD_NAME_FAST)
+                Console.WriteLine("You wrote the third name fastest");
+            else
+                throw new ArgumentException("Unknown name order");
         }
 
         public static FastNameType FastName(string firstName, string secondName, string thirdName, long firstTimeName, long secondTimeName, long thirdTimeName)
         {
-
-            bool isNumber = firstName.IsAllLetters();
-            bool isNumber1 = secondName.IsAllLetters();
-            bool isNumber2 = thirdName.IsAllLetters();
-
-            if (!isNumber || !isNumber1 || !isNumber2)
+            // validate all are letters only
+            if (!firstName.IsAllLetters() || !secondName.IsAllLetters() || !thirdName.IsAllLetters())
                 throw new ArgumentException("Error, you must enter letters");
 
+            // validate that all names are equal
             if (firstName != secondName || secondName != thirdName)
                 throw new ArgumentException("Error, you have typed some of the names wrong");
 
