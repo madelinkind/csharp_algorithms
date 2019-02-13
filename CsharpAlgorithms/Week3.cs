@@ -285,20 +285,16 @@ namespace CsharpAlgorithms
             if (value < 1 || value > 100)
                 throw new ArgumentException("Error, entered a number outside the indicated range");
 
-            int i = 1;
-            int cont = 0;
+            int i = 2;
+            double root_value = Math.Sqrt(value);
 
-            while (i <= value && cont != 3)
+            while (root_value > i)
             {
-                if (value % i == 0)
-                    cont++;
+                if (root_value % i == 0)
+                    return false;
                 i++;
             }
-            if (cont != 2)
-                return false;
-
-            else
-                return true;
+            return true;
         }
 
         public static void GetNextDay()
