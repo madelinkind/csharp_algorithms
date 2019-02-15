@@ -12,6 +12,16 @@ namespace CsharpAlgorithms
         /// <summary>
         ///Determines the factorial of a number 
         /// </summary>
+        public static void FactorialNumber()
+        {
+            Console.WriteLine("Insert a number to find its factorial");
+            string number = Console.ReadLine();
+
+            long result = FactorialNumber(number);
+
+            Console.WriteLine("The factorial is {0}", result);
+        }
+
         public static long FactorialNumber(string value)
         {
             long factorial = 1;
@@ -31,30 +41,41 @@ namespace CsharpAlgorithms
         /// <summary>
         /// Determines if a number is prime
         /// </summary>
+
+        public static void Prime()
+        {
+            Console.WriteLine("Enter a number");
+            string number = Console.ReadLine();
+            bool isPrime = PrimeNumber(number);
+
+            if (!isPrime)
+                Console.WriteLine("The number is not prime");
+            else
+                Console.WriteLine("The number is prime");
+        }
+
         public static bool PrimeNumber(string number)
         {
-            int i = 1;
-            int cont = 0;
+            int i = 2;
             bool isNumber = int.TryParse(number, out int value);
+            double root_value = Math.Sqrt(value);
 
             if (!isNumber)
                 throw new ArgumentException("Error, you must enter whole numbers");
 
-            while (i <= value)
+            while (root_value > i)
             {
-                if (value % i == 0)
-                    cont++;
+                if (root_value % i == 0)
+                    return false;
                 i++;
             }
-            if (cont != 2)
-                return false;
-            else
-                return true;
+            return true;
         }
 
         /// <summary>
         /// Determines how many numbers are negative and how many positive 
         /// </summary>
+
         public static void PositiveNegativeNumber()
         {
             int positivesCount = 0;
@@ -79,10 +100,7 @@ namespace CsharpAlgorithms
                 else if (ns == NumberSign.NEGATIVE)
                     negativesCount++;
             }
-            ValueTuple<int, int> countPN = new ValueTuple<int, int>(positivesCount, negativesCount);
         }
-
-        public static (int, int) CountPosNeg(int positivesCount, int negativesCount) => (positivesCount, negativesCount);
 
         public static NumberSign CountPositiveNegativeNumbers(string value)
         {
@@ -128,10 +146,10 @@ namespace CsharpAlgorithms
 
         public static IsPrime IsPrimeNumber(string value)
         {
-            int cont = 0;
-            int i = 1;
+            int i = 2;
             // get integer value from string
             bool isNumber = int.TryParse(value, out int number);
+            double root_value = Math.Sqrt(number);
 
             if (value == string.Empty)
                 return IsPrime.BLANK_SPACE;
@@ -140,23 +158,42 @@ namespace CsharpAlgorithms
             if (!isNumber || number < 0)
                 throw new ArgumentException("Expected int value");
 
-            while (number >= i)
+            while (root_value > i)
             {
-                if (number % i == 0)
-                    cont++;
+                if (root_value % i == 0)
+                    return IsPrime.NO_PRIME;
                 i++;
             }
-
-            if (cont != 2)
-                return IsPrime.NO_PRIME;
-            else
-                return IsPrime.Prime;
+            return IsPrime.Prime;
         }
 
         /// <summary>
         /// Determines the number of strings with greater length.
         /// </summary>
-        public static (int, string) LongerLength(string[] list_number)
+        public static void LongerLength()
+        {
+            Console.WriteLine("Enter a string sequence");
+
+            while ((line = Console.ReadLine()) != string.Empty)
+            {
+                int num_characters = line.Length;
+                if (num_characters > quantity_charact)
+                {
+                    characters = line;
+                    quantity_charact = num_characters;
+                    max_length = 1;
+                }
+                else if (num_characters == quantity_charact)
+                {
+                    characters = line;
+                    max_length++;
+                }
+            }
+            Console.WriteLine("Number of chains with the same maximum length: {0}, last chain with the longest: {1}", max_length, characters);
+        }
+
+
+        public static (int, string) LongerLength(string list_number)
         {
             int quantity_charact = 0;
             int max_length = 0;
