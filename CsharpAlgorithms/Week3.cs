@@ -128,6 +128,9 @@ namespace CsharpAlgorithms
                 return FastNameType.THIRD_NAME_FAST;
         }
 
+        /// <summary>
+        /// Determines the type of triangle
+        /// </summary>
         public static void TriangleClassifier()
         {
             // read triangles sides
@@ -152,9 +155,6 @@ namespace CsharpAlgorithms
                 throw new ArgumentException("Unknown triangle type");
         }
 
-        /// <summary>
-        /// Determines the type of triangle
-        /// </summary>
         public static TriangleType TypeTriangle(string side1, string side2, string side3)
         {
             // try to parse triangle sides
@@ -182,6 +182,9 @@ namespace CsharpAlgorithms
                 return TriangleType.ISOSCELES;
         }
 
+        /// <summary>
+        /// Orders from least to greatest and determines the average between the 3 numbers
+        /// </summary>
         public static void ThreeNumbersStats()
         {
             // read numbers from console
@@ -198,9 +201,6 @@ namespace CsharpAlgorithms
             Console.WriteLine("The average is {0}", result.avg);
         }
 
-        /// <summary>
-        /// Orders from least to greatest and determines the average between the 3 numbers
-        /// </summary>
         public static (int first, int second, int third, double avg) OrderAvrg(string number1, string number2, string number3)
         {
             bool isNumber1 = int.TryParse(number1, out int value1);
@@ -258,6 +258,9 @@ namespace CsharpAlgorithms
             return list;
         }
 
+        /// <summary>
+        /// Determines if a number is prime
+        /// </summary>
         public static void PrimeNumber()
         {
             // read number from console
@@ -272,9 +275,6 @@ namespace CsharpAlgorithms
                 Console.WriteLine("Number {0} is not prime", number);
         }
 
-        /// <summary>
-        /// Determines if a number is prime
-        /// </summary>
         public static bool IsPrimeNumber(string number)
         {
             bool isNumber = int.TryParse(number, out int value);
@@ -287,10 +287,11 @@ namespace CsharpAlgorithms
 
             int i = 2;
             double root_value = Math.Sqrt(value);
+            int root_value_int = (int)root_value;
 
-            while (root_value > i)
+            while (i <= root_value_int)
             {
-                if (root_value % i == 0)
+                if (value % i == 0)
                     return false;
                 i++;
             }
@@ -300,7 +301,6 @@ namespace CsharpAlgorithms
         /// <summary>
         /// Determines the day following the given date
         /// </summary>
-
         public static void GetNextDay()
         {
             Console.WriteLine("Write day:");
@@ -329,13 +329,14 @@ namespace CsharpAlgorithms
             bool isNumber2 = int.TryParse(value2, out int month);
             bool isNumber3 = int.TryParse(value3, out int year);
 
-            if (!isNumber1 || !isNumber2 || !isNumber3 || year < 4 || month > 12 || month < 1 || day > 31 || day < 1)
-                throw new ArgumentException("Error, invalid date");
+            bool isDate = AuxiliaryMethods.IsCorrectDate(isNumber1, isNumber2, isNumber3, day, month, year);
 
-            if ((day > 30 && (month == 4 || month == 6 || month == 9 || month == 11)) || (day > 29 && month == 2) || (day > 28 && month == 2 && year % 4 != 0) || (day == 29 && month == 2 && ((year % 4 != 0 || year % 100 == 0) && (year % 400 != 0))))
+            if (!isDate)
                 throw new ArgumentException("Error, incorrect date");
 
-            if ((day == 30 && (month == 4 || month == 6 || month == 9 || month == 11)) || (day == 29 && month == 2) || (day == 28 && month == 2 && (year % 4 != 0 || (year % 100 == 0) && (year % 400 != 0)) || day == 31))
+            bool isLeapYear = AuxiliaryMethods.IsLeapYear(year);
+
+            if ((day == 30 && (month == 4 || month == 6 || month == 9 || month == 11)) || (day == 29 && month == 2) || (day == 28 && month == 2 && isLeapYear) || day == 31)
             {
                 month_next = month + 1;
                 day_next = 1;

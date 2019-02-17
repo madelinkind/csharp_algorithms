@@ -1,6 +1,7 @@
 ﻿using System;
 using CsharpAlgorithms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace TestCsharpAlgorithms
 {
@@ -64,7 +65,7 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void WorkForLongerString()
         {
-            string[] list_number = { "made", "rosario", "carmenates123", "pipo", "" };
+            List<string> list_number = new List<string> { "made", "rosario", "carmenates123", "pipo", "" };
             var result = Week4.LongerLength(list_number);
 
             Assert.AreEqual((1, "carmenates123"), result);
@@ -73,7 +74,7 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void WorkForLongerRepeatedStrings()
         {
-            string[] list_number = { "made", "rosario", "rosario", "pipo", "" };
+            List<string> list_number = new List<string> { "made", "rosario", "rosario", "pipo", "" };
             var result = Week4.LongerLength(list_number);
 
             Assert.AreEqual((2, "rosario"), result);
@@ -82,7 +83,7 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void WorkForDifferentStringSameLengthLonger()
         {
-            string[] list_number = { "made", "mariantonieta132*", "rosario", "rosario", "pipo", "mariantonieta132*", "fidelia", "mariantoniete132/", "mariantonieta132*", "" };
+            List<string> list_number = new List<string> { "made", "mariantonieta132*", "rosario", "rosario", "pipo", "mariantonieta132*", "fidelia", "mariantoniete132/", "mariantonieta132*", "" };
             var result = Week4.LongerLength(list_number);
 
             Assert.AreEqual((4, "mariantonieta132*"), result);
@@ -129,14 +130,6 @@ namespace TestCsharpAlgorithms
             NumberSign result = Week4.CountPositiveNegativeNumbers("");
 
             Assert.AreEqual(result, NumberSign.BLANK_SPACE);
-        }
-
-        [TestMethod]
-        public void WorkForNegativePositiveNumber()
-        {
-            var result = Week4.CountPosNeg(4, 4);
-
-            Assert.AreEqual(result, Week4.CountPosNeg(4, 4));
         }
     }
 
@@ -189,14 +182,14 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void FailTextValue()
         {
-            string[] list_number = { "pepe", "4", "-2", "4", "4" };
+        List<string> list_number = new List<string> { "pepe", "4", "-2", "4", "4" };
             double result = Week4.AveragePositive(list_number);
         }
 
         [TestMethod]
         public void WorkForPositiveNumber()
         {
-            string[] list_number = { "4", "4", "4", "4" };
+            List<string> list_number = new List<string> { "4", "4", "4", "4" };
             double result = Week4.AveragePositive(list_number);
 
             Assert.AreEqual(4, result);
@@ -205,7 +198,7 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void WorkForZeroNumber()
         {
-            string[] list_number = { "0", "4", "4", "4" };
+            List<string> list_number = new List<string> { "0", "4", "4", "4" };
             double result = Week4.AveragePositive(list_number);
 
             Assert.AreEqual(double.NaN, result);
@@ -214,7 +207,7 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void WorkForIntermediateZeroNumber()
         {
-            string[] list_number = { "4", "4", "0", "4" };
+            List<string> list_number = new List<string> { "4", "4", "0", "4" };
             double result = Week4.AveragePositive(list_number);
 
             Assert.AreEqual(4, result);
@@ -223,7 +216,7 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void WorkForNegativeNumber()
         {
-            string[] list_number = { "-5", "-9", "-2", "-1" };
+            List<string> list_number = new List<string> { "-5", "-9", "-2", "-1" };
             double result = Week4.AveragePositive(list_number);
 
             Assert.AreEqual(double.NaN, result);
@@ -231,12 +224,12 @@ namespace TestCsharpAlgorithms
     }
 
     [TestClass]
-    public class TestIsCorrectDate1
+    public class TestIsCorrectDate
     {
         [TestMethod]
         public void WorkForCorrectDate()
         {
-            bool result = Week4.IsCorrectDate1("1", "2", "2018");
+            bool result = Week4.IsCorrectDate("1", "2", "2018");
 
             Assert.AreEqual(result, true);
         }
@@ -244,7 +237,7 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void WorkForIncorrectDate()
         {
-            bool result = Week4.IsCorrectDate1("31", "2", "2018");
+            bool result = Week4.IsCorrectDate("31", "2", "2018");
 
             Assert.AreEqual(result, false);
         }
@@ -252,7 +245,7 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void WorkForIncorrectDateTextValue()
         {
-            bool result = Week4.IsCorrectDate1("pp", "2", "2018");
+            bool result = Week4.IsCorrectDate("pp", "2", "2018");
 
             Assert.AreEqual(result, false);
         }
@@ -436,41 +429,41 @@ namespace TestCsharpAlgorithms
         [ExpectedException(typeof(ArgumentException), "Error, invalid date")]
         public void FailsWithTextValuesFirstDay()
         {
-            int result = Week4.DifferentTwoDays("pepe", "12", "2018", "5", "4", "2015");
+            int result = Week4.DifferentTwoDates("pepe", "12", "2018", "5", "4", "2015");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException), "Error, invalid date")]
         public void FailsWithTextValuesSecondDay()
         {
-            int result = Week4.DifferentTwoDays("1", "12", "2018", "pp", "4", "2015");
+            int result = Week4.DifferentTwoDates("1", "12", "2018", "pp", "4", "2015");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException), "Error, incorrect date")]
         public void FailsWithMonthFirstDateGreaterThanMonthSecondDate()
         {
-            int result = Week4.DifferentTwoDays("31", "12", "2018", "25", "4", "2018");
+            int result = Week4.DifferentTwoDates("31", "12", "2018", "25", "4", "2018");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException), "Error, incorrect date")]
         public void FailsWithDayFirstDateGreaterThanDaySecondDateEqualsMonthYear()
         {
-            int result = Week4.DifferentTwoDays("31", "4", "2018", "25", "4", "2018");
+            int result = Week4.DifferentTwoDates("31", "4", "2018", "25", "4", "2018");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException), "Error, incorrect date")]
         public void FailsWithYearFirstDateGreaterThanYearSecondDateEquals()
         {
-            int result = Week4.DifferentTwoDays("31", "4", "2019", "25", "4", "2018");
+            int result = Week4.DifferentTwoDates("31", "4", "2019", "25", "4", "2018");
         }
 
         [TestMethod]
         public void WorksForMonthYearEquals()
         {
-            int result = Week4.DifferentTwoDays("23", "12", "2018", "25", "12", "2018");
+            int result = Week4.DifferentTwoDates("23", "12", "2018", "25", "12", "2018");
 
             Assert.AreEqual(2, result);
         }
@@ -478,7 +471,7 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void WorksDifferenceOneYear()
         {
-            int result = Week4.DifferentTwoDays("31", "12", "2018", "31", "12", "2019");
+            int result = Week4.DifferentTwoDates("31", "12", "2018", "31", "12", "2019");
 
             Assert.AreEqual((365), result);
         }
@@ -486,7 +479,7 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void WorksDifferenceTwoYear()
         {
-            int result = Week4.DifferentTwoDays("31", "12", "2018", "31", "12", "2020");
+            int result = Week4.DifferentTwoDates("31", "12", "2018", "31", "12", "2020");
 
             Assert.AreEqual((730), result);
         }
@@ -499,14 +492,14 @@ namespace TestCsharpAlgorithms
         [ExpectedException(typeof(ArgumentException), "Expected int value")]
         public void FailWithTextValue()
         {
-            string[] line = {"pp", "3", "2"};
+            List<string> line = new List<string> {"pp", "3", "2"};
             int result = Week4.BiggerNumber(line);
         }
 
         [TestMethod]
         public void WorksForIntegerNumber()
         {
-            string[] line = { "5", "3", "2" };
+            List<string> line = new List<string> { "5", "3", "2" };
             int result = Week4.BiggerNumber(line);
 
             Assert.AreEqual(5, result);
