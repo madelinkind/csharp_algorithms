@@ -134,9 +134,37 @@ namespace CsharpAlgorithms
                     unitMeasurement = number / 1000;
                     unitMeasurement = unitMeasurement * 1000;
                     roman += d[unitMeasurement];
+                    number -= 1000 * (number / 1000);
                 }
+
+                if (number > 99 && number < 1000)
+                {
+                    unitMeasurement = number / 100;
+                    unitMeasurement = unitMeasurement * 100;
+                    roman += d[unitMeasurement];
+                    number -= 100 * (number / 100);
+                }
+
+                if (number > 9 && number < 100)
+                {
+                    unitMeasurement = number / 10;
+                    unitMeasurement = unitMeasurement * 10;
+                    roman += d[unitMeasurement];
+                    number -= 10 * (number / 10);
+                }
+
+                if (number > 0 && number < 10)
+                {
+                    unitMeasurement = number;
+                    roman += d[unitMeasurement];
+                    number -= unitMeasurement;
+                }
+
+                if (number == 0)
+                    break;
+
             }
-            return "";
+            return roman;
         }
 
     }
