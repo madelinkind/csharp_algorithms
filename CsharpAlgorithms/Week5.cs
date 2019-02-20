@@ -89,8 +89,11 @@ namespace CsharpAlgorithms
             return binary;
         }
 
-        public static string ConvertToRoman(int n)
+        public static string ConvertToRoman(int number)
         {
+            int unitMeasurement = 0;
+            string roman = "";
+
             Dictionary<int, string> d = new Dictionary<int, string>() {
                 {1, "I"},
                 {2, "II"},
@@ -124,8 +127,15 @@ namespace CsharpAlgorithms
                 {3000, "MMM"}
             };
 
-
-
+            while(true)
+            {
+                if (number > 999 && number < 4000)
+                {
+                    unitMeasurement = number / 1000;
+                    unitMeasurement = unitMeasurement * 1000;
+                    roman += d[unitMeasurement];
+                }
+            }
             return "";
         }
 
