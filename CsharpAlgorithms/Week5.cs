@@ -127,8 +127,6 @@ namespace CsharpAlgorithms
                 {3000, "MMM"}
             };
 
-            while(true)
-            {
                 if (number > 999 && number < 4000)
                 {
                     unitMeasurement = number / 1000;
@@ -160,10 +158,9 @@ namespace CsharpAlgorithms
                     number -= unitMeasurement;
                 }
 
-                if (number == 0)
-                    break;
+                else if ((number < 1 && unitMeasurement == 0) || number > 3999)
+                 Console.WriteLine("Error, you must enter an entire number in the range from 1 to 3999");
 
-            }
             return roman;
         }
 
