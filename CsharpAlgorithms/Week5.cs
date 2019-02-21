@@ -71,7 +71,7 @@ namespace CsharpAlgorithms
         /// convert an integer to binary
         /// </summary>
         public static string ConvertBinary(int value)
-        {   
+        {
             string binary = "";
 
             if (value < 0)
@@ -93,6 +93,12 @@ namespace CsharpAlgorithms
         {
             int unitMeasurement = 0;
             string roman = "";
+
+            if (number < 1 || number > 3999)
+            {
+                Console.WriteLine("Error, you must enter an entire number in the range from 1 to 3999");
+                return roman;
+            }
 
             Dictionary<int, string> d = new Dictionary<int, string>() {
                 {1, "I"},
@@ -127,39 +133,32 @@ namespace CsharpAlgorithms
                 {3000, "MMM"}
             };
 
-                if (number > 999 && number < 4000)
-                {
-                    unitMeasurement = number / 1000;
-                    unitMeasurement = unitMeasurement * 1000;
-                    roman += d[unitMeasurement];
-                    number -= 1000 * (number / 1000);
-                }
+            if (number > 999 && number < 4000)
+            {
+                unitMeasurement = number / 1000;
+                unitMeasurement = unitMeasurement * 1000;
+                roman += d[unitMeasurement];
+            }
 
-                if (number > 99 && number < 1000)
-                {
-                    unitMeasurement = number / 100;
-                    unitMeasurement = unitMeasurement * 100;
-                    roman += d[unitMeasurement];
-                    number -= 100 * (number / 100);
-                }
+            if (number > 99 && number < 1000)
+            {
+                unitMeasurement = number / 100;
+                unitMeasurement = unitMeasurement * 100;
+                roman += d[unitMeasurement];
+            }
 
-                if (number > 9 && number < 100)
-                {
-                    unitMeasurement = number / 10;
-                    unitMeasurement = unitMeasurement * 10;
-                    roman += d[unitMeasurement];
-                    number -= 10 * (number / 10);
-                }
+            if (number > 9 && number < 100)
+            {
+                unitMeasurement = number / 10;
+                unitMeasurement = unitMeasurement * 10;
+                roman += d[unitMeasurement];
+            }
 
-                if (number > 0 && number < 10)
-                {
-                    unitMeasurement = number;
-                    roman += d[unitMeasurement];
-                    number -= unitMeasurement;
-                }
-
-                else if ((number < 1 && unitMeasurement == 0) || number > 3999)
-                 Console.WriteLine("Error, you must enter an entire number in the range from 1 to 3999");
+            if (number > 0 && number < 10)
+            {
+                unitMeasurement = number;
+                roman += d[unitMeasurement];
+            }
 
             return roman;
         }
