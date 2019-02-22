@@ -93,7 +93,7 @@ namespace CsharpAlgorithms
         /// <summary>
         /// convert a integer to a roman number
         /// </summary>
-        public static string ConvertToRomanVersion2(int number)
+        public static string ConvertToRoman(int number)
         {
             int unitMeasurement = 3;
             double exponent = 0;
@@ -108,7 +108,8 @@ namespace CsharpAlgorithms
                 return roman;
             }
 
-            Dictionary<int, string> d = new Dictionary<int, string>() {
+            Dictionary<int, string> d = new Dictionary<int, string>()
+            {
                 {1, "I"},
                 {2, "II"},
                 {3, "III"},
@@ -165,6 +166,40 @@ namespace CsharpAlgorithms
                     break;
             }
             return roman;
+        }
+
+        public static int WeeksDay(int day, int month, int year)
+        {
+            int monthDictionary;
+            Dictionary<int, int> weeks = new Dictionary<int, int>()
+            {
+                {1, 0},
+                {2, 3},
+                {3, 3},
+                {4, 6},
+                {5, 1},
+                {6, 4},
+                {7, 6},
+                {8, 2},
+                {9, 5},
+                {10,0},
+                {11,3},
+                {12,5}
+            };
+
+            monthDictionary = weeks[month];
+            if ((year % 4 == 0 || (year % 100 != 0)) && (year % 400 != 0) && month >= 3)
+            {
+                if (month == 4 || month == 7)
+                    monthDictionary = 0;
+                else
+                    monthDictionary = monthDictionary + 1;
+            }
+                day = (((year - 1) % 7) + (((year - 1) / 4 - (3 * ((year - 1) / 100 + 1) / 4)) % 7) + (monthDictionary + day % 7)) % 7;
+            if (day > 0)
+                return day;
+            else
+                return 7;
         }
     }
 }
