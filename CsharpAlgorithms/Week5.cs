@@ -5,6 +5,7 @@ using System.Text;
 
 namespace CsharpAlgorithms
 {
+    enum Dia { Lunes = 1, Martes = 2, Miercoles = 3, Jueves = 4, Viernes = 5, Sabado = 6, Domingo = 0 }
     public static class Week5
     {
         /// <summary>
@@ -89,9 +90,16 @@ namespace CsharpAlgorithms
             return binary;
         }
 
-        public static string ConvertToRoman(int number)
+        /// <summary>
+        /// convert a integer to a roman number
+        /// </summary>
+        public static string ConvertToRomanVersion2(int number)
         {
-            int unitMeasurement = 0;
+            int unitMeasurement = 3;
+            double exponent = 0;
+            int quotient = 0;
+            int result = 0;
+            int rest = 0;
             string roman = "";
 
             if (number < 1 || number > 3999)
@@ -133,35 +141,30 @@ namespace CsharpAlgorithms
                 {3000, "MMM"}
             };
 
-            if (number > 999 && number < 4000)
+            while (true)
             {
-                unitMeasurement = number / 1000;
-                unitMeasurement = unitMeasurement * 1000;
-                roman += d[unitMeasurement];
-            }
+                exponent = Math.Pow(10, unitMeasurement);
+                quotient = (int)(number / exponent);
+                rest = (int)(number % exponent);
 
-            if (number > 99 && number < 1000)
-            {
-                unitMeasurement = number / 100;
-                unitMeasurement = unitMeasurement * 100;
-                roman += d[unitMeasurement];
-            }
+                if (quotient == 0)
+                {
+                    unitMeasurement--;
+                    exponent = Math.Pow(10, unitMeasurement);
+                }
 
-            if (number > 9 && number < 100)
-            {
-                unitMeasurement = number / 10;
-                unitMeasurement = unitMeasurement * 10;
-                roman += d[unitMeasurement];
-            }
+                else
+                {
+                    result = (int)(quotient * exponent);
+                    roman += d[result];
+                    number -= result;
+                    unitMeasurement--;
+                }
 
-            if (number > 0 && number < 10)
-            {
-                unitMeasurement = number;
-                roman += d[unitMeasurement];
+                if (number == 0)
+                    break;
             }
-
             return roman;
         }
-
     }
 }
