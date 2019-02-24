@@ -64,7 +64,7 @@ namespace CsharpAlgorithms
             double root_value = Math.Sqrt(value);
             int root_value_int = (int)root_value;
 
-            while ( i <= root_value_int)
+            while (i <= root_value_int)
             {
                 if (value % i == 0)
                     return false;
@@ -523,6 +523,9 @@ namespace CsharpAlgorithms
 
         public static int DifferentTwoDates(string value_day, string value_month, string value_year, string value_day2, string value_month2, string value_year2)
         {
+            int util_day = 0;
+            int util_month = 0;
+            int util_year = 0;
             int last_day_month = 0;
             int real_day_year = 0;
             int cont_year_leap = 0;
@@ -539,15 +542,27 @@ namespace CsharpAlgorithms
             bool isDate = AuxiliaryMethods.IsCorrectDate(isNumberDay, isNumberMonth, isNumberYear, day, month, year);
             bool isDate2 = AuxiliaryMethods.IsCorrectDate(isNumberDay2, isNumberMonth2, isNumberYear2, second_day, second_month, second_year);
 
-            int temp_year = year + 1;
-            int first_latest_year = year;
+
 
             //Validating date
             if (!isDate || !isDate2)
                 throw new ArgumentException("Error, incorrect date");
 
             if ((second_day <= day && second_month == month && second_year == year) || (second_year < year) || second_month < month && second_year == year)
-                throw new ArgumentException("Error, the first date must be less than the second date");
+            {   //En caso de que la fecha inicial sea mayor que la final, se invierte.
+                util_day = day;
+                util_month = month;
+                util_year = year;
+                day = second_day;
+                month = second_month;
+                year = second_year;
+                second_day = util_day;
+                second_month = util_month;
+                second_year = util_year;
+            }
+
+            int temp_year = year + 1;
+            int first_latest_year = year;
 
             if (year == second_year && month == second_month)
             {

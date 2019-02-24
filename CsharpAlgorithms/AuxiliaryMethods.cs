@@ -40,9 +40,9 @@ namespace CsharpAlgorithms
             if (month == 1)
             {
                 if (isLeapYear)
-                    temp_day_next = 28;
-                else
                     temp_day_next = 29;
+                else
+                    temp_day_next = 28;
             }
             else if (month == 3 || month == 5 || month == 8 || month == 10)
                 temp_day_next = 30;
