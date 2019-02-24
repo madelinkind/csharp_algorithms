@@ -23,8 +23,8 @@ namespace ProgrammingSolutions
             #endregion
 
             #region Ejercicios Semana 5
-            //Week5.ConvertToRoman(3000);
-            Week5.WeeksDay(29, 4, 1582);
+            //Week5.ConvertToRoman(3000);1582,
+            Week5.WeeksDay(29, 4, -5);
             #endregion
         }
     }

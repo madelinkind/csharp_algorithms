@@ -168,9 +168,14 @@ namespace CsharpAlgorithms
             return roman;
         }
 
+        /// <summary>
+        /// Returns the day of the week of a given date.
+        /// </summary>
         public static int WeeksDay(int day, int month, int year)
         {
-            int monthDictionary;
+            int valueAssignedMonth;
+
+            //Value assigned according to the month
             Dictionary<int, int> weeks = new Dictionary<int, int>()
             {
                 {1, 0},
@@ -187,15 +192,17 @@ namespace CsharpAlgorithms
                 {12,5}
             };
 
-            monthDictionary = weeks[month];
-            if ((year % 4 == 0 || (year % 100 != 0)) && (year % 400 != 0) && month >= 3)
+            valueAssignedMonth = weeks[month];
+            if (year % 4 == 0 && ((year % 100 != 0) || (year % 400 == 0)) && month >= 3)
             {
                 if (month == 4 || month == 7)
-                    monthDictionary = 0;
+                    valueAssignedMonth = 0;
                 else
-                    monthDictionary = monthDictionary + 1;
+                    valueAssignedMonth = valueAssignedMonth + 1;
             }
-                day = (((year - 1) % 7) + (((year - 1) / 4 - (3 * ((year - 1) / 100 + 1) / 4)) % 7) + (monthDictionary + day % 7)) % 7;
+            //Formula that calculates the day of the week according to the entry date
+            day = (((year - 1) % 7) + (((year - 1) / 4 - (3 * ((year - 1) / 100 + 1) / 4)) % 7) + (valueAssignedMonth + day % 7)) % 7;
+            //If day is (1 - Monday, 2 - Tuesday, 3 - Wednesday, 4 - Thursday, 5 - Friday, 6 - Saturday, 7 - Sunday) 
             if (day > 0)
                 return day;
             else
