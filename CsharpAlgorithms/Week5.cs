@@ -208,5 +208,29 @@ namespace CsharpAlgorithms
             else
                 return 7;
         }
+
+        public static int WeeksDayVersion2(string day, string month, string year)
+        {
+            int rest = 0;
+            int dayWeek = 0;
+            string day1 = "1";
+            string month1 = "1";
+            string year1 = "999";
+
+            int differentTwoDates = Week4.DifferentTwoDates(day1, month1, year1, day, month, year);
+            bool isFirstDateLess = AuxiliaryMethods.FirstDateLess(day1, month1, year1, day, month, year);
+
+            if (!isFirstDateLess)
+            {
+                rest = (differentTwoDates - 1) % 7;
+                dayWeek = 7 - rest;
+            }
+            else
+            {
+                rest = (differentTwoDates % 7) + 1;
+                dayWeek = rest + 1;
+            }
+            return dayWeek; ;
+        }
     }
 }

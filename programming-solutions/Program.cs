@@ -20,7 +20,11 @@ namespace ProgrammingSolutions
 
             #region Ejercicios Semana 4
             //CsharpAlgorithms.Week4.LongerLength("","","");
-            CsharpAlgorithms.Week4.DifferentTwoDates("12", "4", "2016","14", "6", "2015");
+            CsharpAlgorithms.Week4.DifferentTwoDates("1", "1", "999","1", "7", "996");
+            #endregion
+            #region Ejercicios Semana 5
+            //CsharpAlgorithms.Week4.LongerLength("","","");
+            //CsharpAlgorithms.Week5.WeeksDayVersion2("1", "7", "996");
             #endregion
         }
     }

@@ -542,14 +542,12 @@ namespace CsharpAlgorithms
             bool isDate = AuxiliaryMethods.IsCorrectDate(isNumberDay, isNumberMonth, isNumberYear, day, month, year);
             bool isDate2 = AuxiliaryMethods.IsCorrectDate(isNumberDay2, isNumberMonth2, isNumberYear2, second_day, second_month, second_year);
 
-
-
             //Validating date
             if (!isDate || !isDate2)
                 throw new ArgumentException("Error, incorrect date");
 
             if ((second_day <= day && second_month == month && second_year == year) || (second_year < year) || second_month < month && second_year == year)
-            {   //En caso de que la fecha inicial sea mayor que la final, se invierte.
+            {   //In case the initial date is greater than the final date, it is reversed.
                 util_day = day;
                 util_month = month;
                 util_year = year;
@@ -568,7 +566,6 @@ namespace CsharpAlgorithms
             {
                 real_day_year = second_day - day;
                 return real_day_year;
-
             }
 
             last_day_month = AuxiliaryMethods.LastDayMonthNext(month - 1, year);

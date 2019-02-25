@@ -24,7 +24,7 @@ namespace CsharpAlgorithms
         /// </summary>
         public static bool IsLeapYear(int year)
         {
-            if ((year % 4 != 0 || (year % 100 == 0) && (year % 400 != 0)))
+            if (year % 4 == 0 && ((year % 100 != 0) || (year % 400 == 0)))
                 return true;
             else
                 return false;
@@ -51,5 +51,23 @@ namespace CsharpAlgorithms
 
             return temp_day_next;
         }
-    }
+
+        public static bool FirstDateLess(string value_day, string value_month, string value_year, string value_day2, string value_month2, string value_year2)
+        {
+            bool isNumberDay = int.TryParse(value_day, out int day);
+            bool isNumberMonth = int.TryParse(value_month, out int month);
+            bool isNumberYear = int.TryParse(value_year, out int year);
+
+            bool isNumberDay2 = int.TryParse(value_day2, out int second_day);
+            bool isNumberMonth2 = int.TryParse(value_month2, out int second_month);
+            bool isNumberYear2 = int.TryParse(value_year2, out int second_year);
+
+            if ((second_day <= day && second_month == month && second_year == year) || (second_year < year) || second_month < month && second_year == year)
+            {
+                return false;
+            }
+            else
+                return true;
+            }
+        }
 }
