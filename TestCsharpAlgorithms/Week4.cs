@@ -440,27 +440,6 @@ namespace TestCsharpAlgorithms
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Error, incorrect date")]
-        public void FailsWithMonthFirstDateGreaterThanMonthSecondDate()
-        {
-            int result = Week4.DifferentTwoDates("31", "12", "2018", "25", "4", "2018");
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Error, incorrect date")]
-        public void FailsWithDayFirstDateGreaterThanDaySecondDateEqualsMonthYear()
-        {
-            int result = Week4.DifferentTwoDates("31", "4", "2018", "25", "4", "2018");
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Error, incorrect date")]
-        public void FailsWithYearFirstDateGreaterThanYearSecondDateEquals()
-        {
-            int result = Week4.DifferentTwoDates("31", "4", "2019", "25", "4", "2018");
-        }
-
-        [TestMethod]
         public void WorksForMonthYearEquals()
         {
             int result = Week4.DifferentTwoDates("23", "12", "2018", "25", "12", "2018");
@@ -481,7 +460,7 @@ namespace TestCsharpAlgorithms
         {
             int result = Week4.DifferentTwoDates("31", "12", "2018", "31", "12", "2020");
 
-            Assert.AreEqual((730), result);
+            Assert.AreEqual((731), result);
         }
     }
 

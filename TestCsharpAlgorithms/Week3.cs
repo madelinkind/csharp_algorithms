@@ -134,7 +134,7 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void WorksForScaleneTriangle()
         {
-            TriangleType t = Week3.TypeTriangle("5.9", "3", "7");
+            TriangleType t = Week3.TypeTriangle("5,9", "3", "7");
 
             Assert.AreEqual(t, TriangleType.SCALENE);
         }

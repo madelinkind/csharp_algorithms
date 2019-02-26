@@ -332,7 +332,7 @@ namespace CsharpAlgorithms
 
             bool isLeapYear = AuxiliaryMethods.IsLeapYear(year);
 
-            if ((day == 30 && (month == 4 || month == 6 || month == 9 || month == 11)) || (day == 29 && month == 2) || ((day == 28 && month == 2) && isLeapYear) || day == 31)
+            if ((day == 30 && (month == 4 || month == 6 || month == 9 || month == 11)) || (day == 29 && month == 2) || ((day == 28 && month == 2) && !isLeapYear) || day == 31)
             {
                 month_next = month + 1;
                 day_next = 1;
@@ -402,7 +402,7 @@ namespace CsharpAlgorithms
                 }
                 else if (month == 3)
                 {
-                    if (isLeapYear)
+                    if (!isLeapYear)
                     {
                         month = 2;
                         day = 28;
@@ -591,19 +591,27 @@ namespace CsharpAlgorithms
 
             while (true)
             {
-                last_day_month = AuxiliaryMethods.LastDayMonthNext(month, year);
-                real_day_year = real_day_year + last_day_month;
-                month++;
+                if (month != 12)
+                {
+                    last_day_month = AuxiliaryMethods.LastDayMonthNext(month, year);
+                    real_day_year = real_day_year + last_day_month;
+                    month++;
+                }
                 if (month == 12 && first_latest_year == year)
                 {
                     month = 1;
                     year = second_year;
                     first_latest_year = year;
                 }
-                if (month == second_month && first_latest_year == second_year)
+                if ((month == second_month-1|| month == second_month )&& first_latest_year == second_year)
                 {
                     real_day_year = real_day_year + second_day;
                     return real_day_year;
+                }
+                else if (month == 1 && first_latest_year == second_year)
+                {
+                    last_day_month = AuxiliaryMethods.LastDayMonthNext(month-1, year);
+                    real_day_year = real_day_year + last_day_month;
                 }
             }
         }
