@@ -578,12 +578,12 @@ namespace CsharpAlgorithms
                 if (isLeapYear)
                 {
                     temp_year++;
-                    cont_year_no_leap++;
+                    cont_year_leap++;
                 }
                 else
                 {
                     temp_year++;
-                    cont_year_leap++;
+                    cont_year_no_leap++;
                 }
             }
 
@@ -594,12 +594,13 @@ namespace CsharpAlgorithms
                 last_day_month = AuxiliaryMethods.LastDayMonthNext(month, year);
                 real_day_year = real_day_year + last_day_month;
                 month++;
-                if (month == 13 && first_latest_year == year)
+                if (month == 12 && first_latest_year == year)
                 {
                     month = 1;
-                    first_latest_year = second_year;
+                    year = second_year;
+                    first_latest_year = year;
                 }
-                else if (month + 1 == second_month && first_latest_year == second_year)
+                if (month == second_month && first_latest_year == second_year)
                 {
                     real_day_year = real_day_year + second_day;
                     return real_day_year;
