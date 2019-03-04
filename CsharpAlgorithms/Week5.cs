@@ -230,7 +230,7 @@ namespace CsharpAlgorithms
                 rest = (differentTwoDates % 7) + 1;
                 dayWeek = rest + 1;
             }
-            return dayWeek; ;
+            return dayWeek; 
         }
     }
 }
