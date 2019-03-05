@@ -26,6 +26,11 @@ namespace ProgrammingSolutions
             //CsharpAlgorithms.Week4.LongerLength("","","");
             //CsharpAlgorithms.Week5.WeeksDayVersion2("1", "7", "2025");
             #endregion
+
+            #region Ejercicios Semana 6
+            int[] j = new int[8] { 7, 7, 4, 14, 12, 14, 3, 1};
+            CsharpAlgorithms.Week6.Medianah11(j);
+            #endregion
         }
     }
 }
