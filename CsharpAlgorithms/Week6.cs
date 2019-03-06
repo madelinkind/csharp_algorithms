@@ -63,8 +63,9 @@ namespace CsharpAlgorithms
             }
             return listNumber;
         }
-
-        //Returns the median of the values ​​of an array
+        /// <summary>
+        /// Returns the median of the values ​​of an array
+        /// </summary>
         public static int Median(int[] listInteger)
         {
             int median = 0;
@@ -78,6 +79,31 @@ namespace CsharpAlgorithms
             else
                 median = listInteger[quotient];
             return median;
+        }
+        /// <summary>
+        /// Determines the second largest number
+        /// </summary>
+        public static int SecondLargest(int[] listNumber)
+        {
+            int[] listOrder = Week6.OrderListLessBigger(listNumber);
+            int secondLargest = listOrder.Length - 2;
+            return secondLargest;
+        }
+
+        /// <summary>
+        /// Returns another array with the elements inverted
+        /// </summary>
+        public static int[] Inverted(int[] listNumber)
+        {
+            int j = 0;
+            int sizeList = listNumber.Length;
+            int[] inverted = new int[sizeList];
+            for (int i = sizeList - 1; i < 0; i--)
+            {
+                inverted[j] = listNumber[i];
+                j++;
+            }
+            return inverted;
         }
     }
 }
