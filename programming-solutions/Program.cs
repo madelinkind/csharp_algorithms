@@ -28,8 +28,10 @@ namespace ProgrammingSolutions
             #endregion
 
             #region Ejercicios Semana 6
-            int[] j = new int[8] { 7, 7, 4, 14, 12, 14, 3, 1};
-            CsharpAlgorithms.Week6.Medianah11(j);
+            //int[] j = new int[8] { 7, 7, 4, 14, 12, 14, 3, 1};
+            //CsharpAlgorithms.Week6.Median(j);
+            int[] j = new int[8] { 7, 7, 4, 14, 12, 14, 3, 1 };
+            CsharpAlgorithms.Week6.RotarRight(j, 25);
             #endregion
         }
     }

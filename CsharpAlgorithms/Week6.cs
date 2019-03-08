@@ -105,6 +105,47 @@ namespace CsharpAlgorithms
             }
             return inverted;
         }
+        /// <summary>
+        /// Convert an array of integers to a string
+        /// </summary>
+        public static string ConvertString(int[] numberList)
+        {
+            string integerToString = "";
+
+            for (int i = 0; i < numberList.Length; i++)
+            {
+                integerToString += numberList[i];
+            }
+            return integerToString;
+        }
+        /// <summary>
+        /// Returns another array rotated n positions
+        /// </summary>
+        public static int[] RotateRight(int[] listNumber, int n)
+        {
+            int[] rotate = new int[listNumber.Length];
+            int positionInitial = 0;
+
+            if (n >= listNumber.Length)
+                n = n % listNumber.Length;
+
+            int countRotRight = n;
+
+            for (int i = 0; i < listNumber.Length; i++)
+            {
+                if (countRotRight < listNumber.Length)
+                {
+                    rotate[countRotRight] = listNumber[i];
+                    countRotRight++;
+                }
+                else if (positionInitial < n)
+                {
+                    rotate[positionInitial] = listNumber[i];
+                    positionInitial++;
+                }
+            }
+            return rotate;
+        }
     }
 }
 
