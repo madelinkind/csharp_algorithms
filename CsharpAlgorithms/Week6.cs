@@ -12,6 +12,10 @@ namespace CsharpAlgorithms
         public static int ElementBigger(int[] listNumber)
         {
             int bigger = 0;
+            if (listNumber.Length == 0)
+                throw new Exception("The array is empty");
+            if (listNumber == null)
+                throw new Exception("The array no exist");
 
             for (int i = 0; i < listNumber.Length; i++)
             {
@@ -31,6 +35,11 @@ namespace CsharpAlgorithms
             int position = 0;
             int bigger = 0;
 
+            if (listNumber.Length == 0)
+                throw new Exception("The array is empty");
+            if (listNumber == null)
+                throw new Exception("The array no exist");
+
             for (int i = 0; i < listNumber.Length; i++)
             {
                 if (listNumber[i] > bigger)
@@ -41,28 +50,7 @@ namespace CsharpAlgorithms
             }
             return position;
         }
-
-        /// <summary>
-        /// Order an array
-        /// </summary>
-        public static int[] OrderListLessBigger(int[] listNumber)
-        {
-            int bigger = 0;
-
-            for (int i = 0; i < listNumber.Length; i++)
-            {
-                for (int j = 0; j < listNumber.Length; j++)
-                {
-                    if (listNumber[i] > listNumber[j])
-                    {
-                        bigger = listNumber[i];
-                        listNumber[i] = listNumber[j];
-                        listNumber[j] = bigger;
-                    }
-                }
-            }
-            return listNumber;
-        }
+        
         /// <summary>
         /// Returns the median of the values ​​of an array
         /// </summary>
@@ -70,7 +58,12 @@ namespace CsharpAlgorithms
         {
             int median = 0;
 
-            int[] listOrder = Week6.OrderListLessBigger(listInteger);
+            if (listInteger.Length == 0)
+                throw new Exception("The array is empty");
+            if (listInteger == null)
+                throw new Exception("The array no exist");
+
+            int[] listOrder = AuxiliaryMethods.OrderListLessBigger(listInteger);
             int countElements = listOrder.Length;
             int quotient = countElements / 2;
 
@@ -80,12 +73,18 @@ namespace CsharpAlgorithms
                 median = listInteger[quotient];
             return median;
         }
+
         /// <summary>
         /// Determines the second largest number
         /// </summary>
         public static int SecondLargest(int[] listNumber)
         {
-            int[] listOrder = Week6.OrderListLessBigger(listNumber);
+            if (listNumber.Length == 0)
+                throw new Exception("The array is empty");
+            if (listNumber == null)
+                throw new Exception("The array no exist");
+
+            int[] listOrder = AuxiliaryMethods.OrderListLessBigger(listNumber);
             int secondLargest = listOrder.Length - 2;
             return secondLargest;
         }
@@ -97,6 +96,12 @@ namespace CsharpAlgorithms
         {
             int j = 0;
             int sizeList = listNumber.Length;
+
+            if (listNumber.Length == 0)
+                throw new Exception("The array is empty");
+            if (listNumber == null)
+                throw new Exception("The array no exist");
+
             int[] inverted = new int[sizeList];
             for (int i = sizeList - 1; i < 0; i--)
             {
@@ -105,6 +110,7 @@ namespace CsharpAlgorithms
             }
             return inverted;
         }
+
         /// <summary>
         /// Convert an array of integers to a string
         /// </summary>
@@ -112,12 +118,18 @@ namespace CsharpAlgorithms
         {
             string integerToString = "";
 
+            if (numberList.Length == 0)
+                throw new Exception("The array is empty");
+            if (numberList == null)
+                throw new Exception("The array no exist");
+
             for (int i = 0; i < numberList.Length; i++)
             {
                 integerToString += numberList[i];
             }
             return integerToString;
         }
+
         /// <summary>
         /// Returns another array rotated n positions
         /// </summary>
@@ -125,6 +137,11 @@ namespace CsharpAlgorithms
         {
             int[] rotate = new int[listNumber.Length];
             int positionInitial = 0;
+
+            if (listNumber.Length == 0)
+                throw new Exception("The array is empty");
+            if (listNumber == null)
+                throw new Exception("The array no exist");
 
             if (n >= listNumber.Length)
                 n = n % listNumber.Length;

@@ -68,6 +68,28 @@ namespace CsharpAlgorithms
             }
             else
                 return true;
-            }
         }
+
+        /// <summary>
+        /// Order an array
+        /// </summary>
+        public static int[] OrderListLessBigger(int[] listNumber)
+        {
+            int bigger = 0;
+
+            for (int i = 0; i < listNumber.Length; i++)
+            {
+                for (int j = 0; j < listNumber.Length; j++)
+                {
+                    if (listNumber[i] > listNumber[j])
+                    {
+                        bigger = listNumber[i];
+                        listNumber[i] = listNumber[j];
+                        listNumber[j] = bigger;
+                    }
+                }
+            }
+            return listNumber;
+        }
+    }
 }
