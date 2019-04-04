@@ -31,7 +31,15 @@ namespace ProgrammingSolutions
             //int[] j = new int[8] { 7, 7, 4, 14, 12, 14, 3, 1};
             //CsharpAlgorithms.Week6.Median(j);
             int[] j = new int[8] { 7, 7, 4, 14, 12, 14, 3, 1 };
-            CsharpAlgorithms.Week6.RotarRight(j, 25);
+            CsharpAlgorithms.Week6.RotateRight(j, 25);
+            #endregion
+
+            #region Ejercicios Semana 7
+            //int[] j = new int[8] { 7, 7, 4, 14, 12, 14, 3, 1};
+            //CsharpAlgorithms.Week6.Median(j);
+            double[] p = new double[8] { 7, 7, 14, 25, 31, 32, 45, 62 };
+            //CsharpAlgorithms.Week7.IterationsSearchBinary(p, 45);
+            CsharpAlgorithms.Week7.IterationsSequentialSearch(p, 45);
             #endregion
         }
     }

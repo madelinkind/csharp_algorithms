@@ -24,9 +24,9 @@ namespace CsharpAlgorithms
                 int medium = post + (fixeLength - post) / 2;
 
                 if (numSearch < listOrder[medium])
-                    fixeLength = medium - 1;
+                    post = medium - 1;
                 else if (numSearch > listOrder[medium])
-                    fixeLength = medium + 1;
+                    post = medium + 1;
                 else
                     return medium;
             }
@@ -39,7 +39,7 @@ namespace CsharpAlgorithms
         public static int IterationsSearchBinary(double[] listOrder, double numSearch)
         {
             int post = 0;
-            int fixeLength = listOrder.Length;
+            int fixeLength = listOrder.Length - 1;
             int numbIteration = 0;
 
             if (listOrder == null)
@@ -54,12 +54,12 @@ namespace CsharpAlgorithms
                 if (numSearch < listOrder[medium])
                 {
                     numbIteration++;
-                    fixeLength = medium - 1;
+                    post = medium - 1;
                 }
                 else if (numSearch > listOrder[medium])
                 {
                     numbIteration++;
-                    fixeLength = medium + 1;
+                    post = medium + 1;
                 }
                 else
                 {
