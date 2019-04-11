@@ -101,9 +101,9 @@ namespace CsharpAlgorithms
         public static int[] Mixing(int[] a, int[] b)
         {
             if (a.Length == 0 || b.Length == 0)
-                throw new Exception("The arrays are empty");
+                throw new ArgumentException("The arrays are empty");
             if (a == null || b == null)
-                throw new Exception("The arrays no exist");
+                throw new ArgumentException("The arrays no exist");
 
             int countMixing = 0;
             int lengthMixing = a.Length + b.Length;
