@@ -94,5 +94,45 @@ namespace CsharpAlgorithms
             }
             return numbIteration;
         }
+
+        /// <summary>
+        /// Mix two arrays
+        /// </summary>
+        public static int[] Mixing(int[] a, int[] b)
+        {
+            if (a.Length == 0 || b.Length == 0)
+                throw new Exception("The arrays are empty");
+            if (a == null || b == null)
+                throw new Exception("The arrays no exist");
+
+            int countMixing = 0;
+            int lengthMixing = a.Length + b.Length;
+            int[] mixing = new int[lengthMixing];
+            int i;
+            int j;
+
+            for (i = 0, j = 0; i < a.Length && j < b.Length; countMixing++)
+            {
+                if (a[i] <= b[j])
+                {
+                    mixing[countMixing] = a[i];
+                    i++;
+                }
+                else
+                {
+                    mixing[countMixing] = b[j];
+                    j++;
+                }
+            }
+
+            int spaceA = a.Length - i;
+            int spaceB = b.Length - j;
+            if (spaceA != 0)
+                Array.Copy(a, i, mixing, countMixing, spaceA);
+            else
+                Array.Copy(b, j, mixing, countMixing, spaceB);
+
+            return mixing;
+        }
     }
 }
