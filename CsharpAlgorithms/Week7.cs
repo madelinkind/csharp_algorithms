@@ -15,9 +15,9 @@ namespace CsharpAlgorithms
             int fixeLength = listOrder.Length;
 
             if (listOrder == null)
-                throw new Exception("The array no exist");
+                throw new ArgumentException("The array no exist");
             if (listOrder.Length == 0)
-                throw new Exception("The array is empty");
+                throw new ArgumentException("The array is empty");
 
             while (post < fixeLength)
             {
@@ -43,9 +43,9 @@ namespace CsharpAlgorithms
             int numbIteration = 0;
 
             if (listOrder == null)
-                throw new Exception("The array no exist");
+                throw new ArgumentException("The array no exist");
             if (listOrder.Length == 0)
-                throw new Exception("The array is empty");
+                throw new ArgumentException("The array is empty");
 
             while (post < fixeLength)
             {
@@ -78,9 +78,9 @@ namespace CsharpAlgorithms
             int numbIteration = 0;
 
             if (listOrder == null)
-                throw new Exception("The array no exist");
+                throw new ArgumentException("The array no exist");
             if (listOrder.Length == 0)
-                throw new Exception("The array is empty");
+                throw new ArgumentException("The array is empty");
 
             for (int i = 0; i < listOrder.Length; i++)
             {
