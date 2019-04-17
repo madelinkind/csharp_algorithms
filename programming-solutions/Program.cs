@@ -39,7 +39,13 @@ namespace ProgrammingSolutions
             //CsharpAlgorithms.Week6.Median(j);
             double[] p = new double[8] { 7, 7, 14, 25, 31, 32, 45, 62 };
             //CsharpAlgorithms.Week7.IterationsSearchBinary(p, 45);
-            CsharpAlgorithms.Week7.IterationsSequentialSearch(p, 45);
+            //CsharpAlgorithms.Week7.IterationsSequentialSearch(p, 45);
+            //int[] a = new int[8] { 10, 7, 14, 25, 31, 32, 45, 62 };
+            //int[] b = new int[12] { 7, 7, 14, 25, 31, 32, 45, 62,43, 31, 31, 10 };
+            //CsharpAlgorithms.Week7.UnionArray(a, b);
+            int[] a = new int[8] { 10, 7, 10, 23, 7, 32, 45, 62 };
+            int[] b = new int[12] { 7, 7, 10, 25, 40, 32, 40, 62,43, 31, 31, 10 };
+            CsharpAlgorithms.Week7.Union123(a, b);
             #endregion
         }
     }

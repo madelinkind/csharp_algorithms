@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace CsharpAlgorithms
 {
@@ -133,6 +134,80 @@ namespace CsharpAlgorithms
                 Array.Copy(b, j, mixing, countMixing, spaceB);
 
             return mixing;
+        }
+
+        /// <summary>
+        /// Union two arrays
+        /// </summary>
+        public static int[] UnionArray(int[] a, int[] b)
+        {
+            if (a.Length == 0 || b.Length == 0)
+                throw new ArgumentException("The arrays are empty");
+            if (a == null || b == null)
+                throw new ArgumentException("The arrays no exist");
+            var list = a.Union(b);
+            int[] resultUnion = list.ToArray();
+            return resultUnion;
+        }
+
+        public static int[] Union123(int[] a, int[] b)
+        {
+            if (a.Length == 0 || b.Length == 0)
+                throw new ArgumentException("The arrays are empty");
+            if (a == null || b == null)
+                throw new ArgumentException("The arrays no exist");
+
+            int[] unionAB = new int[a.Length + b.Length];
+            int[] mixingAB = new int[a.Length + b.Length];
+            int k = 0;
+            int p = 0;
+            int j;
+            int c;
+            int r;
+            for (int i = 0; i < a.Length; i++)
+            {
+                for (j = i + 1; j < a.Length; j++)
+                {
+                    if (a[i] == a[j])
+                        break;
+                }
+                    if (j == a.Length && a[i] != a[j - 1])
+                    {
+                        unionAB[k] = a[i];
+                        k++;
+                    }
+            }
+
+            for (int i = 0; i < b.Length; i++)
+            {
+                for (c = i + 1; c < b.Length; c++)
+                {
+                    if (b[i] == b[c])
+                        break;
+
+                }
+                if (c == b.Length && b[i] != b[c - 1])
+                {
+                        unionAB[k] = b[i];
+                        k++;
+                }
+            }
+
+            for (int i = 0; i < unionAB.Length; i++)
+            {
+                for (r = i + 1; r < unionAB.Length; r++)
+                {
+                    if (unionAB[i] == unionAB[r])
+                        break;
+
+                }
+                if (r == unionAB.Length && unionAB[i] != unionAB[r-1])
+                {
+                        mixingAB[p] = unionAB[i];
+                        p++;
+                }
+            }
+            return mixingAB;
         }
     }
 }
