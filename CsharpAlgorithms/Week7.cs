@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Diagnostics;
 
 namespace CsharpAlgorithms
 {
@@ -149,65 +150,84 @@ namespace CsharpAlgorithms
             int[] resultUnion = list.ToArray();
             return resultUnion;
         }
-
-        public static int[] Union123(int[] a, int[] b)
+       
+        /// <summary>
+        /// Union two arrays Version 2
+        /// </summary>
+        public static int[] Union(int[] a, int[] b)
         {
-            if (a.Length == 0 || b.Length == 0)
-                throw new ArgumentException("The arrays are empty");
-            if (a == null || b == null)
-                throw new ArgumentException("The arrays no exist");
+            // create marks (false is if there are no problems, it is true that you can not use)
+            bool[] a_marks = new bool[a.Length];
+            bool[] b_marks = new bool[b.Length];
 
-            int[] unionAB = new int[a.Length + b.Length];
-            int[] mixingAB = new int[a.Length + b.Length];
-            int k = 0;
-            int p = 0;
-            int j;
-            int c;
-            int r;
+            int count_marks_a = 0;
+            int count_marks_b = 0;
+            int r = 0;
+
             for (int i = 0; i < a.Length; i++)
             {
-                for (j = i + 1; j < a.Length; j++)
+                if (a_marks[i])
+                    continue;
+
+                // mark repeated items in a
+                for (int j = i + 1; j < a.Length; j++)
                 {
-                    if (a[i] == a[j])
-                        break;
-                }
-                    if (j == a.Length && a[i] != a[j - 1])
+                    if (a[j] == a[i])
                     {
-                        unionAB[k] = a[i];
-                        k++;
+                        a_marks[j] = true;
+                        count_marks_a++;
                     }
+                }
+
+                // mark repeated items in b for current value of a
+                for (int k = 0; k < b.Length; k++)
+                {
+                    if (b[k] == a[i])
+                    {
+                        b_marks[k] = true;
+                        count_marks_b++;
+                    }
+                }
             }
 
+            // mark repeated items in b
             for (int i = 0; i < b.Length; i++)
             {
-                for (c = i + 1; c < b.Length; c++)
-                {
-                    if (b[i] == b[c])
-                        break;
+                if (b_marks[i])
+                    continue;
 
-                }
-                if (c == b.Length && b[i] != b[c - 1])
+                // check other items in b
+                for (int j = i + 1; j < b.Length; j++)
                 {
-                        unionAB[k] = b[i];
-                        k++;
+                    if (b[j] == b[i])
+                    {
+                        b_marks[j] = true;
+                        count_marks_b++;
+                    }
                 }
             }
 
-            for (int i = 0; i < unionAB.Length; i++)
+            int[] union_a_b = new int[(b.Length - count_marks_b) + (a.Length - count_marks_a)];
+
+            // check other items in b
+            for (int i = 0; i < a.Length; i++)
             {
-                for (r = i + 1; r < unionAB.Length; r++)
+                if (a_marks[i] == false)
                 {
-                    if (unionAB[i] == unionAB[r])
-                        break;
-
-                }
-                if (r == unionAB.Length && unionAB[i] != unionAB[r-1])
-                {
-                        mixingAB[p] = unionAB[i];
-                        p++;
+                    union_a_b[r] = a[i];
+                    r++;
                 }
             }
-            return mixingAB;
+            for (int j = 0; j < b.Length; j++)
+            {
+                if (b_marks[j] == false)
+                {
+                    b_marks[j] = true;
+                    union_a_b[r] = b[j];
+                    r++;
+                }
+            }
+            return union_a_b;
         }
     }
 }
