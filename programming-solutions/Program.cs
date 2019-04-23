@@ -28,10 +28,10 @@ namespace ProgrammingSolutions
             #endregion
 
             #region Ejercicios Semana 6
-            //int[] j = new int[8] { 7, 7, 4, 14, 12, 14, 3, 1};
-            //CsharpAlgorithms.Week6.Median(j);
-            int[] j = new int[8] { 7, 7, 4, 14, 12, 14, 3, 1 };
-            CsharpAlgorithms.Week6.RotateRight(j, 25);
+            int[] j = new int[11] { 7, 7, 4, 14, 12, 14, 3, 1, 14, 14, 14};
+            CsharpAlgorithms.Week6.SecondLargest(j);
+            //int[] j = new int[8] { 7, 7, 4, 14, 12, 14, 3, 1 };
+            //CsharpAlgorithms.Week6.RotateRight(j, 25);
             #endregion
 
             #region Ejercicios Semana 7
@@ -42,7 +42,7 @@ namespace ProgrammingSolutions
             //CsharpAlgorithms.Week7.IterationsSequentialSearch(p, 45);
             int[] a = new int[18] { 10, 7, 14, 25, 31, 32, 45, 62, 56, 765, 23, 45, 23, 123, 1454, 23, 1, 7};
             int[] b = new int[39] { 7, 7, 14, 25, 31, 32, 45, 62,43, 31, 31, 10, 34, 45, 34, 34, 875, 1234, 233, 12, 12, 45, 23, 34, 23, 12, 56, 45, 334, 23, 45, 67, 78, 57, 56, 34, 98, 34, 32};
-            CsharpAlgorithms.Week7.UnionArray(a, b);
+            CsharpAlgorithms.Week7.UnionVersion2(a, b);
             //int[] a = new int[18] { 10, 7, 14, 25, 31, 32, 45, 62, 56, 765, 23, 45, 23, 123, 1454, 23, 1, 7};
             //int[] b = new int[39] { 7, 7, 14, 25, 31, 32, 45, 62,43, 31, 31, 10, 34, 45, 34, 34, 875, 1234, 233, 12, 12, 45, 23, 34, 23, 12, 56, 45, 334, 23, 45, 67, 78, 57, 56, 34, 98, 34, 32};
             //CsharpAlgorithms.Week7.Union(a, b);

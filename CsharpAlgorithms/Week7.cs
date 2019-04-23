@@ -229,5 +229,53 @@ namespace CsharpAlgorithms
             }
             return union_a_b;
         }
+
+        public static int[] UnionVersion2(int[] a, int[] b)
+        {
+            int count_marks = 0;
+            a = AuxiliaryMethods.OrderListLessBigger(a);
+            b = AuxiliaryMethods.OrderListLessBigger(b);
+            int[] mixing = Mixing(a, b);
+            bool[] mixing_marks = new bool[a.Length + b.Length];
+            
+
+            for (int i = 0; i < mixing.Length; i++)
+            {
+                if (mixing_marks[i])
+                    continue;
+
+                // mark repeated items in mixing
+                for (int j = i + 1; j < mixing.Length; j++)
+                {
+                    if (mixing[j] == mixing[i])
+                    {
+                        mixing_marks[j] = true;
+                        count_marks++;
+                    }
+                }
+            }
+
+            int[] union = new int[(a.Length + b.Length) - count_marks];
+
+                for (int k = 0, r = 0; k < mixing.Length; k++)
+                {
+                    if (mixing_marks[k] == false)
+                    {
+                        union [r] = mixing[k];
+                        r++;
+                    }
+                }
+            return union;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void Intersection(int[] a, int[] b)
+        {
+            for (int i = 0; i < a.Length; i++)
+            {
+                
+            }
+        }
     }
 }

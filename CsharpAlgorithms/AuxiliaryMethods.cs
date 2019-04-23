@@ -79,7 +79,7 @@ namespace CsharpAlgorithms
 
             for (int i = 0; i < listNumber.Length; i++)
             {
-                for (int j = 0; j < listNumber.Length; j++)
+                for (int j = i + 1; j < listNumber.Length; j++)
                 {
                     if (listNumber[i] > listNumber[j])
                     {

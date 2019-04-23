@@ -79,14 +79,19 @@ namespace CsharpAlgorithms
         /// </summary>
         public static int SecondLargest(int[] listNumber)
         {
+            int i = 2;
+            int leng = listNumber.Length;
             if (listNumber.Length == 0)
                 throw new Exception("The array is empty");
             if (listNumber == null)
                 throw new Exception("The array no exist");
 
             int[] listOrder = AuxiliaryMethods.OrderListLessBigger(listNumber);
-            int secondLargest = listOrder.Length - 2;
-            return secondLargest;
+            while (listOrder[leng - i] == listOrder[leng - (i - 1)])
+            {
+                i++; 
+            }
+            return leng - i;
         }
 
         /// <summary>
