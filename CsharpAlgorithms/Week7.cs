@@ -323,7 +323,7 @@ namespace CsharpAlgorithms
         }
 
         /// <summary>
-        /// Bubble Method two arrays
+        /// Bubble Method
         /// </summary>
         public static int[] BubbleMethod(int[] a)
         {
