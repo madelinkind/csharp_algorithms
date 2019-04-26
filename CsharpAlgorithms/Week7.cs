@@ -270,12 +270,27 @@ namespace CsharpAlgorithms
         /// <summary>
         /// 
         /// </summary>
-        public static void Intersection(int[] a, int[] b)
+        public static int[] Intersection(int[] a)
         {
-            for (int i = 0; i < a.Length; i++)
+            int aux = 0;
+            bool exchange;
+            for (int i = 1; i < a.Length; i++)
             {
-                
+              for (int j = 0; j < a.Length - i; j++)
+              {
+                  if(a[j] > a[j+1])
+                  {
+                      aux = a[j];
+                      a[j] = a[j+1];
+                      a[j+1] = aux;
+                      exchange = true;
+                  }
+              }
+              
+              if(exchange == false)
+                break;  
             }
+            return a;
         }
     }
 }
