@@ -150,7 +150,7 @@ namespace CsharpAlgorithms
             int[] resultUnion = list.ToArray();
             return resultUnion;
         }
-       
+
         /// <summary>
         /// Union two arrays Version 2
         /// </summary>
@@ -236,7 +236,7 @@ namespace CsharpAlgorithms
         }
 
         /// <summary>
-        /// 
+        /// Union two arrays
         /// </summary>
         public static int[] UnionVersion2(int[] a, int[] b)
         {
@@ -250,7 +250,7 @@ namespace CsharpAlgorithms
             b = AuxiliaryMethods.OrderListLessBigger(b);
             int[] mixing = Mixing(a, b);
             bool[] mixing_marks = new bool[a.Length + b.Length];
-            
+
 
             for (int i = 0; i < mixing.Length; i++)
             {
@@ -270,19 +270,19 @@ namespace CsharpAlgorithms
 
             int[] union = new int[(a.Length + b.Length) - count_marks];
 
-                for (int k = 0, r = 0; k < mixing.Length; k++)
+            for (int k = 0, r = 0; k < mixing.Length; k++)
+            {
+                if (mixing_marks[k] == false)
                 {
-                    if (mixing_marks[k] == false)
-                    {
-                        union [r] = mixing[k];
-                        r++;
-                    }
+                    union[r] = mixing[k];
+                    r++;
                 }
+            }
             return union;
         }
 
         /// <summary>
-        /// 
+        /// Intersection two arrays
         /// </summary>
         public static int[] Intersection(int[] a, int[] b)
         {
@@ -304,7 +304,7 @@ namespace CsharpAlgorithms
                 {
                     if (a[i] == a[j])
                         marks[j] = true;
-                }  
+                }
             }
 
             for (int i = 0; i < a.Length; i++)
@@ -320,6 +320,32 @@ namespace CsharpAlgorithms
                 }
             }
             return intersection;
+        }
+
+        /// <summary>
+        /// Bubble Method two arrays
+        /// </summary>
+        public static int[] BubbleMethod(int[] a)
+        {
+            int aux = 0;
+            bool exchange = false;
+            for (int i = 1; i < a.Length; i++)
+            {
+                for (int j = 0; j < a.Length - i; j++)
+                {
+                    if (a[j] > a[j + 1])
+                    {
+                        aux = a[j];
+                        a[j] = a[j + 1];
+                        a[j + 1] = aux;
+                        exchange = true;
+                    }
+                }
+
+                if (exchange == false)
+                    break;
+            }
+            return a;
         }
     }
 }
