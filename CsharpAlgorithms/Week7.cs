@@ -156,6 +156,11 @@ namespace CsharpAlgorithms
         /// </summary>
         public static int[] Union(int[] a, int[] b)
         {
+            if (a.Length == 0 || b.Length == 0)
+                throw new ArgumentException("The arrays are empty");
+            if (a == null || b == null)
+                throw new ArgumentException("The arrays no exist");
+
             // create marks (false is if there are no problems, it is true that you can not use)
             bool[] a_marks = new bool[a.Length];
             bool[] b_marks = new bool[b.Length];
@@ -230,8 +235,16 @@ namespace CsharpAlgorithms
             return union_a_b;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static int[] UnionVersion2(int[] a, int[] b)
         {
+            if (a.Length == 0 || b.Length == 0)
+                throw new ArgumentException("The arrays are empty");
+            if (a == null || b == null)
+                throw new ArgumentException("The arrays no exist");
+
             int count_marks = 0;
             a = AuxiliaryMethods.OrderListLessBigger(a);
             b = AuxiliaryMethods.OrderListLessBigger(b);
@@ -267,15 +280,46 @@ namespace CsharpAlgorithms
                 }
             return union;
         }
+
         /// <summary>
         /// 
         /// </summary>
-        public static void Intersection(int[] a, int[] b)
+        public static int[] Intersection(int[] a, int[] b)
         {
+            if (a.Length == 0 || b.Length == 0)
+                throw new ArgumentException("The arrays are empty");
+            if (a == null || b == null)
+                throw new ArgumentException("The arrays no exist");
+
+            int k = 0;
+            int[] intersection = new int[a.Length + b.Length];
+            bool[] marks = new bool[a.Length];
+
             for (int i = 0; i < a.Length; i++)
             {
-                
+                if (marks[i] == true)
+                    continue;
+
+                for (int j = i + 1; j < a.Length; j++)
+                {
+                    if (a[i] == a[j])
+                        marks[j] = true;
+                }  
             }
+
+            for (int i = 0; i < a.Length; i++)
+            {
+                for (int j = 0; j < b.Length; j++)
+                {
+                    if (a[i] == b[j] && marks[i] == false)
+                    {
+                        intersection[k] = a[i];
+                        k++;
+                        break;
+                    }
+                }
+            }
+            return intersection;
         }
     }
 }
