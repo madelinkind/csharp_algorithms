@@ -347,5 +347,51 @@ namespace CsharpAlgorithms
             }
             return a;
         }
+
+        /// <summary>
+        /// Belongs
+        /// </summary>
+        public static bool Belongs(int[] numbers, int n)
+        {
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if(numbers[i] == n)
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Average
+        /// </summary>
+        public static int Average(int[] numbers)
+        {
+            int longNumbers = numbers.Length;
+            int suma = 0;
+            int average = 0;
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                suma+= numbers[i];
+            }
+            average = suma/longNumbers;
+            return average;
+        }
+
+        /// <summary>
+        /// Greater Than Average
+        /// </summary>
+       public static  int GreaterThanAverage(int[] numbers)
+       {
+           int average = Average(numbers);
+           int countGreaterAverage = 0;
+
+           for (int i = 0; i < numbers.Length; i++)
+           {
+             if(average < numbers[i])
+                countGreaterAverage++;
+           }
+           return countGreaterAverage;
+       }
     }
 }
