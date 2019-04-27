@@ -349,7 +349,7 @@ namespace CsharpAlgorithms
         }
 
         /// <summary>
-        /// Belongs
+        /// Determine if the number belongs
         /// </summary>
         public static bool Belongs(int[] numbers, int n)
         {
@@ -362,7 +362,7 @@ namespace CsharpAlgorithms
         }
 
         /// <summary>
-        /// Average
+        /// Determines Average
         /// </summary>
         public static int Average(int[] numbers)
         {
@@ -379,7 +379,7 @@ namespace CsharpAlgorithms
         }
 
         /// <summary>
-        /// Greater Than Average
+        /// Determines Numbers Greater Than Average
         /// </summary>
        public static  int GreaterThanAverage(int[] numbers)
        {
