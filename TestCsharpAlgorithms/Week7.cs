@@ -99,4 +99,16 @@ namespace TestCsharpAlgorithms
         }
     }
 
+    [TestClass]
+    public class Sum
+    {
+        [TestMethod]
+        public void WorksForNoElementInaCommon()
+        {
+            int[] sum = Week7.Sum(new int[] { 2, 5 }, new int[] { 2, 3, 4, 50, 76, 89 });
+
+            CollectionAssert.AreEqual(sum, new int[] {4, 8, 4, 50, 76, 89});
+        }
+    }
+
 }

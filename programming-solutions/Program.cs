@@ -42,11 +42,11 @@ namespace ProgrammingSolutions
             //CsharpAlgorithms.Week7.IterationsSequentialSearch(p, 45);
             //int[] a = new int[18] { 10, 7, 14, 25, 31, 32, 45, 62, 56, 765, 23, 45, 23, 123, 1454, 23, 1, 7};
             //int[] b = new int[39] { 7, 7, 14, 25, 31, 32, 45, 62,43, 31, 31, 10, 34, 45, 34, 34, 875, 1234, 233, 12, 12, 45, 23, 34, 23, 12, 56, 45, 334, 23, 45, 67, 78, 57, 56, 34, 98, 34, 32};
-            //int[] a = new int[1] { 1};
-            //int[] b = new int[1] { 1 };
-            //CsharpAlgorithms.Week7.Intersection(a, b);
-            int[] a = new int[12] { 16, 6, 8, 12, 10, 18, 20, 24, 22, 15, 14, 26};
-            CsharpAlgorithms.Week7.Par(a);
+            int[] a = new int[6] {1, 13, -3, 8, 3, 7};
+            int[] b = new int[10] {1, 2, 32, 23, 12, 1, 3, 13, 24, 12};
+            CsharpAlgorithms.Week7.Sum(a, b);
+            //int[] a = new int[12] { 16, 6, 8, 12, 10, 18, 20, 24, 22, 15, 14, 26};
+            //CsharpAlgorithms.Week7.Par(a);
             //int[] a = new int[18] { 10, 7, 14, 25, 31, 32, 45, 62, 56, 765, 23, 45, 23, 123, 1454, 23, 1, 7};
             //int[] b = new int[39] { 7, 7, 14, 25, 31, 32, 45, 62,43, 31, 31, 10, 34, 45, 34, 34, 875, 1234, 233, 12, 12, 45, 23, 34, 23, 12, 56, 45, 334, 23, 45, 67, 78, 57, 56, 34, 98, 34, 32};
             //CsharpAlgorithms.Week7.Union(a, b);

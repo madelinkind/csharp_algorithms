@@ -367,7 +367,7 @@ namespace CsharpAlgorithms
         public static int Average(int[] numbers)
         {
             int longNumbers = numbers.Length;
-            int suma = 0;
+            int suma = 0; 
             int average = 0;
 
             for (int i = 0; i < numbers.Length; i++)
@@ -392,6 +392,50 @@ namespace CsharpAlgorithms
                 countGreaterAverage++;
            }
            return countGreaterAverage;
+       }
+    
+        /// <summary>
+        /// Evaluates a polynomial
+        /// </summary>
+        /// <param name="polynomial">polynomial array</param>
+        /// <param name="value">int value</param>
+       public static double EvaluatePolynomial(int[] polynomial, int value)
+       {
+            double sum = 0;
+
+            for (int i = 0; i < polynomial.Length; i++)
+            {
+                if(polynomial[i] != 0)
+                    sum += polynomial[i] * Math.Pow(value, i);
+            }
+
+            return sum;
+       }
+/// <summary>
+/// 
+/// </summary>
+/// <param name="polynomial1">polynomial array</param>
+/// <param name="polynomial2">polynomial array</param>
+/// <returns></returns>
+       public static int[] Sum(int[] polynomial1, int[] polynomial2)
+       {
+           int i;
+           int[] sum = new int[Math.Max(polynomial1.Length, polynomial2.Length)];
+
+           for (i = 0; i < polynomial1.Length && i < polynomial2.Length; i++)
+           {
+              sum[i] = polynomial1[i] + polynomial2[i]; 
+           }
+            
+            int spacePol1 = polynomial1.Length - i;
+            int spacePol2 = polynomial2.Length - i;
+
+           if(spacePol1!=0)
+           Array.Copy(polynomial1, i, sum, i, spacePol1);
+           else if(spacePol2!=0)
+           Array.Copy(polynomial2, i, sum, i, spacePol2);
+                
+            return sum;
        }
     }
 }
