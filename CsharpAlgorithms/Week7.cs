@@ -412,7 +412,7 @@ namespace CsharpAlgorithms
             return sum;
        }
 /// <summary>
-/// 
+/// Add two polynomials
 /// </summary>
 /// <param name="polynomial1">polynomial array</param>
 /// <param name="polynomial2">polynomial array</param>
@@ -436,6 +436,58 @@ namespace CsharpAlgorithms
            Array.Copy(polynomial2, i, sum, i, spacePol2);
                 
             return sum;
+       }
+
+    /// <summary>
+    /// multiply two polynomials
+    /// </summary>
+    /// <param name="polynomial1">polynomial array</param>
+    /// <param name="polynomial2">polynomial array</param>
+    /// <returns></returns>
+       public static int[] Multiply(int[] polynomial1, int[] polynomial2)
+       {
+           int[] multiply = new int[(polynomial1.Length + polynomial2.Length) - 1];
+
+           for (int i = 0; i < polynomial1.Length; i++)
+           {
+               for (int j = 0; j < polynomial2.Length; j++)
+               {
+                  multiply[i+j] = (polynomial1[i] * polynomial2[j]) + multiply[i+j];
+               }
+           }
+
+           return multiply;
+       }
+
+       public static int Mode(int[] numbers)
+       {
+           int mode = 0;
+           //Contador real
+           int count = 0;
+           //Contador que guarda en caso de que el contador real se mayor, actualiza el count_fashion
+           int count_mode = 0;
+           bool[] repeat = new bool[numbers.Length];
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if(repeat[i] == true)
+                    continue;
+                for (int j = i+1; j < numbers.Length; j++)
+                {
+                    if(numbers[i] == numbers[j])
+                    {
+                        count++;
+                        repeat[j] = true;
+                    }
+                }
+                if(count > count_mode)
+                {
+                    count_mode = count;
+                    mode = numbers[i];
+                }
+                count = 0;
+            }
+           return mode;
        }
     }
 }
