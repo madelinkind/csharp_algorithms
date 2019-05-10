@@ -355,8 +355,8 @@ namespace CsharpAlgorithms
         {
             for (int i = 0; i < numbers.Length; i++)
             {
-                if(numbers[i] == n)
-                return true;
+                if (numbers[i] == n)
+                    return true;
             }
             return false;
         }
@@ -367,127 +367,189 @@ namespace CsharpAlgorithms
         public static int Average(int[] numbers)
         {
             int longNumbers = numbers.Length;
-            int suma = 0; 
+            int suma = 0;
             int average = 0;
 
             for (int i = 0; i < numbers.Length; i++)
             {
-                suma+= numbers[i];
+                suma += numbers[i];
             }
-            average = suma/longNumbers;
+            average = suma / longNumbers;
             return average;
         }
 
         /// <summary>
         /// Determines Numbers Greater Than Average
         /// </summary>
-       public static  int GreaterThanAverage(int[] numbers)
-       {
-           int average = Average(numbers);
-           int countGreaterAverage = 0;
+        public static int GreaterThanAverage(int[] numbers)
+        {
+            int average = Average(numbers);
+            int countGreaterAverage = 0;
 
-           for (int i = 0; i < numbers.Length; i++)
-           {
-             if(average < numbers[i])
-                countGreaterAverage++;
-           }
-           return countGreaterAverage;
-       }
-    
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (average < numbers[i])
+                    countGreaterAverage++;
+            }
+            return countGreaterAverage;
+        }
+
         /// <summary>
         /// Evaluates a polynomial
         /// </summary>
         /// <param name="polynomial">polynomial array</param>
         /// <param name="value">int value</param>
-       public static double EvaluatePolynomial(int[] polynomial, int value)
-       {
+        public static double EvaluatePolynomial(int[] polynomial, int value)
+        {
             double sum = 0;
 
             for (int i = 0; i < polynomial.Length; i++)
             {
-                if(polynomial[i] != 0)
+                if (polynomial[i] != 0)
                     sum += polynomial[i] * Math.Pow(value, i);
             }
 
             return sum;
-       }
-/// <summary>
-/// Add two polynomials
-/// </summary>
-/// <param name="polynomial1">polynomial array</param>
-/// <param name="polynomial2">polynomial array</param>
-/// <returns></returns>
-       public static int[] Sum(int[] polynomial1, int[] polynomial2)
-       {
-           int i;
-           int[] sum = new int[Math.Max(polynomial1.Length, polynomial2.Length)];
+        }
+        /// <summary>
+        /// Add two polynomials
+        /// </summary>
+        /// <param name="polynomial1">polynomial array</param>
+        /// <param name="polynomial2">polynomial array</param>
+        /// <returns></returns>
+        public static int[] Sum(int[] polynomial1, int[] polynomial2)
+        {
+            int i;
+            int[] sum = new int[Math.Max(polynomial1.Length, polynomial2.Length)];
 
-           for (i = 0; i < polynomial1.Length && i < polynomial2.Length; i++)
-           {
-              sum[i] = polynomial1[i] + polynomial2[i]; 
-           }
-            
+            for (i = 0; i < polynomial1.Length && i < polynomial2.Length; i++)
+            {
+                sum[i] = polynomial1[i] + polynomial2[i];
+            }
+
             int spacePol1 = polynomial1.Length - i;
             int spacePol2 = polynomial2.Length - i;
 
-           if(spacePol1!=0)
-           Array.Copy(polynomial1, i, sum, i, spacePol1);
-           else if(spacePol2!=0)
-           Array.Copy(polynomial2, i, sum, i, spacePol2);
-                
+            if (spacePol1 != 0)
+                Array.Copy(polynomial1, i, sum, i, spacePol1);
+            else if (spacePol2 != 0)
+                Array.Copy(polynomial2, i, sum, i, spacePol2);
+
             return sum;
-       }
+        }
 
-    /// <summary>
-    /// multiply two polynomials
-    /// </summary>
-    /// <param name="polynomial1">polynomial array</param>
-    /// <param name="polynomial2">polynomial array</param>
-    /// <returns></returns>
-       public static int[] Multiply(int[] polynomial1, int[] polynomial2)
-       {
-           int[] multiply = new int[(polynomial1.Length + polynomial2.Length) - 1];
+        /// <summary>
+        /// multiply two polynomials
+        /// </summary>
+        /// <param name="polynomial1">polynomial array</param>
+        /// <param name="polynomial2">polynomial array</param>
+        /// <returns></returns>
+        public static int[] Multiply(int[] polynomial1, int[] polynomial2)
+        {
+            int[] multiply = new int[(polynomial1.Length + polynomial2.Length) - 1];
 
-           for (int i = 0; i < polynomial1.Length; i++)
-           {
-               for (int j = 0; j < polynomial2.Length; j++)
-               {
-                  multiply[i+j] = (polynomial1[i] * polynomial2[j]) + multiply[i+j];
-               }
-           }
+            for (int i = 0; i < polynomial1.Length; i++)
+            {
+                for (int j = 0; j < polynomial2.Length; j++)
+                {
+                    multiply[i + j] = (polynomial1[i] * polynomial2[j]) + multiply[i + j];
+                }
+            }
 
-           return multiply;
-       }
+            return multiply;
+        }
 
-       public static int Mode(int[] numbers)
-       {
-           int mode = 0;
-           //Contador real
-           int count = 0;
-           //Contador que guarda en caso de que el contador real se mayor, actualiza el count_fashion
-           int count_mode = 0;
-           bool[] repeat = new bool[numbers.Length];
+        public static int Mode(int[] numbers)
+        {
+            int mode = 0;
+            //Contador real
+            int count = 0;
+            //Contador que guarda en caso de que el contador real se mayor, actualiza el count_fashion
+            int count_mode = 0;
+            bool[] repeat = new bool[numbers.Length];
 
             for (int i = 0; i < numbers.Length; i++)
             {
-                if(repeat[i] == true)
+                if (repeat[i] == true)
                     continue;
-                for (int j = i+1; j < numbers.Length; j++)
+                for (int j = i + 1; j < numbers.Length; j++)
                 {
-                    if(numbers[i] == numbers[j])
+                    if (numbers[i] == numbers[j])
                     {
                         count++;
                         repeat[j] = true;
                     }
                 }
-                if(count > count_mode)
+                if (count > count_mode)
                 {
                     count_mode = count;
                     mode = numbers[i];
                 }
                 count = 0;
             }
-           return mode;
-       }
+            return mode;
+        }
+
+        public static int[] Insert(int[] a, int pos, int x)
+        {
+
+            int value = 0;
+            int value1 = 0;
+            //i=pos
+            int[] insert = new int[a.Length + 1];
+
+            for (int i = pos; i < insert.Length; i++)
+            {
+                    value1 = a[i];
+                    a[i] = value;
+                    value = value1;
+            }
+            return a;
+        }
+
+        public static int[] Insert1(int[] a, int pos, int x)
+        {
+
+            int value = 0;
+            int value1 = 0;
+            //i=pos
+            //int[] insert = new int[a.Length];
+            //Copy , then copy array one to one
+            for (int i = pos; i < a.Length; i++)
+            {
+                value1 = a[i];
+                a[i] = value;
+                value = value1;
+            }
+            return a;
+        }
+
+        public static void InvierteBloques(int[] a, int k)
+        {
+            int cont = 0;
+            int value = 0;
+            int j;
+            int p;
+            for (int i = 0; i < a.Length; i++)
+            {
+                j = k;
+                p = i;
+
+                if (i == k)
+                {
+                    while (p <= j)
+                    {
+                        p = j - p;
+                        value = a[p];
+                        a[p] = a[j];
+                        a[j] = value;
+                        p++;
+                        j--;
+                    }
+
+                }
+
+            }
+        }
     }
 }
