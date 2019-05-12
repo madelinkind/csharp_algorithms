@@ -111,4 +111,209 @@ namespace TestCsharpAlgorithms
         }
     }
 
+    [TestClass]
+    public class InsertVers1
+    {
+        [TestMethod]
+        public void WorksForLeftArrayLast()
+        {
+            int[] insert = Week7.InsertVers1(new int[] { 2, 3, 4, 50, 76, 89 }, 5, 10);
+
+            CollectionAssert.AreEqual(insert, new int[] {2, 3, 4, 50,76, 10});
+        }
+
+        [TestMethod]
+        public void WorksForLeftArrayFirst()
+        {
+            int[] insert = Week7.InsertVers2(new int[] { 2, 3, 4, 50, 76, 89 }, 0, 10);
+
+            CollectionAssert.AreEqual(insert, new int[] {10, 2, 3, 4, 50,76});
+        }
+        [TestMethod]
+        public void WorksForLeftArrayMiddle()
+        {
+            int[] insert = Week7.InsertVers2(new int[] { 2, 3, 4, 50, 76, 89 }, 0, 10);
+
+            CollectionAssert.AreEqual(insert, new int[] {10, 2, 3, 4, 50,76});
+        }
+    }
+
+    [TestClass]
+    public class InsertVers2
+    {
+        [TestMethod]
+        public void WorksForLeftArrayLast()
+        {
+            int[] insert = Week7.InsertVers1(new int[] { 2, 3, 4, 50, 76, 89 }, 5, 10);
+
+            CollectionAssert.AreEqual(insert, new int[] {2, 3, 4, 50,76, 10});
+        }
+
+        [TestMethod]
+        public void WorksForLeftArrayFirst()
+        {
+            int[] insert = Week7.InsertVers2(new int[] { 2, 3, 4, 50, 76, 89 }, 0, 10);
+
+            CollectionAssert.AreEqual(insert, new int[] {10, 2, 3, 4, 50,76});
+        }
+
+        [TestMethod]
+        public void WorksForLeftArrayMiddle()
+        {
+            int[] insert = Week7.InsertVers2(new int[] { 2, 3, 4, 50, 76, 89 }, 0, 10);
+
+            CollectionAssert.AreEqual(insert, new int[] {10, 2, 3, 4, 50,76});
+        }
+    }
+
+    [TestClass]
+    public class ReverseBlock
+    {
+        [TestMethod]
+        public void WorksForLeftArrayMiddle()
+        {
+            int[] insert = Week7.ReverseBlok(new int[] { 2, 3, 4, 50, 76, 89, 10, 32 }, 4);
+
+            CollectionAssert.AreEqual(insert, new int[] {50, 4, 3, 2, 32, 10, 89, 76});
+        }
+    }
+
+    [TestClass]
+    public class ReverseBlock1
+    {
+        [TestMethod]
+        public void WorksForLeftArrayMiddle()
+        {
+            int[] insert = Week4.ReverseBlockVers1(new int[] { 2, 3, 4, 50, 76, 89, 10, 32 }, 4);
+
+            CollectionAssert.AreEqual(insert, new int[] {50, 4, 3, 2, 32, 10, 89, 76});
+        }
+
+        [TestMethod]
+        public void WorksForLeftArrayPar()
+        {
+            int[] insert = Week4.ReverseBlockVers1(new int[] { 2, 3, 4, 50, 76, 89, 10, 32, 12, 89 }, 4);
+
+            CollectionAssert.AreEqual(insert, new int[] {50, 4, 3, 2, 32, 10, 89, 76, 12, 89});
+        }
+
+        [TestMethod]
+        public void WorksForLeftArrayImpar()
+        {
+            int[] insert = Week4.ReverseBlockVers1(new int[] { 2, 3, 4, 50, 76, 89, 10, 32, 12, 54, 89 }, 3);
+
+            CollectionAssert.AreEqual(insert, new int[] {4,3,2,89,76,50,12,32,10,54,89});
+        }
+    }
+
+    [TestClass]
+    public class ReverseBlock2
+    {
+        [TestMethod]
+        public void WorksForLeftArrayMiddle()
+        {
+            int[] insert = Week4.ReverseBlockVers2(new int[] { 2, 3, 4, 50, 76, 89, 10, 32 }, 4);
+
+            CollectionAssert.AreEqual(insert, new int[] {50, 4, 3, 2, 32, 10, 89, 76});
+        }
+
+        [TestMethod]
+        public void WorksForLeftArrayPar()
+        {
+            int[] insert = Week4.ReverseBlockVers2(new int[] { 2, 3, 4, 50, 76, 89, 10, 32, 12, 89, 32 }, 4);
+
+            CollectionAssert.AreEqual(insert, new int[] {50, 4, 3, 2, 32, 10, 89, 76, 32,89, 12});
+        }
+
+        [TestMethod]
+        public void WorksForLeftArrayImpar()
+        {
+            int[] insert = Week4.ReverseBlockVers2(new int[] { 2, 3, 4, 50, 76, 89, 10, 32, 12, 54, 89 }, 3);
+
+            CollectionAssert.AreEqual(insert, new int[] {4,3,2,89,76,50,12,32,10,89,54 });
+        }
+    }
+
+    [TestClass]
+    public class Rotate
+    {
+        [TestMethod]
+        public void RotateRight3()
+        {
+        int[] rotated = Week7.RotateRight(new int[] { 2, 3, 4, 50, 76, 89, 10, 32, 12, 54, 89 }, 3);
+
+        CollectionAssert.AreEqual(rotated, new int[] {12,54,89,2, 3, 4, 50, 76, 89, 10, 32});
+        }
+
+        [TestMethod]
+        public void RotateRight5()
+        {
+        int[] rotated = Week7.RotateRight(new int[] { 2, 3, 4, 50, 76, 89, 10, 32, 12, 54, 89 }, 5);
+
+        CollectionAssert.AreEqual(rotated, new int[] {10, 32, 12, 54, 89,  2, 3, 4, 50, 76, 89});
+        }
+    }
+    [TestClass]
+    public class RotateVers2
+    {
+        [TestMethod]
+        public void RotateRight3()
+        {
+        int[] rotated = Week7.RotateRightVers2(new int[] { 2, 3, 4, 50, 76, 89, 10, 32, 12, 54, 89 }, 3);
+
+        CollectionAssert.AreEqual(rotated, new int[] {12,54,89,2, 3, 4, 50, 76, 89, 10, 32});
+        }
+
+        [TestMethod]
+        public void RotateRight5()
+        {
+        int[] rotated = Week7.RotateRightVers2(new int[] { 2, 3, 4, 50, 76, 89, 10, 32, 12, 54, 89 }, 5);
+
+        CollectionAssert.AreEqual(rotated, new int[] {10, 32, 12, 54, 89,  2, 3, 4, 50, 76, 89});
+        }
+    }
+
+    [TestClass]
+    public class RotateRight
+    {
+        [TestMethod]
+        public void RotateRight3()
+        {
+        int[] rotated = Week7.RotateRight(new int[] { 2, 3, 4, 50, 76, 89, 10, 32, 12, 54, 89 }, 3);
+
+        CollectionAssert.AreEqual(rotated, new int[] {12,54,89,2, 3, 4, 50, 76, 89, 10, 32});
+        }
+
+        [TestMethod]
+        public void RotateRight5()
+        {
+        int[] rotated = Week7.RotateRight(new int[] { 2, 3, 4, 50, 76, 89, 10, 32, 12, 54, 89 }, 5);
+
+        CollectionAssert.AreEqual(rotated, new int[] {10, 32, 12, 54, 89,  2, 3, 4, 50, 76, 89});
+        }
+    }
+
+    [TestClass]
+    public class RotateLeft
+    {
+        [TestMethod]
+        public void RotateLeft3()
+        {
+
+        int[] rotated = Week7.RotateLeftVers2(new int[] { 2, 3, 4, 50, 76, 89, 10, 32, 12, 54, 89 }, 3);
+
+        CollectionAssert.AreEqual(rotated, new int[] {50, 76, 89, 10, 32, 12, 54, 89,2,3,4});
+
+        }
+
+        [TestMethod]
+        public void RotateLeft5()
+        {
+
+        int[] rotated = Week7.RotateLeftVers2(new int[] { 2, 3, 4, 50, 76, 89, 10, 32, 12, 54, 89 }, 5);
+
+        CollectionAssert.AreEqual(rotated, new int[] {89, 10, 32, 12, 54, 89,  2, 3, 4, 50, 76});
+
+        }
+    }
 }

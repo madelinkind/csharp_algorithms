@@ -32,6 +32,7 @@ namespace CsharpAlgorithms
                 else
                     return medium;
             }
+
             return -1;
         }
 
@@ -69,6 +70,7 @@ namespace CsharpAlgorithms
                     return numbIteration;
                 }
             }
+
             return numbIteration;
         }
 
@@ -94,6 +96,7 @@ namespace CsharpAlgorithms
                 else
                     numbIteration++;
             }
+
             return numbIteration;
         }
 
@@ -148,6 +151,7 @@ namespace CsharpAlgorithms
                 throw new ArgumentException("The arrays no exist");
             var list = a.Union(b);
             int[] resultUnion = list.ToArray();
+
             return resultUnion;
         }
 
@@ -278,6 +282,7 @@ namespace CsharpAlgorithms
                     r++;
                 }
             }
+
             return union;
         }
 
@@ -319,6 +324,7 @@ namespace CsharpAlgorithms
                     }
                 }
             }
+
             return intersection;
         }
 
@@ -345,6 +351,7 @@ namespace CsharpAlgorithms
                 if (exchange == false)
                     break;
             }
+
             return a;
         }
 
@@ -375,6 +382,7 @@ namespace CsharpAlgorithms
                 suma += numbers[i];
             }
             average = suma / longNumbers;
+
             return average;
         }
 
@@ -391,6 +399,7 @@ namespace CsharpAlgorithms
                 if (average < numbers[i])
                     countGreaterAverage++;
             }
+
             return countGreaterAverage;
         }
 
@@ -487,69 +496,148 @@ namespace CsharpAlgorithms
                 }
                 count = 0;
             }
+
             return mode;
         }
 
-        public static int[] Insert(int[] a, int pos, int x)
+        public static int[] InsertVers1(int[] a, int pos, int x)
         {
+            //for (int i = a.Length-2; i >= pos; i--)
+            //a[i+1] = a[i];
+            //a[pos] = x;
 
-            int value = 0;
-            int value1 = 0;
-            //i=pos
-            int[] insert = new int[a.Length + 1];
+            for (int i = a.Length - 1; i > pos; i--)
+                a[i] = a[i - 1];
+            a[pos] = x;
 
-            for (int i = pos; i < insert.Length; i++)
-            {
-                    value1 = a[i];
-                    a[i] = value;
-                    value = value1;
-            }
             return a;
         }
 
-        public static int[] Insert1(int[] a, int pos, int x)
+        public static int[] InsertVers2(int[] a, int pos, int x)
         {
+            int value = x;
+            int value_a = 0;
 
-            int value = 0;
-            int value1 = 0;
-            //i=pos
-            //int[] insert = new int[a.Length];
-            //Copy , then copy array one to one
             for (int i = pos; i < a.Length; i++)
             {
-                value1 = a[i];
+                value_a = a[i];
                 a[i] = value;
-                value = value1;
+                value = value_a;
             }
+
             return a;
         }
 
-        public static void InvierteBloques(int[] a, int k)
+        public static int[] Reverse(int[] a)
         {
-            int cont = 0;
-            int value = 0;
-            int j;
-            int p;
+            int[] reversed = new int[a.Length];
+
             for (int i = 0; i < a.Length; i++)
+                reversed[a.Length - 1 - i] = a[i];
+
+            return reversed;
+        }
+        public static int[] ReverseVers2(int[] a)
+        {
+            int value = 0;
+            int half = a.Length / 2;
+
+            for (int i = 0; i < half; i++)
             {
-                j = k;
-                p = i;
-
-                if (i == k)
-                {
-                    while (p <= j)
-                    {
-                        p = j - p;
-                        value = a[p];
-                        a[p] = a[j];
-                        a[j] = value;
-                        p++;
-                        j--;
-                    }
-
-                }
-
+                value = a[i];
+                a[i] = a[a.Length - 1 - i];
+                a[a.Length - 1 - i] = value;
             }
+
+            return a;
+        }
+
+        public static int[] ReverseBlok(int[] a, int k)
+        {
+            int value = 0;
+
+            for (int i = 0; i < a.Length; i += k)
+            {
+                int lb = i;
+                int ub = lb + k;
+                int halfCount = (ub - lb + 1) / 2;
+                for (int j = lb; j < lb + halfCount; j++)
+                {
+                    int idx = j - lb;
+
+                    // swap first and last elements of i-th block
+                    value = a[j];
+                    a[j] = a[ub - 1 - idx];
+                    a[ub - 1 - idx] = value;
+                }
+            }
+
+            return a;
+        }
+
+        public static int[] RotateRight(int[] a, int value)
+        {
+            for (int i = 0; i < value; i++)
+                a = InsertVers1(a, 0, a[a.Length - 1]);
+
+            return a;
+        }
+
+        public static int[] RotateRightVers2(int[] a, int value)
+        {
+            for (int i = 0; i < value; i++)
+            {
+                int aux = a[0];
+                a[0] = a[a.Length - 1];
+                int x = 0;
+                for (int j = 1; j < a.Length; j++)
+                {
+                    x = a[j];
+                    a[j] = aux;
+                    aux = x;
+                }
+            }
+
+            return a;
+        }
+
+        public static int[] RotateLeftVers2(int[] a, int value)
+        {
+            for (int i = 0; i < value; i++)
+            {
+                int aux = a[a.Length - 1];
+                a[a.Length - 1] = a[0];
+                int x = 0;
+                for (int j = a.Length - 2; j >= 0; j--)
+                {
+                    x = a[j];
+                    a[j] = aux;
+                    aux = x;
+                }
+            }
+
+            return a;
+        }
+
+        public static int[] RotateRightLeft(int[] a, int value)
+        {
+            if (value > 0)
+                a = RotateRight(a, value);
+            else
+                a = RotateLeftVers2(a, value);
+            return a;
+        }
+
+        public static int[] RotateRightLeftSignal(int[] a, int[] value)
+        {
+            for (int i = 0; i < value.Length; i++)
+            {
+                if (value[i] > 0)
+                    a = RotateRight(a, value[i]);
+                else
+                    a = RotateLeftVers2(a, value[i]);
+            }
+            return a;
         }
     }
 }

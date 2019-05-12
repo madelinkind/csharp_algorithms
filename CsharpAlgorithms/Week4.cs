@@ -648,7 +648,53 @@ namespace CsharpAlgorithms
                     biggerNumber = valueBigger;
                 i++;
             }
+
             return biggerNumber;
         }
+
+       public static int[] ReverseBlockVers1(int[] a, int k)
+       {
+           int value = 0;
+           int rest = a.Length % k;
+           for (int i = 0; i < a.Length - rest; i += k)
+           {
+               int lb = i;
+               int ub = lb + k;
+               for (int j = i; j < (lb + ub)/2; j++)
+               {
+                    int id = j - i;  
+                    value = a[j];
+                    a[j] = a[ub - 1 - id];
+                    a[ub - 1 - id] = value;  
+               }
+           }
+
+           return a;
+       } 
+
+        public static int[] ReverseBlockVers2(int[] a, int k)
+       {
+           int value = 0;
+           int rest = a.Length % k;
+           for (int i = 0; i < a.Length; i += k)
+           {
+                int lb = i;
+                // int ub = lb + k;
+                // int m = Math.Min(a.Length, ub);
+                // if(a.Length < ub)
+                //     ub = lb + rest;
+
+                int ub = Math.Min(lb + k, a.Length);
+                for (int j = i; j < (lb + ub)/2; j++)
+                {
+                    int id = j - i;  
+                    value = a[j];
+                    a[j] = a[ub - 1 - id];
+                    a[ub - 1 - id] = value;
+                }
+           }
+
+           return a;
+       } 
     }
 }
