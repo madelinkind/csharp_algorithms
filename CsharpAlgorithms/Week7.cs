@@ -14,19 +14,19 @@ namespace CsharpAlgorithms
         public static int SearchBinary(double[] listOrder, double numSearch)
         {
             int post = 0;
-            int fixeLength = listOrder.Length;
+            int fixeLength = listOrder.Length - 1;
 
             if (listOrder == null)
                 throw new ArgumentException("The array no exist");
             if (listOrder.Length == 0)
                 throw new ArgumentException("The array is empty");
 
-            while (post < fixeLength)
+            while (post <= fixeLength)
             {
                 int medium = post + (fixeLength - post) / 2;
 
                 if (numSearch < listOrder[medium])
-                    post = medium - 1;
+                    fixeLength = medium - 1;
                 else if (numSearch > listOrder[medium])
                     post = medium + 1;
                 else

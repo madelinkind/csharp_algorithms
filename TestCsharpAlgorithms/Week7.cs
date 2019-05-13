@@ -316,4 +316,28 @@ namespace TestCsharpAlgorithms
 
         }
     }
+
+    [TestClass]
+    public class SearchBinary
+    {
+        [TestMethod]
+        public void RotateLeft3()
+        {
+
+            int rotated = Week7.SearchBinary(new double[] { 2, 3, 4, 10, 25, 30, 31, 32, 40, 45, 50 }, 51);
+
+            Assert.AreEqual(rotated, -1);
+
+        }
+
+        [TestMethod]
+        public void RotateLeft5()
+        {
+
+            int rotated = Week7.SearchBinary(new double[] { 2, 3, 4, 10, 25, 30, 31, 32, 40, 45, 50 }, 45);
+
+            Assert.AreEqual(rotated, 9);
+
+        }
+    }
 }
