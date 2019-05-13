@@ -625,6 +625,7 @@ namespace CsharpAlgorithms
                 a = RotateRight(a, value);
             else
                 a = RotateLeftVers2(a, value);
+
             return a;
         }
 
@@ -637,6 +638,7 @@ namespace CsharpAlgorithms
                 else
                     a = RotateLeftVers2(a, value[i]);
             }
+
             return a;
         }
     }
