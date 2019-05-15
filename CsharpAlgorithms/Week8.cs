@@ -43,8 +43,9 @@ namespace CsharpAlgorithms
             int sum_row = 0;
             int sum_col = 0;
 
-            if (a.GetLength(0) == a.GetLength(1))
-            {
+            if (a.GetLength(0) != a.GetLength(1))
+                return false;
+
                 for (int i = 0; i < a.GetLength(0) - 1; i++)
                 {
                     for (int j = 0; j < a.GetLength(1); j++)
@@ -72,9 +73,6 @@ namespace CsharpAlgorithms
                         col = 0;
                     }
                 }
-            }
-            else
-                return false;
 
             return true;
         }    
