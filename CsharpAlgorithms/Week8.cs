@@ -38,7 +38,6 @@ namespace CsharpAlgorithms
 
         public static bool EsPerfecto(int[,] a)
         {
-            int[,] sum = new int[a.GetLength(0), a.GetLength(1)];
             int row = 0;
             int col = 0;
             int sum_row = 0;
@@ -46,15 +45,35 @@ namespace CsharpAlgorithms
 
             if (a.GetLength(0) == a.GetLength(1))
             {
-                for (int i = 0; i < a.GetLength(0); i++)
+                for (int i = 0; i < a.GetLength(0) - 1; i++)
                 {
                     for (int j = 0; j < a.GetLength(1); j++)
                     {
-                        sum[i,j] += a[i, j];
-                    }
+                        sum_row += a[i, j];
+                        row += a[i + 1, j]; 
 
+                        if(sum_row != row)
+                            return false;
+                        sum_row = 0;
+                        row = 0;
+                    }
+                }
+                for (int i = 0; i < a.GetLength(1) -1; i++)
+                {
+                    for (int j = 0; j < a.GetLength(0); j++)
+                    {
+                        sum_col += a[i, j];
+                        col += a[i + 1, j]; 
+
+                        if(sum_col != col)
+                            return false;
+                        sum_col = 0;
+                        col = 0;
+                    }
                 }
             }
+            else
+                return false;
 
             return true;
         }    
