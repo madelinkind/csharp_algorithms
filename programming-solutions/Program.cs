@@ -53,6 +53,10 @@ namespace ProgrammingSolutions
             //int[,] b = new int[4,3] { 7, 7, 14, 25}, { 31, 32, 45};
               CsharpAlgorithms.Week7.RotateLeftVers2(a, 3);
             #endregion
+
+            #region Ejercicios Semana 8
+            CsharpAlgorithms.Week8.EsPerfecto(new int[4, 4] { { 2, 2, 2, 2 }, { 2, 2, 2, 2 }, { 2, 2, 2, 2 }, { 2, 2, 2, 2 } });
+            #endregion
         }
     }
 }

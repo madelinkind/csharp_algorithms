@@ -340,28 +340,4 @@ namespace TestCsharpAlgorithms
 
         }
     }
-
-    [TestClass]
-    public class SearchWeek8
-    {
-        [TestMethod]
-        public void RotateLeft3()
-        {
-
-            bool esPerfecto = Week8.EsPerfecto(new int [4,4] {{2, 2, 2, 2} , {2, 2, 2, 2} , {2, 2, 2, 2}, {2, 2, 2,2}});
-
-            Assert.AreEqual(esPerfecto, true);
-
-        }
-
-        [TestMethod]
-        public void RotateLeft5()
-        {
-
-            int rotated = Week7.SearchBinary(new double[] { 2, 3, 4, 10, 25, 30, 31, 32, 40, 45, 50 }, 45);
-
-            Assert.AreEqual(rotated, 9);
-
-        }
-    }
 }

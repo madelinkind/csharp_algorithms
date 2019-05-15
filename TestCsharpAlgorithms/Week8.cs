@@ -10,16 +10,14 @@ namespace TestCsharpAlgorithms
     class Week8
     {
         [TestClass]
-        public class SearchWeek8
+        public class IsPerfect
         {
             [TestMethod]
             public void RotateLeft3()
             {
-
                 bool esPerfecto = Week8.EsPerfecto(new int[4, 4] { { 2, 2, 2, 2 }, { 2, 2, 2, 2 }, { 2, 2, 2, 2 }, { 2, 2, 2, 2 } });
 
                 Assert.AreEqual(esPerfecto, true);
-
             }
         }
     }
