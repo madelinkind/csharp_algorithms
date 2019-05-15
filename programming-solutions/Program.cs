@@ -50,7 +50,7 @@ namespace ProgrammingSolutions
             //int[] a = new int[12] { 16, 6, 8, 12, 10, 18, 20, 24, 22, 15, 14, 26};
             //CsharpAlgorithms.Week7.Par(a);
             //int[] a = new int[18] { 10, 7, 14, 25, 31, 32, 45, 62, 56, 765, 23, 45, 23, 123, 1454, 23, 1, 7};
-            int[,] b = new int[4,3] { 7, 7, 14, 25}, { 31, 32, 45};
+            //int[,] b = new int[4,3] { 7, 7, 14, 25}, { 31, 32, 45};
               CsharpAlgorithms.Week7.RotateLeftVers2(a, 3);
             #endregion
         }
