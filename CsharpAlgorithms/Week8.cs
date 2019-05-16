@@ -22,13 +22,13 @@ namespace CsharpAlgorithms
             int pos = 0;
             int fixeLength = a.Length - 1;
 
-            while(pos <= fixeLength)
+            while (pos <= fixeLength)
             {
                 int medium = pos + (fixeLength - pos) / 2;
                 if (x > a[pos])
                     pos = medium + 1;
                 else if (x < a[pos])
-                    fixeLength = medium -1;
+                    fixeLength = medium - 1;
                 else
                     return pos;
             }
@@ -36,7 +36,7 @@ namespace CsharpAlgorithms
             return -1;
         }
 
-        public static bool EsPerfecto(int[,] a)
+        public static bool IsPerfect(int[,] a)
         {
             int row = 0;
             int col = 0;
@@ -46,36 +46,50 @@ namespace CsharpAlgorithms
             if (a.GetLength(0) != a.GetLength(1))
                 return false;
 
-                for (int i = 0; i < a.GetLength(0) - 1; i++)
+            for (int i = 0; i < a.GetLength(0) - 1; i++)
+            {
+                for (int j = 0; j < a.GetLength(1); j++)
                 {
-                    for (int j = 0; j < a.GetLength(1); j++)
-                    {
-                        sum_row += a[i, j];
-                        row += a[i + 1, j]; 
+                    sum_row += a[i, j];
+                    row += a[i + 1, j];
 
-                        if(sum_row != row)
-                            return false;
-                        sum_row = 0;
-                        row = 0;
-                    }
+                    if (sum_row != row)
+                        return false;
+                    sum_row = 0;
+                    row = 0;
                 }
+            }
 
-                for (int i = 0; i < a.GetLength(1) -1; i++)
+            for (int i = 0; i < a.GetLength(1) - 1; i++)
+            {
+                for (int j = 0; j < a.GetLength(0); j++)
                 {
-                    for (int j = 0; j < a.GetLength(0); j++)
-                    {
-                        sum_col += a[i, j];
-                        col += a[i + 1, j]; 
+                    sum_col += a[i, j];
+                    col += a[i + 1, j];
 
-                        if(sum_col != col)
-                            return false;
-                        sum_col = 0;
-                        col = 0;
-                    }
+                    if (sum_col != col)
+                        return false;
+                    sum_col = 0;
+                    col = 0;
                 }
+            }
 
             return true;
-        }    
+        }
+
+        public static bool FindValue(int[,] a, int value)
+        {
+            for (int i = 0; i < a.GetLength(0); i++)
+            {
+                for (int j = 0; j < a.GetLength(1); j++)
+                {
+                    if (a[i, j] == value)
+                        return true;
+                }
+            }
+
+            return false;
+        }
 
     }
 }

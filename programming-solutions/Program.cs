@@ -55,7 +55,7 @@ namespace ProgrammingSolutions
             #endregion
 
             #region Ejercicios Semana 8
-            CsharpAlgorithms.Week8.EsPerfecto(new int[4, 4] { { 2, 2, 2, 2 }, { 2, 2, 2, 2 }, { 2, 2, 2, 2 }, { 2, 2, 2, 2 } });
+            CsharpAlgorithms.Week8.IsPerfect(new int[4, 4] { { 2, 2, 2, 2 }, { 2, 2, 2, 2 }, { 2, 2, 2, 2 }, { 2, 2, 2, 2 } });
             #endregion
         }
     }
