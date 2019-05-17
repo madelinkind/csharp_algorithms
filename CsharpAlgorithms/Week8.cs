@@ -91,5 +91,54 @@ namespace CsharpAlgorithms
             return false;
         }
 
+        public static bool ValueBelongs(int value)
+        {
+            int[,] matriz = new int[value, value];
+            for (int i = 0; i < matriz.GetLength(0); i++)
+            {
+                for (int j = 0; j < matriz.GetLength(1); j++)
+                {
+                    if (matriz[i, j] == value)
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static int[,] PascalTriangle(int n)
+        {
+            int[,] pascalTriangle = new int[n + 1, n + 1];
+            pascalTriangle[0, 0] = 1;
+            for (int i = 1, j = 1; i < pascalTriangle.GetLength(0) && j < pascalTriangle.GetLength(1); i++, j++)
+            {
+                pascalTriangle[i, j] = 1;
+                pascalTriangle[0, j] = 1;
+            }
+            for (int i = 1; i < pascalTriangle.GetLength(1) - 1; i++)
+            {
+                int cont = 0;
+                int sum = 0;
+                for (int j = 0; j < pascalTriangle.GetLength(0); j++)
+                {
+                    if (pascalTriangle[j, i] == 0)
+                        break;
+                    sum += pascalTriangle[j, i];
+                    cont++;
+                    if (cont == 2)
+                    {
+                        pascalTriangle[j, i + 1] = sum;
+                        sum = pascalTriangle[j, i];
+                        cont = 1;
+                    }
+
+
+
+                }
+            }
+
+            return pascalTriangle;
+        }
+
     }
 }
