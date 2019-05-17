@@ -27,14 +27,12 @@ namespace TestCsharpAlgorithms
         {
             int[,] pascalTriangle = Week8.PascalTriangle(4);
 
-            Assert.AreEqual(pascalTriangle, new int[5,5] { { 1, 0, 0, 0,0 }, 
-                                                            { 1, 1, 0, 0,0 }, 
-                                                            { 1, 2, 1, 0,0 }, 
-                                                            { 1, 3, 3, 1,0 }, 
+            Assert.AreEqual(pascalTriangle, new int[5, 5] { { 1, 0, 0, 0,0 },
+                                                            { 1, 1, 0, 0,0 },
+                                                            { 1, 2, 1, 0,0 },
+                                                            { 1, 3, 3, 1,0 },
                                                             { 1, 4, 6, 4,1 } });
-                                                            
         }
     }
 }
 
-                                                

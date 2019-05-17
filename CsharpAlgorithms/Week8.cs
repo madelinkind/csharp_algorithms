@@ -131,9 +131,6 @@ namespace CsharpAlgorithms
                         sum = pascalTriangle[j, i];
                         cont = 1;
                     }
-
-
-
                 }
             }
 
