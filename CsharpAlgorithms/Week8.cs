@@ -113,22 +113,22 @@ namespace CsharpAlgorithms
             for (int i = 1, j = 1; i < pascalTriangle.GetLength(0) && j < pascalTriangle.GetLength(1); i++, j++)
             {
                 pascalTriangle[i, j] = 1;
-                pascalTriangle[0, j] = 1;
+                pascalTriangle[i, 0] = 1;
             }
-            for (int i = 1; i < pascalTriangle.GetLength(1) - 1; i++)
+            for (int i = 1; i < pascalTriangle.GetLength(0) - 1; i++)
             {
                 int cont = 0;
                 int sum = 0;
-                for (int j = 0; j < pascalTriangle.GetLength(0); j++)
+                for (int j = 0; j < pascalTriangle.GetLength(1); j++)
                 {
-                    if (pascalTriangle[j, i] == 0)
+                    if (pascalTriangle[i, j] == 0)
                         break;
-                    sum += pascalTriangle[j, i];
+                    sum += pascalTriangle[i, j];
                     cont++;
                     if (cont == 2)
                     {
-                        pascalTriangle[j, i + 1] = sum;
-                        sum = pascalTriangle[j, i];
+                        pascalTriangle[i + 1, j] = sum;
+                        sum = pascalTriangle[i, j];
                         cont = 1;
                     }
                 }
@@ -137,5 +137,42 @@ namespace CsharpAlgorithms
             return pascalTriangle;
         }
 
+        public static int[,] PascalTriangle2(int n)
+        {
+            int[,] pascalTriangle = new int[n + 1, n + 1];
+            pascalTriangle[0, 0] = 1;
+            for (int i = 1; i < pascalTriangle.GetLength(0); i++)
+            {
+                pascalTriangle[i, 0] = 1;
+                for (int j = 1; j <= i; j++)
+                    pascalTriangle[i, j] = pascalTriangle[i - 1, j] + pascalTriangle[i - 1, j - 1];
+            }
+
+            return pascalTriangle;
+        }
+
+        public static void PrintMatrix(int[,] a)
+        {
+            for (int i = 0; i < a.GetLength(0); i++)
+            {
+                string row = "";
+                for (int j = 0; j < a.GetLength(1); j++)
+                    row += (j == a.GetLength(1) - 1) ? $"{a[i, j]}" : $"{a[i, j]},";
+
+                Console.WriteLine(row);
+            }
+        }
+
+        public static void PrintMatrix2(int[,] a)
+        {
+            for (int i = 0; i < a.GetLength(0); i++)
+            {
+                int[] row = new int[a.GetLength(1)];
+                for (int j = 0; j < a.GetLength(1); j++)
+                    row[j] = a[i, j];
+
+                Console.WriteLine(string.Join(",", row));
+            }
+        }
     }
 }

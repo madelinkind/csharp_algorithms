@@ -25,13 +25,17 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void RotateLeft3()
         {
-            int[,] pascalTriangle = Week8.PascalTriangle(4);
+            int[,] pascalTriangle = Week8.PascalTriangle2(4);
 
-            Assert.AreEqual(pascalTriangle, new int[5, 5] { { 1, 0, 0, 0,0 },
-                                                            { 1, 1, 0, 0,0 },
-                                                            { 1, 2, 1, 0,0 },
-                                                            { 1, 3, 3, 1,0 },
-                                                            { 1, 4, 6, 4,1 } });
+            Week8.PrintMatrix(pascalTriangle);
+
+            CollectionAssert.AreEqual(pascalTriangle, new int[5, 5] { 
+                { 1, 0, 0, 0, 0 },
+                { 1, 1, 0, 0, 0 },
+                { 1, 2, 1, 0, 0 },
+                { 1, 3, 3, 1, 0 },
+                { 1, 4, 6, 4, 1 } 
+            });
         }
     }
 }
