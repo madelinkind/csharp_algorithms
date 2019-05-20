@@ -174,5 +174,113 @@ namespace CsharpAlgorithms
                 Console.WriteLine(string.Join(",", row));
             }
         }
+
+        public static int[,] Mirror(int[,] a, bool horizontal)
+        {
+            int[,] mirror = new int[a.GetLength(0), a.GetLength(1)];
+            int dimention = a.GetLength(0) / 2;
+            if (a.GetLength(0) - 1 % 2 != 0)
+                dimention = (a.GetLength(0) / 2) + 1;
+            for (int i = 0; i < dimention; i++)
+            {
+                int aux = 0;
+                int aux1 = 0;
+                for (int j = 0; j < a.GetLength(1); j++)
+                {
+                    if (i != dimention)
+                    {
+                        aux = a[i, j];
+                        aux1 = a[a.GetLength(0) - 1 - i, j];
+                        mirror[i, j] = aux1;
+                        mirror[a.GetLength(0) - 1 - i, j] = aux;
+                    }
+                    else
+                    {
+                        aux = a[i, j];
+                        mirror[i, j] = aux;
+                    }
+                }
+            }
+
+            return mirror;
+        }
+
+        public static int[,] Mirror2(int[,] a, bool horizontal)
+        {
+            int[,] mirror = new int[a.GetLength(0), a.GetLength(1)];
+            Array.Copy(a, 0, mirror, 0, a.Length);
+
+            if (horizontal == true)
+            {
+                for (int i = 0; i < a.GetLength(0) / 2; i++)
+                {
+                    int aux = 0;
+                    for (int j = 0; j < a.GetLength(1); j++)
+                    {
+                        aux = mirror[i, j];
+                        mirror[i, j] = mirror[a.GetLength(0) - 1 - i, j];
+                        mirror[a.GetLength(0) - 1 - i, j] = aux;
+                    }
+                }
+            }
+            else
+            {
+                for (int j = 0; j < a.GetLength(1) / 2; j++)
+                {
+                    int aux = 0;
+                    for (int i = 0; i < a.GetLength(0); i++)
+                    {
+                        aux = mirror[i, j];
+                        mirror[i, j] = mirror[i, a.GetLength(1) - 1 - j];
+                        mirror[i, a.GetLength(1) - 1 - j] = aux;
+                    }
+                }
+            }
+
+            return mirror;
+        }
+
+        public static bool ValidDimension(int i, int j, int nRows, int nCols)
+        {
+            if (i >= nRows || j >= nCols || i < 0 || j < 0)
+                return false;
+
+            return true;
+        }
+
+        public static bool FourOnLine(bool[,] a, int n = 4)
+        {
+            int[] Dx = new int[4] { 1, 0, 1, -1};
+            int[] Dy = new int[4] { 0, 1, 1, 1};
+
+            for (int i = 0; i < a.GetLength(0); i++)
+            {
+                for (int j = 0; j < a.GetLength(1); j++)
+                {
+                    for (int d = 0; d < Dx.Length; d++)
+                    {
+                        int id_i = i;
+                        int id_j = j;
+                        int cont = 1;
+                        for (int k = 0; k < n - 1; k++)
+                        {
+                            id_i += Dx[d];
+                            id_j += Dy[d];
+                            bool posicionValid = ValidDimension(id_i, id_j, a.GetLength(0), a.GetLength(1));
+                            if (!posicionValid)
+                                break;
+                            if (a[i, j] == a[id_i, id_j])
+                                cont++;
+                            else
+                                break;
+                        }
+                        if (cont == n)
+                            return true;
+                    }
+                }
+            }
+
+            return false;
+        }
     }
 }
