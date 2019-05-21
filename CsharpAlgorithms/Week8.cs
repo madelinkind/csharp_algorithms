@@ -250,8 +250,8 @@ namespace CsharpAlgorithms
 
         public static bool FourOnLine(bool[,] a, int n = 4)
         {
-            int[] Dx = new int[4] { 1, 0, 1, -1};
-            int[] Dy = new int[4] { 0, 1, 1, 1};
+            int[] Dx = new int[4] { 1, 0, 1, -1 };
+            int[] Dy = new int[4] { 0, 1, 1, 1 };
 
             for (int i = 0; i < a.GetLength(0); i++)
             {
@@ -282,5 +282,67 @@ namespace CsharpAlgorithms
 
             return false;
         }
+        public static Ubicacion Encuentra(char[,] sopa, string palabra)
+        {
+            int[] Dx = new int[3] { 1, 0, 1 };
+            int[] Dy = new int[3] { 0, 1, 1 };
+            for (int i = 0; i < sopa.GetLength(0); i++)
+            {
+                for (int j = 0; j < sopa.GetLength(1); j++)
+                {
+                    for (int d = 0; d < Dx.Length; d++)
+                    {
+                        int id_i = i;
+                        int id_j = j;
+                        int cont = 1;
+                        for (int k = 0; k < palabra.Length; k++)
+                        {
+                            
+                            bool posicionValid = ValidDimension(id_i, id_j, sopa.GetLength(0), sopa.GetLength(1));
+                            if (!posicionValid)
+                                break;
+                            if (sopa[i, j] == palabra[k])
+                                cont++;
+                            else
+                                break;
+                            id_i += Dx[d];
+                            id_j += Dy[d];
+                        }
+                        if(cont == palabra.Length - 1)
+                            throw new NotImplementedException();
+                    }
+                }
+            }
+            throw new NotImplementedException();
+        }
+    }
+
+
+    public class Ubicacion
+    {
+        int filaInicio, filaFinal, columnaInicio, columnaFinal;
+
+        public Ubicacion(int filaInicio, int filaFinal, int columnaInicio, int columnaFinal)
+        {
+
+            this.filaInicio = filaInicio;
+
+            this.filaFinal = filaFinal;
+
+            this.columnaInicio = columnaInicio;
+
+            this.columnaFinal = columnaFinal;
+
+        }
+
+        public int FilaInicio { get { return filaInicio; } }
+
+        public int FilaFinal { get { return filaFinal; } }
+
+        public int ColumnaInicio { get { return columnaInicio; } }
+
+        public int ColumnaFinal { get { return columnaFinal; } }
+
+
     }
 }
