@@ -282,41 +282,44 @@ namespace CsharpAlgorithms
 
             return false;
         }
-        public static Ubicacion Encuentra(char[,] sopa, string palabra)
+
+        public static bool FindWord(char[,] soup, string word)
         {
-            int[] Dx = new int[3] { 1, 0, 1 };
-            int[] Dy = new int[3] { 0, 1, 1 };
-            for (int i = 0; i < sopa.GetLength(0); i++)
+            int[] Dx = { 1, 0, 1 };
+            int[] Dy = { 0, 1, 1 };
+            char[] character = word.ToCharArray();
+            for (int i = 0; i < soup.GetLength(0); i++)
             {
-                for (int j = 0; j < sopa.GetLength(1); j++)
+                for (int j = 0; j < soup.GetLength(1); j++)
                 {
                     for (int d = 0; d < Dx.Length; d++)
                     {
+                        int cont = 0;
                         int id_i = i;
                         int id_j = j;
-                        int cont = 1;
-                        for (int k = 0; k < palabra.Length; k++)
+                        for (int k = 0; k < character.Length; k++)
                         {
-                            
-                            bool posicionValid = ValidDimension(id_i, id_j, sopa.GetLength(0), sopa.GetLength(1));
-                            if (!posicionValid)
+                            bool positionValid = ValidDimension(id_i, id_j, soup.GetLength(0), soup.GetLength(1));
+                            if (!positionValid)
                                 break;
-                            if (sopa[i, j] == palabra[k])
+                            if (soup[id_i, id_j] == character[k])
                                 cont++;
                             else
                                 break;
-                            id_i += Dx[d];
-                            id_j += Dy[d];
+                            id_j += Dx[d];
+                            id_i += Dy[d];
                         }
-                        if(cont == palabra.Length - 1)
-                            throw new NotImplementedException();
+                        if (cont == character.Length)
+                            return true;
+                        else if (cont == 0)
+                            break;
                     }
                 }
             }
-            throw new NotImplementedException();
+
+            return false;
         }
     }
-
 
     public class Ubicacion
     {

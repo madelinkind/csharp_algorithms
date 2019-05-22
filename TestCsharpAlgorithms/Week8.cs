@@ -258,7 +258,72 @@ namespace TestCsharpAlgorithms
 
             Assert.AreEqual(vertical, false);
         }
+    }
+
+    [TestClass]
+    public class SopaTest
+    {
+        [TestMethod]
+        public void WorksForResultHorizontalTrue()
+        {
+            bool horizontal = Week8.FindWord(new char[6, 5] {
+                { 'A', 'G', 'K', 'O', 'P' },
+                { 'P', 'E', 'P', 'I', 'P'},
+                { 'F', 'P', 'E', 'U', 'P'},
+                { 'O', 'U', 'E', 'O', 'E'},
+                { 'Y', 'Y', 'R', 'P', 'Y'},
+                { 'P', 'E', 'P', 'E', 'U'}
+            }, "PEPE");
+
+            Assert.AreEqual(horizontal, true);
+        }
+
+        [TestMethod]
+        public void WorksForResultDiagonalTrue()
+        {
+            bool encontardo = Week8.FindWord(new char[6, 6] {
+            { 'r', 't', 't', 'u','r','r' },
+            { 'r', 'i', 'e', 'i','r','r' },
+            { 'r', 'r', 'y', 'p','c','r' },
+            { 'r', 'r', 'y', 'u','e','r' },
+            { 'r', 'r', 'y', 'u','r','r' },
+            { 'r', 'r', 'y', 'u','r','r' }
+            }, "tic");
+
+            Assert.AreEqual(encontardo, true);
+        }
+
+        [TestMethod]
+        public void WorksForResulsVerticalTrue()
+        {
+            bool vertical = Week8.FindWord(new char[6, 5] {
+                { 'A', 'G', 'K', 'O', 'P' },
+                { 'P', 'E', 'P', 'I', 'P'},
+                { 'F', 'P', 'E', 'U', 'P'},
+                { 'O', 'U', 'P', 'O', 'E'},
+                { 'Y', 'Y', 'E', 'P', 'Y'},
+                { 'P', 'E', 'P', 'O', 'E'}
+            }, "PEPE");
+
+            Assert.AreEqual(vertical, true);
+        }
+
+        [TestMethod]
+        public void WorksForResultFalse()
+        {
+            bool vertical = Week8.FindWord(new char[6, 5] {
+                { 'A', 'G', 'K', 'O', 'P' },
+                { 'P', 'E', 'P', 'I', 'P'},
+                { 'F', 'P', 'E', 'U', 'P'},
+                { 'O', 'U', 'E', 'O', 'E'},
+                { 'Y', 'Y', 'R', 'P', 'Y'},
+                { 'P', 'E', 'P', 'P', 'O'}
+            }, "PEPE");
+
+            Assert.AreEqual(vertical, false);
+        }
 
     }
+
 }
 
