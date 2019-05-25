@@ -283,11 +283,10 @@ namespace CsharpAlgorithms
             return false;
         }
 
-        public static bool FindWord(char[,] soup, string word)
+        public static Ubicacion FindWord(char[,] soup, string word)
         {
             int[] Dx = { 1, 0, 1 };
             int[] Dy = { 0, 1, 1 };
-            char[] character = word.ToCharArray();
             for (int i = 0; i < soup.GetLength(0); i++)
             {
                 for (int j = 0; j < soup.GetLength(1); j++)
@@ -297,30 +296,132 @@ namespace CsharpAlgorithms
                         int cont = 0;
                         int id_i = i;
                         int id_j = j;
-                        for (int k = 0; k < character.Length; k++)
+                        for (int k = 0; k < word.Length; k++)
                         {
                             bool positionValid = ValidDimension(id_i, id_j, soup.GetLength(0), soup.GetLength(1));
                             if (!positionValid)
                                 break;
-                            if (soup[id_i, id_j] == character[k])
+                            if (soup[id_i, id_j] == word[k])
                                 cont++;
                             else
                                 break;
+                            if (cont == word.Length)
+                                return new Ubicacion(i, id_i, j, id_j);
                             id_j += Dx[d];
                             id_i += Dy[d];
                         }
-                        if (cont == character.Length)
-                            return true;
-                        else if (cont == 0)
+                        if (cont == 0)
                             break;
                     }
                 }
             }
 
-            return false;
+            return new Ubicacion(-1, -1, -1, -1);
         }
     }
 
+    public class Matrix
+    {
+        public double[,] data;
+
+        public Matrix(double[,] data)
+        {
+            this.data = new double[data.GetLength(0), data.GetLength(1)];
+            Array.Copy(data, 0, this.data, 0, data.Length);
+        }
+
+        public static int[,] Multiply(int[,] a, int[,] b)
+        {
+            int[,] result = new int[a.GetLength(0), b.GetLength(1)];
+            if (a.GetLength(1) != b.GetLength(0))
+                throw new ArgumentException("The matrices are not compatible to carry out the multiplication");
+
+            for (int i = 0; i < a.GetLength(0); i++)
+            {
+                for (int j = 0; j < b.GetLength(1); j++)
+                {
+                    int multiply = 0;
+
+                    for (int k = 0; k < b.GetLength(0); k++)
+                    {
+                        multiply += a[i, k] * b[k, j];
+                    }
+                    result[i, j] = multiply;
+                }
+
+            }
+            return result;
+        }
+
+        public static Matrix operator +(Matrix m1, Matrix m2)
+        {
+            if (m1.data.GetLength(0) != m2.data.GetLength(0) || m1.data.GetLength(1) != m2.data.GetLength(1))
+                throw new ArgumentException("The matrices are not compatible to carry out the sum");
+
+            double[,] a = m1.data;
+            double[,] b = m2.data;
+
+            double[,] result = new double[a.GetLength(0), a.GetLength(1)];
+
+            for (int i = 0; i < a.GetLength(0); i++)
+                for (int j = 0; j < a.GetLength(1); j++)
+                    result[i, j] = a[i, j] + b[i, j];
+
+            return new Matrix(result);
+        }
+
+        public static Matrix operator -(Matrix m1, Matrix m2)
+        {
+            if (m1.data.GetLength(0) != m2.data.GetLength(0) || m1.data.GetLength(1) != m2.data.GetLength(1))
+                throw new ArgumentException("The matrices are not compatible to carry out the sum");
+
+            double[,] a = m1.data;
+            double[,] b = m2.data;
+
+            double[,] result = new double[a.GetLength(0), a.GetLength(1)];
+
+            for (int i = 0; i < a.GetLength(0); i++)
+                for (int j = 0; j < a.GetLength(1); j++)
+                    result[i, j] = a[i, j] - b[i, j];
+
+            return new Matrix(result);
+        }
+
+        public static Matrix operator *(Matrix m, double scalar)
+        {
+            double[,] a = m.data;
+            double[,] result = new double[a.GetLength(0), a.GetLength(1)];
+
+            for (int i = 0; i < a.GetLength(0); i++)
+                for (int j = 0; j < a.GetLength(1); j++)
+                    result[i, j] = a[i, j] * scalar;
+
+            return new Matrix(result);
+            
+        }
+        public static Matrix operator *(Matrix m1, Matrix m2)
+        {
+            double[,] a = m1.data;
+            double[,] b = m2.data;
+
+            if (a.GetLength(1) != b.GetLength(0))
+                throw new ArgumentException("The matrices are not compatible to carry out the multiplication");
+
+            double[,] result = new double[a.GetLength(0), b.GetLength(1)];
+            for (int i = 0; i < a.GetLength(0); i++)
+            {
+                for (int j = 0; j < b.GetLength(1); j++)
+                {
+                    double multiply = 0;
+                    for (int k = 0; k < b.GetLength(0); k++)
+                        multiply += a[i, k] * b[k, j];
+                    result[i, j] = multiply;
+                }
+            }
+
+            return new Matrix(result);
+        }
+    }
     public class Ubicacion
     {
         int filaInicio, filaFinal, columnaInicio, columnaFinal;

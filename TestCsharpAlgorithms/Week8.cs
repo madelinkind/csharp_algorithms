@@ -266,7 +266,7 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void WorksForResultHorizontalTrue()
         {
-            bool horizontal = Week8.FindWord(new char[6, 5] {
+            Ubicacion horizontal = Week8.FindWord(new char[6, 5] {
                 { 'A', 'G', 'K', 'O', 'P' },
                 { 'P', 'E', 'P', 'I', 'P'},
                 { 'F', 'P', 'E', 'U', 'P'},
@@ -275,13 +275,16 @@ namespace TestCsharpAlgorithms
                 { 'P', 'E', 'P', 'E', 'U'}
             }, "PEPE");
 
-            Assert.AreEqual(horizontal, true);
+            Assert.AreEqual(horizontal.FilaInicio, 5);
+            Assert.AreEqual(horizontal.FilaFinal, 5);
+            Assert.AreEqual(horizontal.ColumnaInicio, 0);
+            Assert.AreEqual(horizontal.ColumnaFinal, 3);
         }
 
         [TestMethod]
         public void WorksForResultDiagonalTrue()
         {
-            bool encontardo = Week8.FindWord(new char[6, 6] {
+            Ubicacion encontardo = Week8.FindWord(new char[6, 6] {
             { 'r', 't', 't', 'u','r','r' },
             { 'r', 'i', 'e', 'i','r','r' },
             { 'r', 'r', 'y', 'p','c','r' },
@@ -290,13 +293,16 @@ namespace TestCsharpAlgorithms
             { 'r', 'r', 'y', 'u','r','r' }
             }, "tic");
 
-            Assert.AreEqual(encontardo, true);
+            Assert.AreEqual(encontardo.FilaInicio, 0);
+            Assert.AreEqual(encontardo.FilaFinal, 2);
+            Assert.AreEqual(encontardo.ColumnaInicio, 2);
+            Assert.AreEqual(encontardo.ColumnaFinal, 4);
         }
 
         [TestMethod]
         public void WorksForResulsVerticalTrue()
         {
-            bool vertical = Week8.FindWord(new char[6, 5] {
+            Ubicacion vertical = Week8.FindWord(new char[6, 5] {
                 { 'A', 'G', 'K', 'O', 'P' },
                 { 'P', 'E', 'P', 'I', 'P'},
                 { 'F', 'P', 'E', 'U', 'P'},
@@ -305,25 +311,244 @@ namespace TestCsharpAlgorithms
                 { 'P', 'E', 'P', 'O', 'E'}
             }, "PEPE");
 
-            Assert.AreEqual(vertical, true);
+            Assert.AreEqual(vertical.FilaInicio, 1);
+            Assert.AreEqual(vertical.FilaFinal, 4);
+            Assert.AreEqual(vertical.ColumnaInicio, 2);
+            Assert.AreEqual(vertical.ColumnaFinal, 2);
+        }
+    }
+
+    [TestClass]
+    public class MultiplyTest
+    {
+        [TestMethod]
+        public void WorksFor()
+        {
+            int[,] horizontal = Matrix.Multiply(new int[4, 3] {
+                { 1, 2, 3},
+                { 5, 6, 7},
+                { 1, 5, 4 },
+                { 2, 4, 2}
+                },
+                new int[3, 3] {
+                { 1, 2, 3},
+                { 1, 2, 1},
+                { 4, 5, 4},
+                });
+
+            CollectionAssert.AreEqual(horizontal, new int[4, 3] {
+                { 15, 21, 17},
+                { 39, 57, 49},
+                { 22, 32, 24},
+                { 14, 22, 18}
+            });
         }
 
         [TestMethod]
-        public void WorksForResultFalse()
+        public void WorksForMoreCols()
         {
-            bool vertical = Week8.FindWord(new char[6, 5] {
-                { 'A', 'G', 'K', 'O', 'P' },
-                { 'P', 'E', 'P', 'I', 'P'},
-                { 'F', 'P', 'E', 'U', 'P'},
-                { 'O', 'U', 'E', 'O', 'E'},
-                { 'Y', 'Y', 'R', 'P', 'Y'},
-                { 'P', 'E', 'P', 'P', 'O'}
-            }, "PEPE");
+            int[,] horizontal = Matrix.Multiply(new int[4, 3] {
+                { 1, 2, 3},
+                { 5, 6, 7},
+                { 1, 5, 4},
+                { 2, 4, 2}
+                },
+                new int[3, 2] {
+                { 1, 2},
+                { 1, 2},
+                { 4, 5},
+                });
 
-            Assert.AreEqual(vertical, false);
+            CollectionAssert.AreEqual(horizontal, new int[4, 2] {
+                { 15, 21},
+                { 39, 57},
+                { 22, 32},
+                { 14, 22}
+            });
         }
 
+        [TestMethod]
+        public void WorksForMoreRows()
+        {
+            int[,] horizontal = Matrix.Multiply(new int[4, 3] {
+                { 1, 2, 3},
+                { 5, 6, 7},
+                { 1, 5, 4},
+                { 2, 4, 2}
+                },
+                new int[3, 4] {
+                { 1, 2, 3, 3},
+                { 1, 2, 3, 2},
+                { 4, 5, 2, 1},
+                });
+
+            CollectionAssert.AreEqual(horizontal, new int[4, 4] {
+                { 15, 21, 15, 10 },
+                { 39, 57, 47, 34},
+                { 22, 32, 26, 17},
+                { 14, 22, 22, 16}
+            });
+        }
     }
 
+    [TestClass]
+    public class TestMatrixMultiplyOperatorOverride
+    {
+        [TestMethod]
+        public void WorksFor()
+        {
+            Matrix m1 = new Matrix(new double[4, 3] {
+                { 1, 2, 3},
+                { 5, 6, 7},
+                { 1, 5, 4},
+                { 2, 4, 2}}
+            );
+
+            Matrix m2 = new Matrix(new double[3, 3] {
+                { 1, 2, 3},
+                { 1, 2, 1},
+                { 4, 5, 4},
+                });
+
+            Matrix product = m1 * m2;
+
+            CollectionAssert.AreEqual(product.data, new double[4, 3] {
+                { 15, 21, 17},
+                { 39, 57, 49},
+                { 22, 32, 24},
+                { 14, 22, 18}
+            });
+        }
+
+        [TestMethod]
+        public void WorksForMoreCols()
+        {
+            int[,] horizontal = Matrix.Multiply(new int[4, 3] {
+                { 1, 2, 3},
+                { 5, 6, 7},
+                { 1, 5, 4},
+                { 2, 4, 2}
+                },
+                new int[3, 2] {
+                { 1, 2},
+                { 1, 2},
+                { 4, 5},
+                });
+
+            CollectionAssert.AreEqual(horizontal, new int[4, 2] {
+                { 15, 21},
+                { 39, 57},
+                { 22, 32},
+                { 14, 22}
+            });
+        }
+        [TestMethod]
+        public void WorksForMoreRows()
+        {
+            int[,] horizontal = Matrix.Multiply(new int[4, 3] {
+                { 1, 2, 3},
+                { 5, 6, 7},
+                { 1, 5, 4},
+                { 2, 4, 2}
+                },
+                new int[3, 4] {
+                { 1, 2, 3, 3},
+                { 1, 2, 3, 2},
+                { 4, 5, 2, 1},
+                });
+
+            CollectionAssert.AreEqual(horizontal, new int[4, 4] {
+                { 15, 21, 15, 10 },
+                { 39, 57, 47, 34},
+                { 22, 32, 26, 17},
+                { 14, 22, 22, 16}
+            });
+        }
+    }
+
+    [TestClass]
+    public class TestMatrixSumOperatorOverride
+    {
+        [TestMethod]
+        public void WorksFor()
+        {
+            Matrix m1 = new Matrix(new double[4, 5] {
+                { 1, 2, 3, 4, 4},
+                { 1, 2, 1, 4, 4},
+                { 4, 5, 4, 5, 6},
+                { 2, 4, 2, 5, 7}
+                });
+
+            Matrix m2 = new Matrix(new double[4, 5] {
+                { 1, 2, 3, 4, 4},
+                { 1, 2, 1, 4, 4},
+                { 4, 5, 4, 5, 6},
+                { 2, 4, 2, 5, 7}
+                });
+
+            Matrix product = m1 + m2;
+
+            CollectionAssert.AreEqual(product.data, new double[4, 5] {
+                { 2, 4, 6, 8, 8},
+                { 2, 4, 2, 8, 8},
+                { 8, 10, 8, 10, 12},
+                { 4, 8, 4, 10, 14}
+                });
+        }
+    }
+
+    [TestClass]
+    public class TestMatrixSubstractionOperatorOverride
+    {
+        [TestMethod]
+        public void WorksFor()
+        {
+            Matrix m1 = new Matrix(new double[4, 5] {
+                { 1, 2, 3, 4, 4},
+                { 1, 2, 1, 4, 4},
+                { 4, 5, 4, 5, 6},
+                { 2, 4, 2, 5, 7}
+                });
+
+            Matrix m2 = new Matrix(new double[4, 5] {
+                { 1, 2, 3, 4, 4},
+                { 1, 2, 1, 4, 4},
+                { 4, 5, 4, 5, 6},
+                { 2, 4, 2, 5, 7}
+                });
+
+            Matrix product = m1 - m2;
+
+            CollectionAssert.AreEqual(product.data, new double[4, 5] {
+                { 0, 0, 0, 0, 0},
+                { 0, 0, 0, 0, 0},
+                { 0, 0, 0, 0, 0},
+                { 0, 0, 0, 0, 0}
+                });
+        }
+    }
+
+    [TestClass]
+    public class TestMatrixScalarOperatorOverride
+    {
+        [TestMethod]
+        public void WorksFor()
+        {
+            Matrix m = new Matrix(new double[4, 5] {
+                { 1, 2, 3, 4, 4},
+                { 1, 2, 1, 4, 4},
+                { 4, 5, 4, 5, 6},
+                { 2, 4, 2, 5, 7}
+                });
+            Matrix product = m * 2;
+
+            CollectionAssert.AreEqual(product.data, new double[4, 5] {
+                { 2, 4, 6, 8, 8},
+                { 2, 4, 2, 8, 8},
+                { 8, 10, 8, 10, 12},
+                { 4, 8, 4, 10, 14}
+                });
+        }
+    }
 }
 
