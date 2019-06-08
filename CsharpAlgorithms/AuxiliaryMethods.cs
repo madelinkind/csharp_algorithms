@@ -91,5 +91,27 @@ namespace CsharpAlgorithms
             }
             return listNumber;
         }
+
+         /// <summary>
+        /// Order an array with List cambio
+        /// </summary>
+        public static List<int> OrderListLessBiggerVersion2(List<int> listNumber)
+        {
+            int bigger = 0;
+
+            for (int i = 0; i < listNumber.Count; i++)
+            {
+                for (int j = i + 1; j < listNumber.Count; j++)
+                {
+                    if (listNumber[i] > listNumber[j])
+                    {
+                        bigger = listNumber[i];
+                        listNumber[i] = listNumber[j];
+                        listNumber[j] = bigger;
+                    }
+                }
+            }
+            return listNumber;
+        }
     }
 }

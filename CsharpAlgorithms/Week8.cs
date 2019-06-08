@@ -283,6 +283,18 @@ namespace CsharpAlgorithms
             return false;
         }
 
+        public static void Hanoi(int n, string origen, string auxiliar, string destino)
+        {
+            if (n == 1)
+                Console.WriteLine("Mueve un disco de {0} a {1}", origen, destino);
+            else
+            {
+                Hanoi(n - 1, origen, destino, auxiliar);
+                Console.WriteLine("Mueve un disco de {0} a {1}", origen, destino);
+                Hanoi(n - 1, auxiliar, origen, destino);
+            }
+        }
+        
         public static Ubicacion FindWord(char[,] soup, string word)
         {
             int[] Dx = { 1, 0, 1 };
@@ -397,8 +409,9 @@ namespace CsharpAlgorithms
                     result[i, j] = a[i, j] * scalar;
 
             return new Matrix(result);
-            
+
         }
+
         public static Matrix operator *(Matrix m1, Matrix m2)
         {
             double[,] a = m1.data;
@@ -422,6 +435,7 @@ namespace CsharpAlgorithms
             return new Matrix(result);
         }
     }
+
     public class Ubicacion
     {
         int filaInicio, filaFinal, columnaInicio, columnaFinal;
@@ -446,6 +460,84 @@ namespace CsharpAlgorithms
         public int ColumnaInicio { get { return columnaInicio; } }
 
         public int ColumnaFinal { get { return columnaFinal; } }
+    }
+
+    //cambio
+    public class ConjuntoEnteros
+    {
+        public List<int> ListA;
+
+        public ConjuntoEnteros(List<int> ListA)
+        {
+            this.ListA = new List<int>();
+            this.ListA = ListA;
+        }
+        public static ConjuntoEnteros operator /(ConjuntoEnteros m1, ConjuntoEnteros m2)
+        {
+            List<int> a = m1.ListA;
+            List<int> b = m2.ListA;
+
+            if (a.Count == 0 || b.Count == 0)
+                throw new ArgumentException("The arrays are empty");
+            if (a == null || b == null)
+                throw new ArgumentException("The arrays no exist");
+
+            int k = 0;
+            List<int> intersection = new List<int>();
+
+            for (int i = 0; i < a.Count; i++)
+            {
+                for (int j = i + 1; j < a.Count; j++)
+                {
+                    if (a[i] == a[j])
+                        a.Remove(j);
+                }
+            }
+            for (int i = 0; i < a.Count; i++)
+            {
+                for (int j = 0; j < b.Count; j++)
+                {
+                    if (a[i].Equals(b[j]))
+                    {
+                        intersection.Add(a[i]);
+                        k++;
+                        break;
+                    }
+                }
+            }
+
+            return new ConjuntoEnteros(intersection);
+        }
+
+        public static ConjuntoEnteros operator +(ConjuntoEnteros m1, ConjuntoEnteros m2)
+        {
+            List<int> a = m1.ListA;
+            List<int> b = m2.ListA;
+
+            if (a.Count == 0 || b.Count == 0)
+                throw new ArgumentException("The arrays are empty");
+            if (a == null || b == null)
+                throw new ArgumentException("The arrays no exist");
+
+            a = AuxiliaryMethods.OrderListLessBiggerVersion2(a);
+            b = AuxiliaryMethods.OrderListLessBiggerVersion2(b);
+            List<int> union = Week7.MixingVersion2(a, b);
+
+            for (int i = 0; i < union.Count; i++)
+            {
+                int j = i + 1;
+                // mark repeated items in mixing
+                while (j < union.Count)
+                {
+                    if (union[j] == union[i])
+                        union.Remove(j);
+                    else
+                        break;
+                }
+            }
+
+            return new ConjuntoEnteros(union);
+        }
 
 
     }

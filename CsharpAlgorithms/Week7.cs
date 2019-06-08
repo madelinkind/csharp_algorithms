@@ -141,6 +141,50 @@ namespace CsharpAlgorithms
         }
 
         /// <summary>
+        /// Mix two arrays whit List Cambio
+        /// </summary>
+        public static List<int> MixingVersion2(List<int> a, List<int> b)
+        {
+            if (a.Count == 0 || b.Count == 0)
+                throw new ArgumentException("The arrays are empty");
+            if (a == null || b == null)
+                throw new ArgumentException("The arrays no exist");
+
+            int countMixing = 0;
+            List<int> mixing = new List<int>();
+            int i;
+            int j;
+
+            for (i = 0, j = 0; i < a.Count && j < b.Count; countMixing++)
+            {
+                if (a[i] <= b[j])
+                {
+                    mixing.Add(a[i]);
+                    i++;
+                }
+                else
+                {
+                    mixing.Add(b[j]);
+                    j++;
+                }
+            }
+
+            int spaceA = a.Count - i;
+            int spaceB = b.Count - j;
+            if (spaceA != 0)
+            {
+                for (int k = i; k < a.Count; k++)
+                    mixing.Add(a[k]);
+            }
+
+            else
+                for (int q = j; q < b.Count; q++)
+                    mixing.Add(a[q]);
+
+            return mixing;
+        }
+
+        /// <summary>
         /// Union two arrays
         /// </summary>
         public static int[] UnionArray(int[] a, int[] b)
@@ -156,7 +200,7 @@ namespace CsharpAlgorithms
         }
 
         /// <summary>
-        /// Union two arrays Version 2
+        /// Union two arrays Version 2 cambio
         /// </summary>
         public static int[] Union(int[] a, int[] b)
         {
