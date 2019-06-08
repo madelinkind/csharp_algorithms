@@ -552,34 +552,34 @@ namespace TestCsharpAlgorithms
     }
 
     [TestClass]
-    public class TestConjuntoEnterosIntersection
+    public class TestSetIntersection
     {
         [TestMethod]
         public void WorksForIntersection()
         {
             
-            ConjuntoEnteros m1 = new ConjuntoEnteros(new List<int> {2, 3, 9, 7, 6});
-            ConjuntoEnteros m2 = new ConjuntoEnteros(new List<int> {2, 3, 7});
+            Set m1 = new Set(new List<int> {2, 3, 9, 7, 6});
+            Set m2 = new Set(new List<int> {2, 3, 7});
 
-            ConjuntoEnteros product = m1 / m2;
+            Set product = m1 / m2;
 
-            CollectionAssert.AreEqual(product.ListA, new List<int> {2, 3, 7});
+            CollectionAssert.AreEqual(product.elements, new List<int> {2, 3, 7});
         }
     }
 
     [TestClass]
-    public class TestConjuntoEnterosUnion
+    public class TestSetUnion
     {
         [TestMethod]
         public void WorksForUnion()
         {
             
-            ConjuntoEnteros m1 = new ConjuntoEnteros(new List<int> {9, 2, 2, 3, 1, 4, 5, 7, 9, 10, 12});
-            ConjuntoEnteros m2 = new ConjuntoEnteros(new List<int> {8, 1, 6, 2, 3, 2});
+            Set m1 = new Set(new List<int> {9, 2, 2, 3, 1, 4, 5, 7, 9, 10, 12});
+            Set m2 = new Set(new List<int> {8, 1, 6, 2, 3, 2});
 
-            ConjuntoEnteros product = m1 + m2;
+            Set product = m1 + m2;
 
-            CollectionAssert.AreEqual(product.ListA, new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12});
+            CollectionAssert.AreEqual(product.elements, new List<int> {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12});
         }
     }
 }

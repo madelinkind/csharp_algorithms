@@ -463,19 +463,20 @@ namespace CsharpAlgorithms
     }
 
     //cambio
-    public class ConjuntoEnteros
+    public class Set
     {
-        public List<int> ListA;
+        public List<int> elements;
 
-        public ConjuntoEnteros(List<int> ListA)
+        public Set(List<int> elements)
         {
-            this.ListA = new List<int>();
-            this.ListA = ListA;
+            this.elements = new List<int>();
+            this.elements = elements;
         }
-        public static ConjuntoEnteros operator /(ConjuntoEnteros m1, ConjuntoEnteros m2)
+        
+        public static Set operator /(Set m1, Set m2)
         {
-            List<int> a = m1.ListA;
-            List<int> b = m2.ListA;
+            List<int> a = m1.elements;
+            List<int> b = m2.elements;
 
             if (a.Count == 0 || b.Count == 0)
                 throw new ArgumentException("The arrays are empty");
@@ -506,13 +507,13 @@ namespace CsharpAlgorithms
                 }
             }
 
-            return new ConjuntoEnteros(intersection);
+            return new Set(intersection);
         }
 
-        public static ConjuntoEnteros operator +(ConjuntoEnteros m1, ConjuntoEnteros m2)
+        public static Set operator +(Set m1, Set m2)
         {
-            List<int> a = m1.ListA;
-            List<int> b = m2.ListA;
+            List<int> a = m1.elements;
+            List<int> b = m2.elements;
 
             if (a.Count == 0 || b.Count == 0)
                 throw new ArgumentException("The arrays are empty");
@@ -536,7 +537,7 @@ namespace CsharpAlgorithms
                 }
             }
 
-            return new ConjuntoEnteros(union);
+            return new Set(union);
         }
 
 
