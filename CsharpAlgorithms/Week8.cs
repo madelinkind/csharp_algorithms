@@ -539,7 +539,5 @@ namespace CsharpAlgorithms
 
             return new Set(union);
         }
-
-
     }
 }

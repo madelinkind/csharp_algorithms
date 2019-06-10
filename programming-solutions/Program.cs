@@ -61,6 +61,11 @@ namespace ProgrammingSolutions
                 { 9, 2, 7, 14 }
             });
             #endregion
+
+            #region Ejercicios Semana 9
+            //CsharpAlgorithms.Week8.IsPerfect(new int[4, 4] { { 2, 2, 2, 2 }, { 2, 2, 2, 2 }, { 2, 2, 2, 2 }, { 2, 2, 2, 2 } });
+            CsharpAlgorithms.Week9.Hanoi(4, "a", "b", "c");
+            #endregion
         }
     }
 }
