@@ -73,8 +73,30 @@ namespace CsharpAlgorithms
 
             int stairs = StairsPrint(tiles - 1, false, completeStair + "-");
             int stairs1 = (!prevWasVertical) ? StairsPrint(tiles - 1, true, completeStair + "|") : 0;
-            
+
             return stairs + stairs1;
+        }
+
+        public static void InsertionS(int[] a, int n)
+        {
+            InsertionSort(a, 0);
+        }
+
+        public static void InsertionSort(int[] a, int position)
+        {
+            if (position == a.Length - 1)
+                return;
+
+            int menor = position;
+            for (int i = position + 1; i < a.Length; i++)
+            {
+                if (a[i] < menor)
+                    menor = a[i];
+            }
+            
+            a[position] = menor;
+
+            InsertionSort(a, position + 1);
         }
     }
 }
