@@ -82,21 +82,25 @@ namespace CsharpAlgorithms
             InsertionSort(a, 0);
         }
 
-        public static void InsertionSort(int[] a, int position)
+        public static int[] InsertionSort(int[] a, int position)
         {
             if (position == a.Length - 1)
-                return;
+                return a;
 
-            int menor = position;
+            int menor = a[position];
+            int mayor = 0;
+            int cont = 0;
             for (int i = position + 1; i < a.Length; i++)
             {
                 if (a[i] < menor)
                     menor = a[i];
+                    cont = i;
             }
-            
+            mayor = a[position];
             a[position] = menor;
+            a[cont] = mayor;
 
-            InsertionSort(a, position + 1);
+            return InsertionSort(a, position + 1);
         }
     }
 }

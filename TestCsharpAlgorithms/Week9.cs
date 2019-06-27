@@ -42,4 +42,16 @@ namespace TestCsharpAlgorithms
             Assert.AreEqual(stairs, 3);
         }
     }
+
+    [TestClass]
+    public class TestInsertionSort
+    {
+        [TestMethod]
+        public void WorkFor1()
+        {
+            int[] insertionSort = Week9.InsertionSort(new int[] {4, 5, 2}, 0);
+
+            Assert.AreEqual(insertionSort, 2);
+        }
+    }
 }
