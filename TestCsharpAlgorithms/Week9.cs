@@ -49,9 +49,9 @@ namespace TestCsharpAlgorithms
         [TestMethod]
         public void WorkFor1()
         {
-            int[] insertionSort = Week9.InsertionSort(new int[] {4, 5, 2}, 0);
+            int[] insertionSort = Week9.InsertionS(new int[] {4, 5, 2, 32, 1, 67, 3});
 
-            Assert.AreEqual(insertionSort, 2);
+            CollectionAssert.AreEqual(insertionSort, new int[]{1, 2, 3, 4, 5, 32, 67 });
         }
     }
 }

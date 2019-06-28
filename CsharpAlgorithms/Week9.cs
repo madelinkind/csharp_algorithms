@@ -77,9 +77,9 @@ namespace CsharpAlgorithms
             return stairs + stairs1;
         }
 
-        public static void InsertionS(int[] a, int n)
+        public static int[] InsertionS(int[] a)
         {
-            InsertionSort(a, 0);
+            return InsertionSort(a, 0);
         }
 
         public static int[] InsertionSort(int[] a, int position)
@@ -93,8 +93,10 @@ namespace CsharpAlgorithms
             for (int i = position + 1; i < a.Length; i++)
             {
                 if (a[i] < menor)
+                {
                     menor = a[i];
                     cont = i;
+                }
             }
             mayor = a[position];
             a[position] = menor;
