@@ -53,5 +53,17 @@ namespace TestCsharpAlgorithms
 
             CollectionAssert.AreEqual(insertionSort, new int[]{1, 2, 3, 4, 5, 32, 67 });
         }
+
+        [TestClass]
+        public class TestFindSmaller
+        {
+            [TestMethod]
+            public void WorkFor1()
+            {
+                int findSmaller = Week9.FindSmaller(new int[] { 4, -1, -2, -5, 45, 12, 22, 90, -6, 12, 0 }, 0, 5);
+
+                Assert.AreEqual(findSmaller, -6);
+            }
+        }
     }
 }
