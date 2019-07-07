@@ -54,4 +54,16 @@ namespace TestCsharpAlgorithms
             CollectionAssert.AreEqual(insertionSort, new int[]{1, 2, 3, 4, 5, 32, 67 });
         }
     }
+
+     [TestClass]
+    public class TestRandomize
+    {
+        [TestMethod]
+        public void WorkFor1()
+        {
+            int[] randomize = Week9.Randomize(new int[] {4, 5, 2, 32, 1, 67, 3}, new Random(0));
+
+            CollectionAssert.AreEqual(randomize, new int[]{67, 4, 5, 2, 1, 3, 32 });
+        }
+    }
 }

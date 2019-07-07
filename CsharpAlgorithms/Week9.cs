@@ -104,5 +104,27 @@ namespace CsharpAlgorithms
 
             return InsertionSort(a, position + 1);
         }
+
+        public static int[] Randomize(int[] inputList, Random r = null)
+        {
+            if (Object.Equals(r, null))
+                r = new Random();
+
+            return Randomize(inputList, 0, r);
+        }
+        public static int[] Randomize(int[] inputList, int position, Random r)
+        {
+            if(inputList.Length - 1 == position)
+                return inputList;
+
+            int randomIndex = 0;
+            int aux = 0;
+            randomIndex = r.Next(position, inputList.Length);
+            aux = inputList[position];
+            inputList[position] = inputList[randomIndex];
+            inputList[randomIndex] = aux;
+
+            return Randomize(inputList, position + 1, r);
+        }
     }
 }
