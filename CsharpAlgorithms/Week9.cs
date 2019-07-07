@@ -112,6 +112,7 @@ namespace CsharpAlgorithms
 
             return Randomize(inputList, 0, r);
         }
+
         public static int[] Randomize(int[] inputList, int position, Random r)
         {
             if(inputList.Length - 1 == position)
@@ -126,5 +127,39 @@ namespace CsharpAlgorithms
 
             return Randomize(inputList, position + 1, r);
         }
+        
+        public static void Find(int[] a, int init, int end)
+        {
+            FindSmaller(a, 0, a.Length / 2);
+        }
+
+        public static int FindSmaller(int[] a, int positionInit, int positionEnd)
+        {
+            if (positionEnd == a.Length - 1)
+            {
+                if (a[0] < a[a.Length / 2])
+                    return a[0];
+                else
+                    return a[a.Length / 2];
+            }
+
+            int smallerInit = a[0];
+            int smallerEnd = a[a.Length / 2];
+
+            if (smallerInit > a[positionInit + 1] && positionInit < a.Length/2 - 1)
+            {
+                a[0] = a[positionInit + 1];
+                a[positionInit + 1] = smallerInit;
+            }
+
+            if (smallerEnd > a[positionEnd + 1])
+            {
+                a[a.Length / 2] = a[positionEnd + 1];
+                a[positionEnd + 1] = smallerEnd;
+            }
+
+            return FindSmaller(a, positionInit + 1, positionEnd + 1);
+        }
     }
 }
+
