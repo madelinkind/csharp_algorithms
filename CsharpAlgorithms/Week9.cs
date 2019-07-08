@@ -115,7 +115,7 @@ namespace CsharpAlgorithms
 
         public static int[] Randomize(int[] inputList, int position, Random r)
         {
-            if(inputList.Length - 1 == position)
+            if (inputList.Length - 1 == position)
                 return inputList;
 
             int randomIndex = 0;
@@ -127,7 +127,7 @@ namespace CsharpAlgorithms
 
             return Randomize(inputList, position + 1, r);
         }
-        
+
         public static void Find(int[] a, int init, int end)
         {
             FindSmaller(a, 0, a.Length / 2);
@@ -146,7 +146,7 @@ namespace CsharpAlgorithms
             int smallerInit = a[0];
             int smallerEnd = a[a.Length / 2];
 
-            if (smallerInit > a[positionInit + 1] && positionInit < a.Length/2 - 1)
+            if (smallerInit > a[positionInit + 1] && positionInit < a.Length / 2 - 1)
             {
                 a[0] = a[positionInit + 1];
                 a[positionInit + 1] = smallerInit;
@@ -159,6 +159,46 @@ namespace CsharpAlgorithms
             }
 
             return FindSmaller(a, positionInit + 1, positionEnd + 1);
+        }
+
+        public static void FindVersion2(int[] a)
+        {
+            FindSmallerVersion2(a, 0, a.Length - 1);
+        }
+
+        public static int FindSmallerVersion2(int[] a, int lower, int upper)
+        {
+            if(upper <= lower)
+                return a[lower];
+            
+            int half = (lower + upper)/ 2;
+
+            int minLeftHalf = FindSmallerVersion2(a, lower, half);
+            int minRightHalf = FindSmallerVersion2(a, half + 1, upper);
+
+            return Math.Min(minLeftHalf, minRightHalf);
+        }
+
+        public static int PortalFindElement(int[] a, int value)
+        {
+            return FindElement(a, 0, a.Length - 1, value);
+        }
+
+        public static int FindElement(int[] a, int lower, int uper, int value)
+        {
+            if (lower >= uper)
+                return -1;
+            int half = (lower + uper) / 2;
+
+            if (a[half] == value)
+                return half;
+
+            if (a[half] > value)
+                uper = half - 1;
+            else
+                lower = half + 1;
+
+            return FindElement(a, lower, uper, value);
         }
     }
 }
