@@ -78,4 +78,16 @@ namespace TestCsharpAlgorithms
             CollectionAssert.AreEqual(randomize, new int[]{67, 4, 5, 2, 1, 3, 32 });
         }
     }
+
+    [TestClass]
+    public class Test
+    {
+        [TestMethod]
+        public void WorkFor1()
+        {
+            int findSmaller = Week9.FindSmallerVersion2(new int[] { 4, 5, 2, 32, 1, 67, 3 }, 0, 6);
+
+            Assert.AreEqual(findSmaller, 1);
+        }
+    }
 }
