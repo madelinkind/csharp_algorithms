@@ -200,6 +200,14 @@ namespace CsharpAlgorithms
 
             return FindElement(a, lower, uper, value);
         }
+
+        public static void MergeSort(int[] a, int lower, int upper)
+        {
+            int[] first_sub_a;
+            int[] first_sub_b;
+            Array.Copy(a, i, first_sub_a, countMixing, a.Length/2);
+            
+        
     }
 }
 
