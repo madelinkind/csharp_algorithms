@@ -201,13 +201,50 @@ namespace CsharpAlgorithms
             return FindElement(a, lower, uper, value);
         }
 
-        public static void MergeSort(int[] a, int lower, int upper)
+        public static int[] MergeSort(int[] a)
         {
-            int[] first_sub_a;
-            int[] first_sub_b;
-            Array.Copy(a, i, first_sub_a, countMixing, a.Length/2);
+            int half = a.Length / 2;
+            int[] first_sub_a = new int[half];
+            int[] first_sub_b = new int[a.Length - half];
+
+            int countMixing = 0;
+            int lengthMixing = first_sub_a.Length + first_sub_b.Length;
+            int[] mixing = new int[lengthMixing];
+            int i = 0;
+            int j = 0;
+
+            if (i == first_sub_a.Length && j == first_sub_b.Length)
+            {
+                int spaceA = first_sub_a.Length - i;
+                int spaceB = first_sub_b.Length - j;
+                if (spaceA != 0)
+                    Array.Copy(first_sub_a, i, mixing, countMixing, spaceA);
+                else
+                    Array.Copy(first_sub_b, j, mixing, countMixing, spaceB);
+
+                return mixing;
+            }
+
+            Array.Copy(a, first_sub_a, half);
+            Array.Copy(a, half, first_sub_b, 0, a.Length - half);
+
+            first_sub_a = AuxiliaryMethods.OrderListLessBigger(first_sub_a);
+            first_sub_b = AuxiliaryMethods.OrderListLessBigger(first_sub_a);
+
+            if (first_sub_a[i] <= first_sub_b[j])
+            {
+                mixing[countMixing] = first_sub_a[i];
+                i++;
+            }
+            else
+            {
+                mixing[countMixing] = first_sub_b[j];
+                j++;
+            }
+
+            return MergeSort(a);
+        }    
             
-        
     }
 }
 
