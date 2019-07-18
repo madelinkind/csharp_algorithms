@@ -168,10 +168,10 @@ namespace CsharpAlgorithms
 
         public static int FindSmallerVersion2(int[] a, int lower, int upper)
         {
-            if(upper <= lower)
+            if (upper <= lower)
                 return a[lower];
-            
-            int half = (lower + upper)/ 2;
+
+            int half = (lower + upper) / 2;
 
             int minLeftHalf = FindSmallerVersion2(a, lower, half);
             int minRightHalf = FindSmallerVersion2(a, half + 1, upper);
@@ -203,48 +203,23 @@ namespace CsharpAlgorithms
 
         public static int[] MergeSort(int[] a)
         {
+            if (a.Length == 1)
+                return a;
+
             int half = a.Length / 2;
-            int[] first_sub_a = new int[half];
-            int[] first_sub_b = new int[a.Length - half];
+            int[] left = new int[half];
+            int[] right = new int[a.Length - half];
 
-            int countMixing = 0;
-            int lengthMixing = first_sub_a.Length + first_sub_b.Length;
-            int[] mixing = new int[lengthMixing];
-            int i = 0;
-            int j = 0;
+            Array.Copy(a, left, half);
+            left = MergeSort(left);
 
-            if (i == first_sub_a.Length && j == first_sub_b.Length)
-            {
-                int spaceA = first_sub_a.Length - i;
-                int spaceB = first_sub_b.Length - j;
-                if (spaceA != 0)
-                    Array.Copy(first_sub_a, i, mixing, countMixing, spaceA);
-                else
-                    Array.Copy(first_sub_b, j, mixing, countMixing, spaceB);
+            Array.Copy(a, half, right, 0, a.Length - half);
+            right = MergeSort(right);
 
-                return mixing;
-            }
+            int[] merge_sort = Week7.Mixing(left, right);
 
-            Array.Copy(a, first_sub_a, half);
-            Array.Copy(a, half, first_sub_b, 0, a.Length - half);
-
-            first_sub_a = AuxiliaryMethods.OrderListLessBigger(first_sub_a);
-            first_sub_b = AuxiliaryMethods.OrderListLessBigger(first_sub_a);
-
-            if (first_sub_a[i] <= first_sub_b[j])
-            {
-                mixing[countMixing] = first_sub_a[i];
-                i++;
-            }
-            else
-            {
-                mixing[countMixing] = first_sub_b[j];
-                j++;
-            }
-
-            return MergeSort(a);
-        }    
-            
+            return merge_sort;
+        }
     }
 }
 

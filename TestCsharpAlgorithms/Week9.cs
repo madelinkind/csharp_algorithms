@@ -90,4 +90,16 @@ namespace TestCsharpAlgorithms
             Assert.AreEqual(findSmaller, 1);
         }
     }
+
+     [TestClass]
+    public class TestMergeSort
+    {
+        [TestMethod]
+        public void WorkFor1()
+        {
+            int[] merge_sort = Week9.MergeSort(new int[] { 4, 5, 2, 32, 1, 67, 3 });
+
+            CollectionAssert.AreEqual(merge_sort, new int[] { 1, 2, 3, 4, 5, 32, 67});
+        }
+    }
 }
