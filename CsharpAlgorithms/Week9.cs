@@ -220,6 +220,68 @@ namespace CsharpAlgorithms
 
             return merge_sort;
         }
+
+        public static bool Amenaza(bool[,] tablero, int fila, int columna)
+        {
+            //Verificar si hay alguna reina en la misma fila o columna
+            for(int i = 0; i < tablero.GetLength(0); i++)
+            {
+                if(tablero[fila, i] || tablero[i, columna])
+                    return true;
+            }
+            //Diagonal arriba a la izquierda
+            for (int f = fila, c= columna; f >= 0 && c >= 0; f--, c--)
+            {
+                if(tablero[f,c])
+                    return true;
+            }
+            //Diagonal abajo a la izquierda
+            for (int f = fila, c= columna; f < tablero.GetLength(0) && c >= 0; f++, c--)
+            {
+                if(tablero[f,c])
+                    return true;
+            }
+            //Notar q no es necesario revisar las diagonales a la derecha
+            //pues no hay reinas ubicadas aun en las columnas de la derecha
+
+            return false;
+        }
+
+        public static bool UbicaReinas(bool[,] tablero, int reinas)
+        {
+            //Condicion de parada cuando ya no queden reinas por ubicar
+            if(reinas == 0) 
+                return true;
+
+            int columna = tablero.GetLength(0) - reinas;
+
+            //Ciclo por las filas para recorrer la columna
+            for(int fila = 0; fila < tablero.GetLength(0); fila++)
+            {
+                //verificar si la reina en la ubicacion no amenaza las anteriores
+                if(!Amenaza(tablero, fila, columna))
+                {
+                    // Ubicar la reina (hacer una accion X)
+                    tablero[fila, columna] = true;
+
+                    //Intentar ubicar las restantes (llamar recursivo para seguir resolviendo)
+                    if(UbicaReinas(tablero, reinas - 1))
+                        // si encuentra solucion, retorna el resultado
+                        return true;
+
+                    /*
+                        Si llegas a aqui es que no encontraste solucion.
+                        Lo siguiente es revertir la accion X
+                        En este caso revertirla significa quitar
+                        la reina de la posicion (fila, columna)
+                    */
+                    //Volver atras y reubicar las reinas
+                    tablero[fila, columna] = false;
+                }
+            }
+
+            return false;// No se pudieron reubicar las reinas
+        }
     }
 }
 

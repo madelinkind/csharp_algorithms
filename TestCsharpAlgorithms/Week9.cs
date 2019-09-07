@@ -102,4 +102,36 @@ namespace TestCsharpAlgorithms
             CollectionAssert.AreEqual(merge_sort, new int[] { 1, 2, 3, 4, 5, 32, 67});
         }
     }
+
+    [TestClass]
+    public class TestUbicaReinas
+    {
+        [TestMethod]
+        public void WorkFor1()
+        {
+            bool ubica_reinas = Week9.UbicaReinas(new bool[8, 8] {
+                {false,false,false,false,false,false,false,false}, 
+                {false,false,false,false,false,false,false,false},
+                {false,false,false,false,false,false,false,false},
+                {false,false,false,false,false,false,false,false},
+                {false,false,false,false,false,false,false,false},
+                {false,false,false,false,false,false,false,false},
+                {false,false,false,false,false,false,false,false},
+                {false,false,false,false,false,false,false,false}}, 8);
+
+            Assert.AreEqual(ubica_reinas, true);
+        }
+
+        [TestMethod]
+        public void WorkFor2()
+        {
+            bool ubica_reinas = Week9.UbicaReinas(new bool[3, 3] {
+                {false,false,false}, 
+                {false,false,false},
+                {false,false,false}
+               }, 1);
+
+            Assert.AreEqual(ubica_reinas, true);
+        }
+    }
 }
